@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Brands – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery on orders over PKR 2,500 · Same-day delivery in Lahore <a href="#">Shop Now →</a></p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">BharkaBeauty</a>
+                    <div class="search-bar">
+                        <svg class="search-icon" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13 13L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        <input type="search" placeholder="Search for products, brands..." aria-label="Search products">
+                    </div>
+                    <div class="header-actions">
+                        <a href="store-locator.html" class="action-btn" aria-label="Find store"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2C8.24 2 6 4.24 6 7C6 10.75 11 17 11 17C11 17 16 10.75 16 7C16 4.24 13.76 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="#" class="action-btn" aria-label="Wishlist"><svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="cart.html" class="action-btn cart-btn" aria-label="Cart"><svg viewBox="0 0 22 22" fill="none"><path d="M6 2L3 6V20C3 20.55 3.45 21 4 21H20C20.55 21 21 20.55 21 20V6L18 2H6Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6H21" stroke="currentColor" stroke-width="1.5"/><path d="M16 10C16 12.21 13.76 14 11 14C8.24 14 6 12.21 6 10" stroke="currentColor" stroke-width="1.5"/></svg><span class="cart-badge" id="cartBadge">2</span></a>
+                        <a href="login.html" class="action-btn" aria-label="Account"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 16.69 6.69 14 11 14C15.31 14 19 16.69 19 20" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="category.html" class="nav-link">Makeup</a></li>
+                    <li><a href="category.html" class="nav-link">Skincare</a></li>
+                    <li><a href="category.html" class="nav-link">Haircare</a></li>
+                    <li><a href="category.html" class="nav-link">Fragrances</a></li>
+                    <li><a href="category.html" class="nav-link">Bath &amp; Body</a></li>
+                    <li><a href="category.html" class="nav-link">Tools</a></li>
+                    <li><a href="brands.html" class="nav-link active">Brands</a></li>
+                    <li><a href="category.html" class="nav-link nav-link--offers">Offers</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <ul class="mobile-menu__list">
+            <li><a href="category.html">Makeup</a></li>
+            <li><a href="category.html">Skincare</a></li>
+            <li><a href="brands.html">Brands</a></li>
+        </ul>
+        <div class="mobile-menu__actions"><a href="login.html" class="btn btn--primary btn--full">Sign In</a></div>
+    </nav>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">All Brands</h1>
+                <p class="page-hero__desc">Explore our curated selection of premium beauty brands — from international favourites to local gems.</p>
+            </div>
+        </section>
+
+        <div class="brands-page container">
+
+            <!-- Alphabet Filter -->
+            <div class="brands-alpha-filter">
+                <button class="alpha-btn active" data-letter="all">All</button>
+                <button class="alpha-btn" data-letter="A">A</button>
+                <button class="alpha-btn" data-letter="B">B</button>
+                <button class="alpha-btn" data-letter="C">C</button>
+                <button class="alpha-btn" data-letter="D">D</button>
+                <button class="alpha-btn" data-letter="E">E</button>
+                <button class="alpha-btn" data-letter="F">F</button>
+                <button class="alpha-btn" data-letter="G">G</button>
+                <button class="alpha-btn" data-letter="H">H</button>
+                <button class="alpha-btn" data-letter="I">I</button>
+                <button class="alpha-btn" data-letter="J">J</button>
+                <button class="alpha-btn" data-letter="K">K</button>
+                <button class="alpha-btn" data-letter="L">L</button>
+                <button class="alpha-btn" data-letter="M">M</button>
+                <button class="alpha-btn" data-letter="N">N</button>
+                <button class="alpha-btn" data-letter="O">O</button>
+                <button class="alpha-btn" data-letter="P">P</button>
+                <button class="alpha-btn" data-letter="R">R</button>
+                <button class="alpha-btn" data-letter="S">S</button>
+                <button class="alpha-btn" data-letter="T">T</button>
+                <button class="alpha-btn" data-letter="V">V</button>
+            </div>
+
+            <!-- Category Filter -->
+            <div class="brands-cat-filter">
+                <button class="cat-filter-btn active">All Categories</button>
+                <button class="cat-filter-btn">Makeup</button>
+                <button class="cat-filter-btn">Skincare</button>
+                <button class="cat-filter-btn">Haircare</button>
+                <button class="cat-filter-btn">Fragrance</button>
+                <button class="cat-filter-btn">Tools</button>
+            </div>
+
+            <!-- Featured Brands -->
+            <section class="brands-section">
+                <h2 class="brands-section__title">Featured Brands</h2>
+                <div class="brands-grid brands-grid--featured">
+                    <a href="category.html" class="brand-card brand-card--featured">
+                        <div class="brand-card__logo" style="background:#2d1b2e;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#c8a882;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">HB</span><span style="color:#c8a882;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Huda Beauty</span></div>
+                        <div class="brand-card__info">
+                            <h3 class="brand-card__name">Huda Beauty</h3>
+                            <p class="brand-card__cat">Makeup</p>
+                            <p class="brand-card__count">120+ products</p>
+                        </div>
+                    </a>
+                    <a href="category.html" class="brand-card brand-card--featured">
+                        <div class="brand-card__logo" style="background:#1a5276;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">MB</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Maybelline</span></div>
+                        <div class="brand-card__info">
+                            <h3 class="brand-card__name">Maybelline</h3>
+                            <p class="brand-card__cat">Makeup</p>
+                            <p class="brand-card__count">200+ products</p>
+                        </div>
+                    </a>
+                    <a href="category.html" class="brand-card brand-card--featured">
+                        <div class="brand-card__logo" style="background:#8b0000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">LP</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">L'Oréal Paris</span></div>
+                        <div class="brand-card__info">
+                            <h3 class="brand-card__name">L'Oréal Paris</h3>
+                            <p class="brand-card__cat">Makeup · Skincare</p>
+                            <p class="brand-card__count">180+ products</p>
+                        </div>
+                    </a>
+                    <a href="category.html" class="brand-card brand-card--featured">
+                        <div class="brand-card__logo" style="background:#2c2c2c;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">TO</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">The Ordinary</span></div>
+                        <div class="brand-card__info">
+                            <h3 class="brand-card__name">The Ordinary</h3>
+                            <p class="brand-card__cat">Skincare</p>
+                            <p class="brand-card__count">60+ products</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- All Brands A–Z -->
+            <section class="brands-section">
+                <h2 class="brands-section__title">All Brands A–Z</h2>
+
+                <!-- C -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">C</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#0d4f8b;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">CV</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">CeraVe</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">CeraVe</h3><p class="brand-card__cat">Skincare</p><p class="brand-card__count">40+ products</p></div>
+                        </a>
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#6a0dad;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">CH</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Christine</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Clinique</h3><p class="brand-card__cat">Skincare · Makeup</p><p class="brand-card__count">90+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- E -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">E</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#e91e8c;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">ES</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Essence</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Essence</h3><p class="brand-card__cat">Makeup</p><p class="brand-card__count">75+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- G -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">G</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#1a6b2a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">GR</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Garnier</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Garnier</h3><p class="brand-card__cat">Skincare · Haircare</p><p class="brand-card__count">110+ products</p></div>
+                        </a>
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#c8860a;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">GD</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Golden Rose</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Golden Rose</h3><p class="brand-card__cat">Makeup · Nails</p><p class="brand-card__count">150+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- H -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">H</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#2d1b2e;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#c8a882;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">HB</span><span style="color:#c8a882;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Huda Beauty</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Huda Beauty</h3><p class="brand-card__cat">Makeup</p><p class="brand-card__count">120+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- M -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">M</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#1a5276;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">MB</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">Maybelline</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Maybelline</h3><p class="brand-card__cat">Makeup</p><p class="brand-card__count">200+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- N -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">N</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#c8a882;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#1a1a1a;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">NG</span><span style="color:#1a1a1a;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">NG</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Neutrogena</h3><p class="brand-card__cat">Skincare</p><p class="brand-card__count">85+ products</p></div>
+                        </a>
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#c8a882;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#1a1a1a;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">NV</span><span style="color:#1a1a1a;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">NV</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Nivea</h3><p class="brand-card__cat">Skincare · Body</p><p class="brand-card__count">65+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- R -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">R</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#c8a882;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#1a1a1a;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">RV</span><span style="color:#1a1a1a;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">RV</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Revlon</h3><p class="brand-card__cat">Makeup</p><p class="brand-card__count">80+ products</p></div>
+                        </a>
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#c8a882;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#1a1a1a;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">RJ</span><span style="color:#1a1a1a;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">RJ</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">Rivaj UK</h3><p class="brand-card__cat">Makeup · Skincare</p><p class="brand-card__count">95+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- T -->
+                <div class="brands-alpha-group">
+                    <h3 class="brands-alpha-letter">T</h3>
+                    <div class="brands-grid">
+                        <a href="category.html" class="brand-card">
+                            <div class="brand-card__logo" style="background:#2c2c2c;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;"><span style="color:#fff;font-size:1.5rem;font-weight:800;letter-spacing:0.05em;">TO</span><span style="color:#fff;font-size:0.65rem;font-weight:600;letter-spacing:0.1em;opacity:0.85;text-align:center;padding:0 8px;">The Ordinary</span></div>
+                            <div class="brand-card__info"><h3 class="brand-card__name">The Ordinary</h3><p class="brand-card__cat">Skincare</p><p class="brand-card__count">60+ products</p></div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">BharkaBeauty</a>
+                        <p class="footer-desc">Pakistan's premier beauty destination.</p>
+                        <div class="footer-social"><a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+                    </div>
+                    <div class="footer-links"><h3 class="footer-links__title">Shop</h3><ul><li><a href="category.html">Makeup</a></li><li><a href="category.html">Skincare</a></li></ul></div>
+                    <div class="footer-links"><h3 class="footer-links__title">Company</h3><ul><li><a href="about.html">About Us</a></li></ul></div>
+                    <div class="footer-links"><h3 class="footer-links__title">Support</h3><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">© 2025 BharkaBeauty. All rights reserved.</p>
+                <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

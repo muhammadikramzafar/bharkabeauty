@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="checkout-body">
+
+    <!-- Checkout Header (Simplified) -->
+    <header class="checkout-header">
+        <div class="container">
+            <a href="index.html" class="logo">BharkaBeauty</a>
+            <div class="checkout-steps" aria-label="Checkout progress">
+                <div class="checkout-step checkout-step--active">
+                    <span class="step-num">1</span>
+                    <span class="step-label">Address</span>
+                </div>
+                <div class="checkout-step-line"></div>
+                <div class="checkout-step">
+                    <span class="step-num">2</span>
+                    <span class="step-label">Delivery</span>
+                </div>
+                <div class="checkout-step-line"></div>
+                <div class="checkout-step">
+                    <span class="step-num">3</span>
+                    <span class="step-label">Payment</span>
+                </div>
+            </div>
+            <a href="cart.html" class="checkout-header__back">← Back to Bag</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="checkout-layout container">
+
+            <!-- Left: Form Steps -->
+            <div class="checkout-form-area">
+
+                <!-- Step 1: Address -->
+                <section class="checkout-section" id="stepAddress">
+                    <h2 class="checkout-section__title">Delivery Address</h2>
+
+                    <div class="saved-addresses">
+                        <p class="saved-addresses__label">Saved Addresses</p>
+                        <label class="saved-address-option saved-address-option--selected">
+                            <input type="radio" name="savedAddress" checked>
+                            <div class="saved-address-card">
+                                <p class="sac-name">Fatima Ahmed</p>
+                                <p class="sac-address">House 42, DHA Phase 6, Lahore, Punjab, 54000</p>
+                                <p class="sac-phone">+92 300 1234567</p>
+                            </div>
+                        </label>
+                        <label class="saved-address-option">
+                            <input type="radio" name="savedAddress">
+                            <div class="saved-address-card">
+                                <p class="sac-name">Fatima Ahmed (Office)</p>
+                                <p class="sac-address">Office 12, Gulberg III, Lahore, Punjab, 54660</p>
+                                <p class="sac-phone">+92 300 1234567</p>
+                            </div>
+                        </label>
+                    </div>
+
+                    <details class="add-address-toggle">
+                        <summary>+ Add New Address</summary>
+                        <div class="address-form">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+92 3XX XXXXXXX" autocomplete="tel" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="address1">Address Line 1 *</label>
+                                <input type="text" id="address1" name="address1" placeholder="House/Flat No., Street Name" autocomplete="address-line1" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="address2">Address Line 2</label>
+                                <input type="text" id="address2" name="address2" placeholder="Area, Block (optional)" autocomplete="address-line2">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="city">City *</label>
+                                    <select id="city" name="city" required>
+                                        <option value="">Select City</option>
+                                        <option value="lahore" selected>Lahore</option>
+                                        <option value="karachi">Karachi</option>
+                                        <option value="islamabad">Islamabad</option>
+                                        <option value="rawalpindi">Rawalpindi</option>
+                                        <option value="faisalabad">Faisalabad</option>
+                                        <option value="multan">Multan</option>
+                                        <option value="peshawar">Peshawar</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label for="postalCode">Postal Code</label>
+                                    <input type="text" id="postalCode" name="postalCode" placeholder="e.g. 54000" autocomplete="postal-code">
+                                </div>
+                            </div>
+                            <label class="form-checkbox-label">
+                                <input type="checkbox" name="saveAddress">
+                                Save this address for future orders
+                            </label>
+                        </div>
+                    </details>
+
+                    <button class="btn btn--primary btn--lg" type="button" id="continueToDelivery">Continue to Delivery →</button>
+                </section>
+
+                <!-- Step 2: Delivery (hidden initially) -->
+                <section class="checkout-section checkout-section--inactive" id="stepDelivery">
+                    <h2 class="checkout-section__title">Delivery Method</h2>
+                    <div class="delivery-options">
+                        <label class="delivery-option delivery-option--selected">
+                            <input type="radio" name="delivery" value="standard" checked>
+                            <div class="delivery-option__info">
+                                <div>
+                                    <p class="delivery-option__name">Standard Delivery</p>
+                                    <p class="delivery-option__eta">3–5 business days</p>
+                                </div>
+                                <span class="delivery-option__price free-delivery">Free</span>
+                            </div>
+                        </label>
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="express">
+                            <div class="delivery-option__info">
+                                <div>
+                                    <p class="delivery-option__name">Express Delivery</p>
+                                    <p class="delivery-option__eta">1–2 business days</p>
+                                </div>
+                                <span class="delivery-option__price">PKR 250</span>
+                            </div>
+                        </label>
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="sameday">
+                            <div class="delivery-option__info">
+                                <div>
+                                    <p class="delivery-option__name">Same Day Delivery</p>
+                                    <p class="delivery-option__eta">Order by 2 PM · Lahore only</p>
+                                </div>
+                                <span class="delivery-option__price">PKR 500</span>
+                            </div>
+                        </label>
+                        <label class="delivery-option">
+                            <input type="radio" name="delivery" value="store">
+                            <div class="delivery-option__info">
+                                <div>
+                                    <p class="delivery-option__name">Collect from Store</p>
+                                    <p class="delivery-option__eta">Ready in 2 hours · DHA Phase 6, Lahore</p>
+                                </div>
+                                <span class="delivery-option__price free-delivery">Free</span>
+                            </div>
+                        </label>
+                    </div>
+                    <button class="btn btn--primary btn--lg" type="button" id="continueToPayment">Continue to Payment →</button>
+                </section>
+
+                <!-- Step 3: Payment (hidden initially) -->
+                <section class="checkout-section checkout-section--inactive" id="stepPayment">
+                    <h2 class="checkout-section__title">Payment Method</h2>
+                    <div class="payment-methods">
+                        <label class="payment-method payment-method--selected">
+                            <input type="radio" name="payment" value="card" checked>
+                            <div class="payment-method__info">
+                                <svg viewBox="0 0 24 24" fill="none" width="22"><rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 10H22" stroke="currentColor" stroke-width="1.5"/></svg>
+                                <span>Credit / Debit Card</span>
+                            </div>
+                        </label>
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="jazzcash">
+                            <div class="payment-method__info">
+                                <svg viewBox="0 0 24 24" fill="none" width="22"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                <span>JazzCash</span>
+                            </div>
+                        </label>
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="easypaisa">
+                            <div class="payment-method__info">
+                                <svg viewBox="0 0 24 24" fill="none" width="22"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                <span>EasyPaisa</span>
+                            </div>
+                        </label>
+                        <label class="payment-method">
+                            <input type="radio" name="payment" value="cod">
+                            <div class="payment-method__info">
+                                <svg viewBox="0 0 24 24" fill="none" width="22"><path d="M3 8H21L19 18H5L3 8Z" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="21" r="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="21" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+                                <span>Cash on Delivery</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Card Form -->
+                    <div class="card-form" id="cardForm">
+                        <div class="form-field">
+                            <label for="cardName">Name on Card *</label>
+                            <input type="text" id="cardName" name="cardName" placeholder="As it appears on your card" autocomplete="cc-name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="cardNumber">Card Number *</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="cardExpiry">Expiry Date *</label>
+                                <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="cardCvv">CVV *</label>
+                                <input type="text" id="cardCvv" name="cardCvv" placeholder="***" maxlength="4" autocomplete="cc-csc" required>
+                            </div>
+                        </div>
+                        <label class="form-checkbox-label">
+                            <input type="checkbox" name="saveCard">
+                            Save card for future purchases (secured by 256-bit SSL)
+                        </label>
+                    </div>
+
+                    <div class="checkout-agreement">
+                        <p>By placing your order, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+                    </div>
+
+                    <button class="btn btn--primary btn--lg btn--full" type="button" id="placeOrder">
+                        🔒 Place Order · PKR 5,940
+                    </button>
+                </section>
+            </div>
+
+            <!-- Right: Order Summary -->
+            <aside class="checkout-summary">
+                <h2 class="checkout-summary__title">Order Summary</h2>
+
+                <!-- Mini Cart Items -->
+                <div class="checkout-items">
+                    <div class="checkout-item">
+                        <div class="checkout-item__img" style="background-image:url('https://images.unsplash.com/photo-1583241800698-e8ab01830a22?w=48&h=48&fit=crop');background-size:cover;background-position:center;"></div>
+                        <div class="checkout-item__info">
+                            <p class="checkout-item__name">Power Bullet Matte Lipstick</p>
+                            <p class="checkout-item__variant">Shade: Bombshell · Qty: 1</p>
+                        </div>
+                        <span class="checkout-item__price">PKR 4,500</span>
+                    </div>
+                    <div class="checkout-item">
+                        <div class="checkout-item__img" style="background-image:url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=48&h=48&fit=crop');background-size:cover;background-position:center;"></div>
+                        <div class="checkout-item__info">
+                            <p class="checkout-item__name">Fit Me Matte + Poreless Foundation</p>
+                            <p class="checkout-item__variant">Shade: 120 Classic Ivory · Qty: 1</p>
+                        </div>
+                        <span class="checkout-item__price">PKR 2,100</span>
+                    </div>
+                </div>
+
+                <div class="checkout-summary__rows">
+                    <div class="cart-summary__row">
+                        <span>Subtotal</span>
+                        <span>PKR 6,600</span>
+                    </div>
+                    <div class="cart-summary__row cart-summary__row--savings">
+                        <span>Discount</span>
+                        <span>− PKR 660</span>
+                    </div>
+                    <div class="cart-summary__row">
+                        <span>Delivery</span>
+                        <span class="free-delivery">Free</span>
+                    </div>
+                </div>
+                <div class="cart-summary__divider"></div>
+                <div class="cart-summary__total">
+                    <span>Total</span>
+                    <span>PKR 5,940</span>
+                </div>
+                <p class="cart-summary__tax-note">Inclusive of all taxes</p>
+
+                <div class="cart-summary__secure">
+                    <svg viewBox="0 0 16 16" fill="none" width="14"><path d="M8 1L2 4V8C2 11.31 4.67 14.42 8 15C11.33 14.42 14 11.31 14 8V4L8 1Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                    <span>Your information is 100% secure</span>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

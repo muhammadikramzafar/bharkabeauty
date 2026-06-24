@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makeup – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery on orders over PKR 2,500 · Same-day delivery in Lahore <a href="#">Shop Now →</a></p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">BharkaBeauty</a>
+                    <div class="search-bar">
+                        <svg class="search-icon" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M13 13L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        <input type="search" placeholder="Search for products, brands..." aria-label="Search products">
+                    </div>
+                    <div class="header-actions">
+                        <a href="store-locator.html" class="action-btn" aria-label="Find store">
+                            <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 2C8.24 2 6 4.24 6 7C6 10.75 11 17 11 17C11 17 16 10.75 16 7C16 4.24 13.76 2 11 2Z" stroke="currentColor" stroke-width="1.5"/>
+                                <circle cx="11" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="action-btn" aria-label="Wishlist">
+                            <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </a>
+                        <a href="cart.html" class="action-btn cart-btn" aria-label="Cart">
+                            <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 2L3 6V20C3 20.55 3.45 21 4 21H20C20.55 21 21 20.55 21 20V6L18 2H6Z" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M3 6H21" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M16 10C16 12.21 13.76 14 11 14C8.24 14 6 12.21 6 10" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                            <span class="cart-badge" id="cartBadge">2</span>
+                        </a>
+                        <a href="login.html" class="action-btn" aria-label="Account">
+                            <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/>
+                                <path d="M3 20C3 16.69 6.69 14 11 14C15.31 14 19 16.69 19 20" stroke="currentColor" stroke-width="1.5"/>
+                            </svg>
+                        </a>
+                        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                            <span></span><span></span><span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="category.html" class="nav-link active">Makeup</a></li>
+                    <li><a href="category.html" class="nav-link">Skincare</a></li>
+                    <li><a href="category.html" class="nav-link">Haircare</a></li>
+                    <li><a href="category.html" class="nav-link">Fragrances</a></li>
+                    <li><a href="category.html" class="nav-link">Bath &amp; Body</a></li>
+                    <li><a href="category.html" class="nav-link">Tools</a></li>
+                    <li><a href="brands.html" class="nav-link">Brands</a></li>
+                    <li><a href="category.html" class="nav-link nav-link--offers">Offers</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <ul class="mobile-menu__list">
+            <li><a href="category.html">Makeup</a></li>
+            <li><a href="category.html">Skincare</a></li>
+            <li><a href="category.html">Haircare</a></li>
+            <li><a href="category.html">Fragrances</a></li>
+            <li><a href="category.html">Bath &amp; Body</a></li>
+            <li><a href="category.html">Tools</a></li>
+            <li><a href="brands.html">Brands</a></li>
+            <li><a href="category.html" class="offers-link">Offers</a></li>
+        </ul>
+        <div class="mobile-menu__actions">
+            <a href="login.html" class="btn btn--primary btn--full">Sign In</a>
+            <a href="register.html" class="btn btn--outline btn--full">Create Account</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <ol>
+                        <li><a href="index.html">Home</a></li>
+                        <li aria-current="page">Makeup</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Category Header -->
+        <section class="category-hero">
+            <div class="container">
+                <h1 class="category-hero__title">Makeup</h1>
+                <p class="category-hero__desc">Discover our curated collection of premium makeup — from flawless foundations to bold lipsticks, everything you need for your perfect look.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="category-layout container">
+
+            <!-- Sidebar Filters -->
+            <aside class="filters-sidebar" id="filtersSidebar">
+                <div class="filters-header">
+                    <h2 class="filters-title">Filters</h2>
+                    <button class="filters-clear" type="button">Clear All</button>
+                </div>
+
+                <!-- Filter: Category -->
+                <div class="filter-group">
+                    <button class="filter-group__toggle" type="button" aria-expanded="true">
+                        Category
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="filter-group__body">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" checked> Foundation &amp; Concealer
+                            <span class="filter-count">(48)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Lip Color
+                            <span class="filter-count">(63)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Eye Makeup
+                            <span class="filter-count">(41)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Blush &amp; Bronzer
+                            <span class="filter-count">(29)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Setting &amp; Primer
+                            <span class="filter-count">(22)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Highlighter
+                            <span class="filter-count">(17)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filter: Brand -->
+                <div class="filter-group">
+                    <button class="filter-group__toggle" type="button" aria-expanded="true">
+                        Brand
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="filter-group__body">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" checked> Huda Beauty
+                            <span class="filter-count">(24)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Maybelline
+                            <span class="filter-count">(38)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> L'Oréal Paris
+                            <span class="filter-count">(31)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Essence
+                            <span class="filter-count">(19)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Rivaj UK
+                            <span class="filter-count">(15)</span>
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> Golden Rose
+                            <span class="filter-count">(12)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filter: Price Range -->
+                <div class="filter-group">
+                    <button class="filter-group__toggle" type="button" aria-expanded="true">
+                        Price Range
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="filter-group__body">
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price" checked> Under PKR 1,000
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price"> PKR 1,000 – 2,500
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price"> PKR 2,500 – 5,000
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price"> PKR 5,000 – 10,000
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="radio" name="price"> Above PKR 10,000
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filter: Rating -->
+                <div class="filter-group">
+                    <button class="filter-group__toggle" type="button" aria-expanded="false">
+                        Rating
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="filter-group__body" style="display:none;">
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> ★★★★★ 5 Stars
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> ★★★★☆ 4+ Stars
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> ★★★☆☆ 3+ Stars
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filter: Skin Concern -->
+                <div class="filter-group">
+                    <button class="filter-group__toggle" type="button" aria-expanded="false">
+                        Skin Concern
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="filter-group__body" style="display:none;">
+                        <label class="filter-checkbox"><input type="checkbox"> Acne-Prone</label>
+                        <label class="filter-checkbox"><input type="checkbox"> Dry Skin</label>
+                        <label class="filter-checkbox"><input type="checkbox"> Oily Skin</label>
+                        <label class="filter-checkbox"><input type="checkbox"> Sensitive Skin</label>
+                    </div>
+                </div>
+
+                <!-- Filter: Availability -->
+                <div class="filter-group">
+                    <button class="filter-group__toggle" type="button" aria-expanded="true">
+                        Availability
+                        <svg viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <div class="filter-group__body">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" checked> In Stock
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox"> On Sale
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Product Grid Area -->
+            <div class="products-area">
+                <!-- Toolbar -->
+                <div class="toolbar">
+                    <div class="toolbar-left">
+                        <button class="mobile-filters-btn" id="mobileFiltersBtn" type="button">
+                            <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 5H18M5 10H15M8 15H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                            Filters
+                        </button>
+                        <p class="results-count">Showing <strong>1–24</strong> of <strong>220</strong> products</p>
+                    </div>
+                    <div class="toolbar-right">
+                        <label class="sort-label" for="sortSelect">Sort by:</label>
+                        <select class="sort-select" id="sortSelect" aria-label="Sort products">
+                            <option value="popular">Most Popular</option>
+                            <option value="newest">Newest First</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                        <div class="view-toggle">
+                            <button class="view-btn active" data-view="grid" aria-label="Grid view">
+                                <svg viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="1" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="1" y="10" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="10" width="7" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                            <button class="view-btn" data-view="list" aria-label="List view">
+                                <svg viewBox="0 0 18 18" fill="none"><path d="M1 4H17M1 9H17M1 14H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filters -->
+                <div class="active-filters">
+                    <span class="active-filter-tag">Huda Beauty <button type="button" aria-label="Remove filter">×</button></span>
+                    <span class="active-filter-tag">Under PKR 1,000 <button type="button" aria-label="Remove filter">×</button></span>
+                    <span class="active-filter-tag">In Stock <button type="button" aria-label="Remove filter">×</button></span>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
+
+                    <!-- Product Card 1 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1583241800698-e8ab01830a22?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--sale">Sale</span>
+                            </div>
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Huda Beauty</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Power Bullet Matte Lipstick</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(24)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 4,500</span>
+                                <span class="price-original">PKR 6,200</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 2 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--new">New</span>
+                            </div>
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Maybelline</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Fit Me Matte + Poreless Foundation</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(47)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 2,100</span>
+                                <span class="price-original">PKR 2,800</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 3 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=600&fit=crop" alt="L'Oréal Paris" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">L'Oréal Paris</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Lash Paradise Mascara</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(89)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 2,400</span>
+                                <span class="price-original">PKR 3,000</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 4 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1631214524020-3c69a4f60513?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--sale">25% OFF</span>
+                            </div>
+                            <button class="product-card__wishlist wishlist-active" aria-label="Remove from wishlist">
+                                <svg viewBox="0 0 22 22" fill="currentColor"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Essence</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">All About Nude Eyeshadow Palette</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(31)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 1,950</span>
+                                <span class="price-original">PKR 2,600</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 5 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&h=600&fit=crop" alt="Rivaj UK" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Rivaj UK</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Matte Liquid Lipstick – Berry Red</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(18)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 850</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 6 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--bestseller">Best Seller</span>
+                            </div>
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Huda Beauty</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Rose Gold Remastered Palette</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(87)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 12,500</span>
+                                <span class="price-original">PKR 18,000</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 7 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&h=600&fit=crop" alt="Maybelline" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Maybelline</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Color Sensational Lipstick</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(52)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 1,450</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 8 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--new">New</span>
+                            </div>
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Golden Rose</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Dream Blush Stick – Coral</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(14)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 1,200</span>
+                                <span class="price-original">PKR 1,500</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 9 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1603550431-c12fb787a52e?w=600&h=600&fit=crop" alt="L'Oréal Paris" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">L'Oréal Paris</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Infallible 24H Foundation</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(103)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 3,200</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 10 – Out of Stock -->
+                    <article class="product-card product-card--out-of-stock">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--oos">Out of Stock</span>
+                            </div>
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Essence</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Lash Princess False Lash Effect</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(76)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 950</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--outline btn--full" type="button" disabled>Notify Me</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 11 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&h=600&fit=crop" alt="Revlon" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Revlon</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">ColorStay Liquid Lip Comfort</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★☆</span>
+                                <span class="rating-count">(28)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 1,800</span>
+                                <span class="price-original">PKR 2,250</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                    <!-- Product Card 12 -->
+                    <article class="product-card">
+                        <div class="product-card__image-wrap">
+                            <img src="https://images.unsplash.com/photo-1555461083-1bcb42cadb2b?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+                            <div class="product-card__badges">
+                                <span class="badge badge--sale">Sale</span>
+                            </div>
+                            <button class="product-card__wishlist" aria-label="Add to wishlist">
+                                <svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </button>
+                        </div>
+                        <div class="product-card__body">
+                            <p class="product-card__brand">Huda Beauty</p>
+                            <h3 class="product-card__name"><a href="product-detail.html">Mercury Retrograde Palette</a></h3>
+                            <div class="product-card__rating">
+                                <span class="stars">★★★★★</span>
+                                <span class="rating-count">(62)</span>
+                            </div>
+                            <div class="product-card__price">
+                                <span class="price-current">PKR 8,900</span>
+                                <span class="price-original">PKR 11,500</span>
+                            </div>
+                        </div>
+                        <div class="product-card__footer">
+                            <button class="btn btn--primary btn--full add-to-bag-btn" type="button">Add to Bag</button>
+                        </div>
+                    </article>
+
+                </div><!-- /products-grid -->
+
+                <!-- Pagination -->
+                <nav class="pagination" aria-label="Page navigation">
+                    <button class="pagination__btn pagination__btn--prev" disabled aria-label="Previous page">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                    <a href="#" class="pagination__num active" aria-current="page">1</a>
+                    <a href="#" class="pagination__num">2</a>
+                    <a href="#" class="pagination__num">3</a>
+                    <span class="pagination__ellipsis">…</span>
+                    <a href="#" class="pagination__num">10</a>
+                    <button class="pagination__btn pagination__btn--next" aria-label="Next page">
+                        <svg viewBox="0 0 20 20" fill="none"><path d="M8 4L14 10L8 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </button>
+                </nav>
+
+            </div><!-- /products-area -->
+        </div><!-- /category-layout -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">BharkaBeauty</a>
+                        <p class="footer-desc">Pakistan's premier beauty destination — luxury cosmetics, skincare, and haircare delivered to your door.</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M18 2H15C13.67 2 12 3.67 12 5V8H9V12H12V22H16V12H19L20 8H16V5C16 4.45 16.45 4 17 4H20V2H18Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                            </a>
+                            <a href="#" class="social-link" aria-label="TikTok">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3Z" stroke="currentColor" stroke-width="1.5"/><path d="M10 12a3 3 0 1 0 3 3V7a4 4 0 0 0 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="footer-links__title">Shop</h3>
+                        <ul>
+                            <li><a href="category.html">Makeup</a></li>
+                            <li><a href="category.html">Skincare</a></li>
+                            <li><a href="category.html">Haircare</a></li>
+                            <li><a href="category.html">Fragrances</a></li>
+                            <li><a href="category.html">Offers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="footer-links__title">Company</h3>
+                        <ul>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="footer-links__title">Support</h3>
+                        <ul>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Shipping Policy</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="store-locator.html">Store Locator</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">© 2025 BharkaBeauty. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

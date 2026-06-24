@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="auth-body">
+
+    <!-- Header (minimal) -->
+    <header class="auth-header">
+        <a href="index.html" class="logo">BharkaBeauty</a>
+    </header>
+
+    <main class="auth-main">
+        <div class="auth-container">
+
+            <!-- Decorative panel -->
+            <div class="auth-panel auth-panel--decorative">
+                <div class="auth-panel__content">
+                    <h2 class="auth-panel__title">Welcome Back to BharkaBeauty</h2>
+                    <p class="auth-panel__subtitle">Your favourite beauty products, all in one place. Sign in to access your account, track orders, and enjoy exclusive member benefits.</p>
+                    <div class="auth-panel__features">
+                        <div class="auth-feature">
+                            <svg viewBox="0 0 20 20" fill="none" width="20"><path d="M2 10C2 5.58 5.58 2 10 2C14.42 2 18 5.58 18 10C18 14.42 14.42 18 10 18C5.58 18 2 14.42 2 10Z" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9.5 12.5L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span>Track your orders in real time</span>
+                        </div>
+                        <div class="auth-feature">
+                            <svg viewBox="0 0 20 20" fill="none" width="20"><path d="M2 10C2 5.58 5.58 2 10 2C14.42 2 18 5.58 18 10C18 14.42 14.42 18 10 18C5.58 18 2 14.42 2 10Z" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9.5 12.5L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span>Save products to your Wishlist</span>
+                        </div>
+                        <div class="auth-feature">
+                            <svg viewBox="0 0 20 20" fill="none" width="20"><path d="M2 10C2 5.58 5.58 2 10 2C14.42 2 18 5.58 18 10C18 14.42 14.42 18 10 18C5.58 18 2 14.42 2 10Z" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9.5 12.5L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span>Exclusive member-only deals</span>
+                        </div>
+                        <div class="auth-feature">
+                            <svg viewBox="0 0 20 20" fill="none" width="20"><path d="M2 10C2 5.58 5.58 2 10 2C14.42 2 18 5.58 18 10C18 14.42 14.42 18 10 18C5.58 18 2 14.42 2 10Z" stroke="currentColor" stroke-width="1.5"/><path d="M7 10L9.5 12.5L13 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            <span>Faster checkout every time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-panel auth-panel--form">
+                <div class="auth-form-wrap">
+                    <h1 class="auth-title">Sign In</h1>
+                    <p class="auth-subtitle">Don't have an account? <a href="register.html">Create one free</a></p>
+
+                    <div class="auth-form" id="loginForm">
+                        <div class="form-field">
+                            <label for="loginEmail">Email Address *</label>
+                            <input type="email" id="loginEmail" name="email" placeholder="your@email.com" autocomplete="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="loginPassword">
+                                Password *
+                                <a href="#" class="forgot-password">Forgot password?</a>
+                            </label>
+                            <div class="password-field">
+                                <input type="password" id="loginPassword" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                                <button class="password-toggle" type="button" aria-label="Show/hide password">
+                                    <svg viewBox="0 0 22 16" fill="none" width="20"><path d="M1 8C1 8 4.5 1 11 1C17.5 1 21 8 21 8C21 8 17.5 15 11 15C4.5 15 1 8 1 8Z" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <label class="form-checkbox-label auth-remember">
+                            <input type="checkbox" name="remember">
+                            Keep me signed in
+                        </label>
+
+                        <button class="btn btn--primary btn--full btn--lg" type="submit">Sign In</button>
+                    </div>
+
+                    <div class="auth-divider">
+                        <span>or continue with</span>
+                    </div>
+
+                    <div class="social-logins">
+                        <button class="social-login-btn" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" width="20"><path d="M22.56 12.25C22.56 11.47 22.49 10.72 22.36 10H12V14.26H17.92C17.66 15.63 16.88 16.79 15.72 17.57V20.34H19.28C21.36 18.42 22.56 15.6 22.56 12.25Z" fill="#4285F4"/><path d="M12 23C14.97 23 17.46 22.02 19.28 20.34L15.72 17.57C14.74 18.23 13.48 18.63 12 18.63C9.13 18.63 6.71 16.7 5.84 14.1H2.18V16.94C3.99 20.53 7.7 23 12 23Z" fill="#34A853"/><path d="M5.84 14.09C5.62 13.43 5.49 12.73 5.49 12C5.49 11.27 5.62 10.57 5.84 9.91V7.07H2.18C1.43 8.55 1 10.22 1 12C1 13.78 1.43 15.45 2.18 16.93L5.84 14.09Z" fill="#FBBC05"/><path d="M12 5.38C13.62 5.38 15.06 5.94 16.21 7.02L19.36 3.87C17.45 2.09 14.97 1 12 1C7.7 1 3.99 3.48 2.18 7.07L5.84 9.91C6.71 7.3 9.13 5.38 12 5.38Z" fill="#EA4335"/></svg>
+                            Continue with Google
+                        </button>
+                        <button class="social-login-btn" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" width="20"><path d="M12 2C10.29 2 8.65 2.44 7.22 3.22L3.66 6.78C2.44 8.65 2 10.29 2 12C2 16.41 5.17 20.01 9.37 20.79L12 22L14.63 20.79C18.83 20.01 22 16.41 22 12C22 6.48 17.52 2 12 2Z" fill="#1877F2"/><path d="M13 17V13H15.5L16 10.5H13V9C13 8.17 13.42 7.5 14.5 7.5H16V5.3C15.14 5.1 14.24 5 13.5 5C11.57 5 10 6.43 10 8.5V10.5H8V13H10V17H13Z" fill="white"/></svg>
+                            Continue with Facebook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

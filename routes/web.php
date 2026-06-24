@@ -1,7 +1,162 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\BrandController as AdminBrandController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\MenuController;
+use App\Http\Controllers\Admin\MenuItemController;
+use App\Http\Controllers\Admin\CmsPageController;
+use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\Homepage\HomepageController;
+use App\Http\Controllers\Admin\Homepage\HeroSlideController;
+use App\Http\Controllers\Admin\Homepage\HomepageBannerController;
+use App\Http\Controllers\Admin\Homepage\HomepageServiceController;
+use App\Http\Controllers\Admin\Homepage\HomepageCounterController;
+use App\Http\Controllers\Admin\Homepage\HomepageTestimonialController;
+use App\Http\Controllers\Admin\Homepage\HomepageFeaturedController;
+use App\Http\Controllers\Admin\Homepage\HomepageLogoController;
+use App\Http\Controllers\Admin\Homepage\HomepageCtaController;
+use App\Http\Controllers\Admin\ServiceCategoryController as AdminServiceCategoryController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\ServicePageController;
+use App\Http\Controllers\BlogPageController;
+use App\Http\Controllers\Admin\Blog\BlogCategoryController as AdminBlogCategoryController;
+use App\Http\Controllers\Admin\Blog\BlogTagController as AdminBlogTagController;
+use App\Http\Controllers\Admin\Blog\BlogPostController as AdminBlogPostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+// ─── FRONTEND ROUTES ──────────────────────────────────────────
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Shop
+Route::get('/shop', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
+
+// Brands
+Route::get('/brands', [BrandController::class, 'index'])->name('brands');
+
+// Cart (guest accessible)
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
+
+// Checkout (auth required — enforced in controller)
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
+Route::post('/checkout/delivery', [CheckoutController::class, 'storeDelivery'])->name('checkout.delivery');
+Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
+
+// Static Pages
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'sendContact'])->name('contact.send');
+Route::get('/store-locator', [PageController::class, 'storeLocator'])->name('store-locator');
+
+// Services (public)
+Route::get('/services',        [ServicePageController::class, 'index'])->name('services.index');
+Route::get('/services/{slug}', [ServicePageController::class, 'show'])->name('services.show');
+
+// Blog (public) — static segments must precede dynamic {slug}
+Route::prefix('blog')->name('blog.')->group(function () {
+    Route::get('/',                [BlogPageController::class, 'index'])->name('index');
+    Route::get('/category/{slug}',[BlogPageController::class, 'category'])->name('category');
+    Route::get('/tag/{slug}',     [BlogPageController::class, 'tag'])->name('tag');
+    Route::get('/{slug}',         [BlogPageController::class, 'show'])->name('show');
 });
+
+// CMS Pages (public — must be last to avoid conflicts)
+Route::get('/page/{slug}', [PageController::class, 'cmsPage'])->name('cms.page');
+
+// ─── AUTH ROUTES (Breeze) ─────────────────────────────────────
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+// ─── ADMIN ROUTES ─────────────────────────────────────────────
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'admin'])
+    ->group(function () {
+
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        // ── Site Settings ────────────────────────────────────
+        Route::get('/settings',  [SiteSettingController::class, 'index'])->name('settings.index');
+        Route::put('/settings',  [SiteSettingController::class, 'update'])->name('settings.update');
+
+        // ── Menu Builder ─────────────────────────────────────
+        Route::resource('menus', MenuController::class)->except(['show']);
+        Route::post('/menu-items',           [MenuItemController::class, 'store'])->name('menu-items.store');
+        Route::put('/menu-items/{menuItem}', [MenuItemController::class, 'update'])->name('menu-items.update');
+        Route::delete('/menu-items/{menuItem}', [MenuItemController::class, 'destroy'])->name('menu-items.destroy');
+        Route::post('/menu-items/reorder',   [MenuItemController::class, 'reorder'])->name('menu-items.reorder');
+
+        // ── CMS Pages ────────────────────────────────────────
+        Route::resource('pages', CmsPageController::class);
+
+        // ── Media Library ────────────────────────────────────
+        Route::resource('media', MediaController::class)->parameters(['media' => 'medium']);
+
+        // ── Catalog ──────────────────────────────────────────
+        Route::resource('products',   AdminProductController::class);
+        Route::resource('categories', AdminCategoryController::class);
+        Route::resource('brands',     AdminBrandController::class);
+
+        // ── Orders ───────────────────────────────────────────
+        Route::resource('orders', AdminOrderController::class)->only(['index', 'show', 'update']);
+
+        // ── Customers ────────────────────────────────────────
+        Route::get('/customers',      [AdminCustomerController::class, 'index'])->name('customers.index');
+        Route::get('/customers/{id}', [AdminCustomerController::class, 'show'])->name('customers.show');
+
+        // ── Users & Roles ────────────────────────────────────
+        Route::resource('users', AdminUserController::class);
+
+        // ── Blog Module ───────────────────────────────────────
+        Route::prefix('blog')->name('blog.')->group(function () {
+            Route::resource('posts',      AdminBlogPostController::class);
+            Route::resource('categories', AdminBlogCategoryController::class)->except(['show']);
+            Route::resource('tags',       AdminBlogTagController::class)->except(['show']);
+        });
+
+        // ── Services Module ───────────────────────────────────
+        Route::resource('service-categories', AdminServiceCategoryController::class)->except(['show']);
+        Route::resource('services',           AdminServiceController::class)->except(['show']);
+
+        // ── Homepage Management ───────────────────────────────
+        Route::prefix('homepage')->name('homepage.')->group(function () {
+            Route::get('/',        [HomepageController::class, 'index'])->name('index');
+            Route::get('/settings',[HomepageController::class, 'settings'])->name('settings');
+            Route::put('/settings',[HomepageController::class, 'updateSettings'])->name('settings.update');
+
+            Route::resource('hero',         HeroSlideController::class)->except(['show']);
+            Route::post('hero/reorder',     [HeroSlideController::class, 'reorder'])->name('hero.reorder');
+
+            Route::resource('banners',      HomepageBannerController::class)->except(['show']);
+            Route::resource('services',     HomepageServiceController::class)->except(['show']);
+            Route::resource('counters',     HomepageCounterController::class)->except(['show']);
+            Route::resource('testimonials', HomepageTestimonialController::class)->except(['show']);
+            Route::resource('featured',     HomepageFeaturedController::class)->except(['show']);
+            Route::resource('logos',        HomepageLogoController::class)->except(['show']);
+            Route::resource('cta',          HomepageCtaController::class)->except(['show']);
+        });
+    });

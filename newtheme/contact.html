@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery on orders over PKR 2,500 · Same-day delivery in Lahore <a href="#">Shop Now →</a></p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">BharkaBeauty</a>
+                    <div class="search-bar">
+                        <svg class="search-icon" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13 13L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        <input type="search" placeholder="Search for products, brands..." aria-label="Search products">
+                    </div>
+                    <div class="header-actions">
+                        <a href="store-locator.html" class="action-btn" aria-label="Find store"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2C8.24 2 6 4.24 6 7C6 10.75 11 17 11 17C11 17 16 10.75 16 7C16 4.24 13.76 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="#" class="action-btn" aria-label="Wishlist"><svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="cart.html" class="action-btn cart-btn" aria-label="Cart"><svg viewBox="0 0 22 22" fill="none"><path d="M6 2L3 6V20C3 20.55 3.45 21 4 21H20C20.55 21 21 20.55 21 20V6L18 2H6Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6H21" stroke="currentColor" stroke-width="1.5"/><path d="M16 10C16 12.21 13.76 14 11 14C8.24 14 6 12.21 6 10" stroke="currentColor" stroke-width="1.5"/></svg><span class="cart-badge" id="cartBadge">2</span></a>
+                        <a href="login.html" class="action-btn" aria-label="Account"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 16.69 6.69 14 11 14C15.31 14 19 16.69 19 20" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="category.html" class="nav-link">Makeup</a></li>
+                    <li><a href="category.html" class="nav-link">Skincare</a></li>
+                    <li><a href="category.html" class="nav-link">Haircare</a></li>
+                    <li><a href="category.html" class="nav-link">Fragrances</a></li>
+                    <li><a href="category.html" class="nav-link">Bath &amp; Body</a></li>
+                    <li><a href="category.html" class="nav-link">Tools</a></li>
+                    <li><a href="brands.html" class="nav-link">Brands</a></li>
+                    <li><a href="category.html" class="nav-link nav-link--offers">Offers</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <ul class="mobile-menu__list">
+            <li><a href="category.html">Makeup</a></li>
+            <li><a href="category.html">Skincare</a></li>
+        </ul>
+        <div class="mobile-menu__actions"><a href="login.html" class="btn btn--primary btn--full">Sign In</a></div>
+    </nav>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Get in Touch</h1>
+                <p class="page-hero__desc">Have a question about an order, product, or anything else? Our team is here to help — usually within 2–4 hours.</p>
+            </div>
+        </section>
+
+        <!-- Contact Content -->
+        <div class="contact-layout container">
+
+            <!-- Contact Info -->
+            <aside class="contact-info">
+                <h2 class="contact-info__title">How to Reach Us</h2>
+
+                <div class="contact-card">
+                    <div class="contact-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" width="24"><path d="M3.5 3.5C3.5 3.5 5 5.5 5 8C5 10.5 3.5 12 3.5 12L8 16.5C8 16.5 9.5 15 12 15C14.5 15 16.5 16.5 16.5 16.5C16.5 16.5 18 15 18 14C18 12 14 8 12 8C10 8 8.5 9.5 8.5 9.5L3.5 3.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="contact-card__info">
+                        <h3>Phone &amp; WhatsApp</h3>
+                        <p>+92 300 1234567</p>
+                        <p class="contact-card__hours">Mon–Sun: 10 AM – 9 PM</p>
+                        <a href="https://wa.me/923001234567" class="contact-card__link" target="_blank" rel="noopener">Chat on WhatsApp →</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" width="24"><path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="1.5"/><path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="contact-card__info">
+                        <h3>Email</h3>
+                        <p>hello@bharkabeauty.pk</p>
+                        <p class="contact-card__hours">We respond within 2–4 hours</p>
+                        <a href="mailto:hello@bharkabeauty.pk" class="contact-card__link">Send Email →</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" width="24"><path d="M11 2C8.24 2 6 4.24 6 7C6 10.75 11 17 11 17C11 17 16 10.75 16 7C16 4.24 13.76 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                    </div>
+                    <div class="contact-card__info">
+                        <h3>Flagship Store</h3>
+                        <p>Shop 5, Emporium Mall<br>DHA Phase 6, Lahore</p>
+                        <p class="contact-card__hours">Mon–Sun: 10 AM – 10 PM</p>
+                        <a href="store-locator.html" class="contact-card__link">Get Directions →</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-card__icon">
+                        <svg viewBox="0 0 24 24" fill="none" width="24"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                    </div>
+                    <div class="contact-card__info">
+                        <h3>Social Media</h3>
+                        <p>Follow us for beauty tips, new arrivals, and exclusive giveaways.</p>
+                        <div class="contact-social">
+                            <a href="#" aria-label="Instagram">@bharkabeauty</a>
+                            <a href="#" aria-label="TikTok">@bharkabeauty</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick FAQs -->
+                <div class="contact-faqs">
+                    <h3>Common Questions</h3>
+                    <div class="contact-faq-item">
+                        <button class="contact-faq-btn" type="button">
+                            How long does delivery take?
+                            <svg viewBox="0 0 16 16" fill="none" width="14"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </button>
+                        <div class="contact-faq-answer">Standard delivery takes 3–5 business days. Express delivery takes 1–2 days (PKR 250). Same-day delivery is available in Lahore for orders placed before 2 PM (PKR 500).</div>
+                    </div>
+                    <div class="contact-faq-item">
+                        <button class="contact-faq-btn" type="button">
+                            What is your return policy?
+                            <svg viewBox="0 0 16 16" fill="none" width="14"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </button>
+                        <div class="contact-faq-answer" style="display:none;">We accept returns within 30 days of purchase for unopened, unused products in original packaging. Contact us to initiate a return.</div>
+                    </div>
+                    <div class="contact-faq-item">
+                        <button class="contact-faq-btn" type="button">
+                            Are your products authentic?
+                            <svg viewBox="0 0 16 16" fill="none" width="14"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </button>
+                        <div class="contact-faq-answer" style="display:none;">Yes, 100%. We source all products directly from authorised brand distributors or official channels. We never sell replicas or grey-market goods.</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Contact Form -->
+            <div class="contact-form-area">
+                <h2 class="contact-form-title">Send Us a Message</h2>
+                <p class="contact-form-desc">Fill in the form below and we'll get back to you within a few hours.</p>
+
+                <div class="contact-form" id="contactForm">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="contactFirstName">First Name *</label>
+                            <input type="text" id="contactFirstName" name="firstName" placeholder="Fatima" autocomplete="given-name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="contactLastName">Last Name *</label>
+                            <input type="text" id="contactLastName" name="lastName" placeholder="Ahmed" autocomplete="family-name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactEmail">Email Address *</label>
+                        <input type="email" id="contactEmail" name="email" placeholder="your@email.com" autocomplete="email" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactPhone">Phone Number</label>
+                        <input type="tel" id="contactPhone" name="phone" placeholder="+92 3XX XXXXXXX" autocomplete="tel">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactSubject">Subject *</label>
+                        <select id="contactSubject" name="subject" required>
+                            <option value="">Select a topic</option>
+                            <option value="order">Order Tracking / Issue</option>
+                            <option value="return">Returns &amp; Refunds</option>
+                            <option value="product">Product Inquiry</option>
+                            <option value="wholesale">Wholesale / Business</option>
+                            <option value="press">Press &amp; Media</option>
+                            <option value="other">Something Else</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactOrderNo">Order Number (if applicable)</label>
+                        <input type="text" id="contactOrderNo" name="orderNo" placeholder="e.g. BB-20250010">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="contactMessage">Message *</label>
+                        <textarea id="contactMessage" name="message" rows="6" placeholder="Tell us how we can help you..." required></textarea>
+                    </div>
+
+                    <label class="form-checkbox-label">
+                        <input type="checkbox" name="newsletter">
+                        Subscribe to our newsletter for beauty tips and exclusive offers
+                    </label>
+
+                    <button class="btn btn--primary btn--lg btn--full" type="submit">Send Message</button>
+
+                    <p class="form-note">We typically respond within 2–4 hours during business hours (10 AM – 9 PM).</p>
+                </div>
+
+                <!-- Success State (hidden by default) -->
+                <div class="contact-success" id="contactSuccess" style="display:none;">
+                    <div class="success-icon">
+                        <svg viewBox="0 0 64 64" fill="none" width="64"><circle cx="32" cy="32" r="30" stroke="var(--color-accent)" stroke-width="2"/><path d="M20 32L28 40L44 24" stroke="var(--color-accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. We'll get back to you within 2–4 hours.</p>
+                    <button class="btn btn--outline" type="button" id="sendAnother">Send Another Message</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">BharkaBeauty</a>
+                        <p class="footer-desc">Pakistan's premier beauty destination.</p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+                            <a href="#" class="social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M18 2H15C13.67 2 12 3.67 12 5V8H9V12H12V22H16V12H19L20 8H16V5C16 4.45 16.45 4 17 4H20V2H18Z" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        </div>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="footer-links__title">Shop</h3>
+                        <ul><li><a href="category.html">Makeup</a></li><li><a href="category.html">Skincare</a></li><li><a href="category.html">Haircare</a></li><li><a href="category.html">Offers</a></li></ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="footer-links__title">Company</h3>
+                        <ul><li><a href="about.html">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Blog</a></li></ul>
+                    </div>
+                    <div class="footer-links">
+                        <h3 class="footer-links__title">Support</h3>
+                        <ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Returns</a></li><li><a href="store-locator.html">Store Locator</a></li></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">© 2025 BharkaBeauty. All rights reserved.</p>
+                <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Cookie Policy</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

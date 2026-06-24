@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Locator – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery on orders over PKR 2,500 · Same-day delivery in Lahore <a href="#">Shop Now →</a></p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">BharkaBeauty</a>
+                    <div class="search-bar">
+                        <svg class="search-icon" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13 13L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        <input type="search" placeholder="Search for products, brands..." aria-label="Search products">
+                    </div>
+                    <div class="header-actions">
+                        <a href="store-locator.html" class="action-btn" aria-label="Find store"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2C8.24 2 6 4.24 6 7C6 10.75 11 17 11 17C11 17 16 10.75 16 7C16 4.24 13.76 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="#" class="action-btn" aria-label="Wishlist"><svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="cart.html" class="action-btn cart-btn" aria-label="Cart"><svg viewBox="0 0 22 22" fill="none"><path d="M6 2L3 6V20C3 20.55 3.45 21 4 21H20C20.55 21 21 20.55 21 20V6L18 2H6Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6H21" stroke="currentColor" stroke-width="1.5"/><path d="M16 10C16 12.21 13.76 14 11 14C8.24 14 6 12.21 6 10" stroke="currentColor" stroke-width="1.5"/></svg><span class="cart-badge" id="cartBadge">2</span></a>
+                        <a href="login.html" class="action-btn" aria-label="Account"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 16.69 6.69 14 11 14C15.31 14 19 16.69 19 20" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="category.html" class="nav-link">Makeup</a></li>
+                    <li><a href="category.html" class="nav-link">Skincare</a></li>
+                    <li><a href="category.html" class="nav-link">Haircare</a></li>
+                    <li><a href="category.html" class="nav-link">Fragrances</a></li>
+                    <li><a href="category.html" class="nav-link">Bath &amp; Body</a></li>
+                    <li><a href="category.html" class="nav-link">Tools</a></li>
+                    <li><a href="brands.html" class="nav-link">Brands</a></li>
+                    <li><a href="category.html" class="nav-link nav-link--offers">Offers</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <ul class="mobile-menu__list">
+            <li><a href="category.html">Makeup</a></li>
+            <li><a href="category.html">Skincare</a></li>
+        </ul>
+        <div class="mobile-menu__actions"><a href="login.html" class="btn btn--primary btn--full">Sign In</a></div>
+    </nav>
+
+    <main>
+        <!-- Page Hero -->
+        <section class="page-hero">
+            <div class="container">
+                <h1 class="page-hero__title">Find a Store</h1>
+                <p class="page-hero__desc">Visit us in person — our beauty consultants are ready to help you find your perfect look.</p>
+            </div>
+        </section>
+
+        <!-- Store Locator Layout -->
+        <div class="store-locator container">
+
+            <!-- Search & Filters -->
+            <div class="store-search-bar">
+                <div class="store-search-input">
+                    <svg viewBox="0 0 18 18" fill="none" width="18"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13 13L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <input type="search" placeholder="Search by city or area…" aria-label="Search stores">
+                </div>
+                <button class="btn btn--outline" type="button" id="useLocation">
+                    <svg viewBox="0 0 20 20" fill="none" width="18"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2V4M10 16V18M2 10H4M16 10H18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Use My Location
+                </button>
+            </div>
+
+            <!-- Main Layout: List + Map -->
+            <div class="store-locator__layout">
+
+                <!-- Store List -->
+                <aside class="store-list">
+                    <p class="store-list__count">3 stores found</p>
+
+                    <!-- Store Card 1 – Active/Selected -->
+                    <article class="store-card store-card--selected" data-store="1">
+                        <div class="store-card__header">
+                            <div>
+                                <h3 class="store-card__name">BharkaBeauty – DHA Phase 6</h3>
+                                <span class="store-card__badge store-card__badge--flagship">Flagship Store</span>
+                            </div>
+                            <span class="store-card__status store-card__status--open">Open Now</span>
+                        </div>
+                        <div class="store-card__details">
+                            <p class="store-card__address">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><path d="M10 2C7.24 2 5 4.24 5 7C5 10.75 10 17 10 17C10 17 15 10.75 15 7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Shop 5, Emporium Mall, Phase 6, DHA, Lahore
+                            </p>
+                            <p class="store-card__hours">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6V10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                Mon–Sun: 10:00 AM – 10:00 PM
+                            </p>
+                            <p class="store-card__phone">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><path d="M3.5 3.5C3.5 3.5 5 5.5 5 8C5 10.5 3.5 12 3.5 12L8 16.5C8 16.5 9.5 15 12 15C14.5 15 16.5 16.5 16.5 16.5C16.5 16.5 18 15 18 14C18 12 14 8 12 8C10 8 8.5 9.5 8.5 9.5L3.5 3.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                                +92 300 1234567
+                            </p>
+                        </div>
+                        <div class="store-card__services">
+                            <span class="service-tag">Beauty Consultations</span>
+                            <span class="service-tag">Same-Day Collection</span>
+                            <span class="service-tag">Makeover Studio</span>
+                        </div>
+                        <div class="store-card__actions">
+                            <a href="#" class="btn btn--primary" target="_blank" rel="noopener">Get Directions</a>
+                            <a href="tel:+923001234567" class="btn btn--outline">Call Store</a>
+                        </div>
+                    </article>
+
+                    <!-- Store Card 2 -->
+                    <article class="store-card" data-store="2">
+                        <div class="store-card__header">
+                            <div>
+                                <h3 class="store-card__name">BharkaBeauty – Gulberg</h3>
+                            </div>
+                            <span class="store-card__status store-card__status--open">Open Now</span>
+                        </div>
+                        <div class="store-card__details">
+                            <p class="store-card__address">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><path d="M10 2C7.24 2 5 4.24 5 7C5 10.75 10 17 10 17C10 17 15 10.75 15 7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Liberty Market, Gulberg III, Lahore
+                            </p>
+                            <p class="store-card__hours">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M10 6V10L13 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                                Mon–Sat: 10:00 AM – 9:00 PM · Sun: 12:00 PM – 8:00 PM
+                            </p>
+                            <p class="store-card__phone">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><path d="M3.5 3.5C3.5 3.5 5 5.5 5 8C5 10.5 3.5 12 3.5 12L8 16.5C8 16.5 9.5 15 12 15C14.5 15 16.5 16.5 16.5 16.5C16.5 16.5 18 15 18 14C18 12 14 8 12 8C10 8 8.5 9.5 8.5 9.5L3.5 3.5Z" stroke="currentColor" stroke-width="1.5"/></svg>
+                                +92 300 7654321
+                            </p>
+                        </div>
+                        <div class="store-card__services">
+                            <span class="service-tag">Beauty Consultations</span>
+                            <span class="service-tag">Same-Day Collection</span>
+                        </div>
+                        <div class="store-card__actions">
+                            <a href="#" class="btn btn--primary" target="_blank" rel="noopener">Get Directions</a>
+                            <a href="tel:+923007654321" class="btn btn--outline">Call Store</a>
+                        </div>
+                    </article>
+
+                    <!-- Store Card 3 -->
+                    <article class="store-card" data-store="3">
+                        <div class="store-card__header">
+                            <div>
+                                <h3 class="store-card__name">BharkaBeauty – Karachi</h3>
+                                <span class="store-card__badge">Coming Soon</span>
+                            </div>
+                            <span class="store-card__status store-card__status--coming">Opening Q1 2026</span>
+                        </div>
+                        <div class="store-card__details">
+                            <p class="store-card__address">
+                                <svg viewBox="0 0 20 20" fill="none" width="14"><path d="M10 2C7.24 2 5 4.24 5 7C5 10.75 10 17 10 17C10 17 15 10.75 15 7C15 4.24 12.76 2 10 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                                Dolmen Mall Clifton, Karachi
+                            </p>
+                        </div>
+                        <div class="store-card__actions">
+                            <button class="btn btn--outline btn--full" type="button">Get Notified on Opening</button>
+                        </div>
+                    </article>
+                </aside>
+
+                <!-- Map -->
+                <div class="store-map" id="storeMap" aria-label="Store locations map">
+                    <div class="store-map__placeholder" style="position:relative;overflow:hidden;"><img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=600&fit=crop" alt="Store locations map" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;">
+                        <svg viewBox="0 0 80 80" fill="none" width="80">
+                            <circle cx="40" cy="40" r="38" stroke="var(--color-accent)" stroke-width="2"/>
+                            <path d="M40 10C29.84 10 21.67 18.17 21.67 28.33C21.67 42.92 40 70 40 70C40 70 58.33 42.92 58.33 28.33C58.33 18.17 50.16 10 40 10Z" stroke="var(--color-primary)" stroke-width="2"/>
+                            <circle cx="40" cy="28" r="6" stroke="var(--color-primary)" stroke-width="2"/>
+                        </svg>
+                        <h3>Interactive Map</h3>
+                        <p>Map will render here using Google Maps or an equivalent service. Add your API key to embed real location data.</p>
+                        <p class="map-coords">📍 Lahore, Punjab, Pakistan · 31.5204° N, 74.3587° E</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Store Info Banner -->
+        <section class="store-info-banner">
+            <div class="container">
+                <div class="store-info-grid">
+                    <div class="store-info-item">
+                        <svg viewBox="0 0 32 32" fill="none" width="40"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="1.5"/><path d="M16 8V16L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <h3>Store Hours</h3>
+                        <p>Monday – Sunday<br>10:00 AM – 10:00 PM</p>
+                    </div>
+                    <div class="store-info-item">
+                        <svg viewBox="0 0 32 32" fill="none" width="40"><path d="M6 6H26L24 22H8L6 6Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="27" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="21" cy="27" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <h3>Click &amp; Collect</h3>
+                        <p>Order online and collect<br>from any store in 2 hours</p>
+                    </div>
+                    <div class="store-info-item">
+                        <svg viewBox="0 0 32 32" fill="none" width="40"><circle cx="16" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M4 28C4 22.48 9.37 18 16 18C22.63 18 28 22.48 28 28" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <h3>Beauty Consultants</h3>
+                        <p>Expert advice on skincare,<br>makeup and haircare</p>
+                    </div>
+                    <div class="store-info-item">
+                        <svg viewBox="0 0 32 32" fill="none" width="40"><path d="M16 4C9.37 4 4 9.37 4 16C4 19.31 5.34 22.31 7.52 24.48L6 30L11.52 28.48C13.31 29.45 15.09 30 16 30C22.63 30 28 24.63 28 18" stroke="currentColor" stroke-width="1.5"/></svg>
+                        <h3>WhatsApp Support</h3>
+                        <p>Chat with our team directly<br>+92 300 1234567</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">BharkaBeauty</a>
+                        <p class="footer-desc">Pakistan's premier beauty destination.</p>
+                        <div class="footer-social"><a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+                    </div>
+                    <div class="footer-links"><h3 class="footer-links__title">Shop</h3><ul><li><a href="category.html">Makeup</a></li><li><a href="category.html">Skincare</a></li></ul></div>
+                    <div class="footer-links"><h3 class="footer-links__title">Company</h3><ul><li><a href="about.html">About Us</a></li></ul></div>
+                    <div class="footer-links"><h3 class="footer-links__title">Support</h3><ul><li><a href="contact.html">Contact Us</a></li><li><a href="#">FAQ</a></li></ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">© 2025 BharkaBeauty. All rights reserved.</p>
+                <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

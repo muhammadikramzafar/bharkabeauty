@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us – BharkaBeauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>Free delivery on orders over PKR 2,500 · Same-day delivery in Lahore <a href="#">Shop Now →</a></p>
+    </div>
+
+    <!-- Header -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">BharkaBeauty</a>
+                    <div class="search-bar">
+                        <svg class="search-icon" viewBox="0 0 18 18" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M13 13L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        <input type="search" placeholder="Search for products, brands..." aria-label="Search products">
+                    </div>
+                    <div class="header-actions">
+                        <a href="store-locator.html" class="action-btn" aria-label="Find store"><svg viewBox="0 0 22 22" fill="none"><path d="M11 2C8.24 2 6 4.24 6 7C6 10.75 11 17 11 17C11 17 16 10.75 16 7C16 4.24 13.76 2 11 2Z" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="7" r="2" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="#" class="action-btn" aria-label="Wishlist"><svg viewBox="0 0 22 22" fill="none"><path d="M11 18.5C11 18.5 3 13 3 7.5C3 5 5 3 7.5 3C9 3 10.5 4 11 5C11.5 4 13 3 14.5 3C17 3 19 5 19 7.5C19 13 11 18.5 11 18.5Z" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <a href="cart.html" class="action-btn cart-btn" aria-label="Cart"><svg viewBox="0 0 22 22" fill="none"><path d="M6 2L3 6V20C3 20.55 3.45 21 4 21H20C20.55 21 21 20.55 21 20V6L18 2H6Z" stroke="currentColor" stroke-width="1.5"/><path d="M3 6H21" stroke="currentColor" stroke-width="1.5"/><path d="M16 10C16 12.21 13.76 14 11 14C8.24 14 6 12.21 6 10" stroke="currentColor" stroke-width="1.5"/></svg><span class="cart-badge" id="cartBadge">2</span></a>
+                        <a href="login.html" class="action-btn" aria-label="Account"><svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="7" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 20C3 16.69 6.69 14 11 14C15.31 14 19 16.69 19 20" stroke="currentColor" stroke-width="1.5"/></svg></a>
+                        <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="header-nav">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="category.html" class="nav-link">Makeup</a></li>
+                    <li><a href="category.html" class="nav-link">Skincare</a></li>
+                    <li><a href="category.html" class="nav-link">Haircare</a></li>
+                    <li><a href="category.html" class="nav-link">Fragrances</a></li>
+                    <li><a href="category.html" class="nav-link">Bath &amp; Body</a></li>
+                    <li><a href="category.html" class="nav-link">Tools</a></li>
+                    <li><a href="brands.html" class="nav-link">Brands</a></li>
+                    <li><a href="category.html" class="nav-link nav-link--offers">Offers</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <button class="mobile-menu__close" id="mobileClose" aria-label="Close menu"><svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <ul class="mobile-menu__list">
+            <li><a href="category.html">Makeup</a></li>
+            <li><a href="category.html">Skincare</a></li>
+        </ul>
+        <div class="mobile-menu__actions"><a href="login.html" class="btn btn--primary btn--full">Sign In</a></div>
+    </nav>
+
+    <main>
+
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div class="container">
+                <div class="about-hero__inner">
+                    <div class="about-hero__text">
+                        <p class="about-hero__label">Our Story</p>
+                        <h1 class="about-hero__title">Beauty That Celebrates You</h1>
+                        <p class="about-hero__desc">BharkaBeauty was born in Lahore with a simple belief: every woman deserves access to the world's best beauty products, without compromise. We curate only the finest — from global icons to beloved local brands — and deliver them straight to your door with a personal touch.</p>
+                        <a href="category.html" class="btn btn--primary btn--lg">Shop Our Collection</a>
+                    </div>
+                    <div class="about-hero__image">
+                        <img src="https://images.unsplash.com/photo-1563441437-5b0f2e8f9c65?w=560&h=420&fit=crop" alt="BharkaBeauty store" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Banner -->
+        <section class="stats-banner">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <p class="stat-item__number">50,000+</p>
+                        <p class="stat-item__label">Happy Customers</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__number">1,200+</p>
+                        <p class="stat-item__label">Products</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__number">80+</p>
+                        <p class="stat-item__label">Premium Brands</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__number">2</p>
+                        <p class="stat-item__label">Flagship Stores</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-item__number">4.9★</p>
+                        <p class="stat-item__label">Average Rating</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="about-values">
+            <div class="container">
+                <div class="section-heading section-heading--centered">
+                    <p class="section-label">What We Stand For</p>
+                    <h2 class="section-title">Our Values</h2>
+                </div>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-card__icon">
+                            <svg viewBox="0 0 48 48" fill="none" width="48"><path d="M24 4C24 4 6 14 6 28C6 37.94 14.06 46 24 46C33.94 46 42 37.94 42 28C42 14 24 4 24 4Z" stroke="currentColor" stroke-width="2"/><path d="M17 25L22 30L31 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h3 class="value-card__title">100% Authentic</h3>
+                        <p class="value-card__desc">Every product we sell is sourced directly from authorised distributors. No counterfeits, ever. Your trust is our most valuable asset.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-card__icon">
+                            <svg viewBox="0 0 48 48" fill="none" width="48"><circle cx="24" cy="20" r="8" stroke="currentColor" stroke-width="2"/><path d="M8 44C8 35.16 15.16 28 24 28C32.84 28 40 35.16 40 44" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        <h3 class="value-card__title">Expert Guidance</h3>
+                        <p class="value-card__desc">Our in-store and online beauty consultants are trained to help you find the perfect products for your unique skin type and concerns.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-card__icon">
+                            <svg viewBox="0 0 48 48" fill="none" width="48"><path d="M24 4L28.73 15.73L42 17.27L32 26.77L34.55 40L24 33.73L13.45 40L16 26.77L6 17.27L19.27 15.73L24 4Z" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        <h3 class="value-card__title">Curated Excellence</h3>
+                        <p class="value-card__desc">We don't stock everything — we stock the best. Our team rigorously tests and selects each product to ensure it meets our high standards.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-card__icon">
+                            <svg viewBox="0 0 48 48" fill="none" width="48"><path d="M24 40C24 40 6 30 6 18C6 12.48 10.48 8 16 8C19.2 8 22.08 9.6 24 12C25.92 9.6 28.8 8 32 8C37.52 8 42 12.48 42 18C42 30 24 40 24 40Z" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        <h3 class="value-card__title">Community First</h3>
+                        <p class="value-card__desc">We celebrate Pakistani beauty, support local brands, and give back to our community through our BharkaGives programme.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-card__icon">
+                            <svg viewBox="0 0 48 48" fill="none" width="48"><circle cx="24" cy="24" r="18" stroke="currentColor" stroke-width="2"/><path d="M16 24L21 29L32 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <h3 class="value-card__title">Transparent Pricing</h3>
+                        <p class="value-card__desc">No hidden fees, no surprise charges. What you see is what you pay — with price-match guarantees on all major products.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-card__icon">
+                            <svg viewBox="0 0 48 48" fill="none" width="48"><path d="M8 10L12 38H36L40 10H8Z" stroke="currentColor" stroke-width="2"/><path d="M19 10V8C19 6.34 20.34 5 22 5H26C27.66 5 29 6.34 29 8V10" stroke="currentColor" stroke-width="2"/></svg>
+                        </div>
+                        <h3 class="value-card__title">Hassle-Free Returns</h3>
+                        <p class="value-card__desc">Not happy with your order? No problem. Our easy 30-day return policy ensures you're always satisfied with your purchase.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story -->
+        <section class="about-story">
+            <div class="container">
+                <div class="about-story__inner">
+                    <div class="about-story__image">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=560&h=420&fit=crop" alt="Our beauty story" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:16px;">
+                    </div>
+                    <div class="about-story__text">
+                        <p class="section-label">Our Journey</p>
+                        <h2 class="section-title">From Lahore, With Love</h2>
+                        <p>BharkaBeauty began in 2019 as a small boutique in DHA Phase 6, Lahore, founded by Zainab Malik — a beauty enthusiast who was frustrated by the lack of authentic international brands available in Pakistan.</p>
+                        <p>What started as a passion project quickly grew into a movement. Within two years, we had served over 10,000 customers and opened our second store in Gulberg. Today, BharkaBeauty is Pakistan's most trusted beauty destination, with a curated online store serving customers nationwide.</p>
+                        <p>Our mission remains the same as day one: to make every Pakistani woman feel beautiful, confident, and celebrated — exactly as she is.</p>
+                        <blockquote class="about-story__quote">
+                            "Beauty has no standard. BharkaBeauty was built to celebrate every shade, every skin type, and every story."
+                            <cite>— Zainab Malik, Founder &amp; CEO</cite>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="about-team">
+            <div class="container">
+                <div class="section-heading section-heading--centered">
+                    <p class="section-label">The People Behind the Brand</p>
+                    <h2 class="section-title">Meet Our Team</h2>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-card__avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&q=80" alt="Zara Malik" loading="lazy"></div>
+                        <h3 class="team-card__name">Zainab Malik</h3>
+                        <p class="team-card__role">Founder &amp; CEO</p>
+                        <p class="team-card__bio">Beauty entrepreneur and advocate for inclusive, authentic beauty across Pakistan.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-card__avatar"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&q=80" alt="Ayesha Khan" loading="lazy"></div>
+                        <h3 class="team-card__name">Ayesha Khan</h3>
+                        <p class="team-card__role">Senior Beauty Editor</p>
+                        <p class="team-card__bio">Skincare obsessive with 8 years of editorial experience in luxury beauty.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-card__avatar"><img src="https://images.unsplash.com/photo-1614644147724-2d4785d69962?w=80&h=80&fit=crop&q=80" alt="Sara Mirza" loading="lazy"></div>
+                        <h3 class="team-card__name">Sara Mirza</h3>
+                        <p class="team-card__role">Makeup Artist</p>
+                        <p class="team-card__bio">Professional makeup artist turned educator — helping customers find their perfect base.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-card__avatar"><img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=80&h=80&fit=crop&q=80" alt="Nadia Baig" loading="lazy"></div>
+                        <h3 class="team-card__name">Nadia Baig</h3>
+                        <p class="team-card__role">Skincare Specialist</p>
+                        <p class="team-card__bio">Certified dermal therapist passionate about clean ingredients and skin health.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-card__avatar"><img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=80&h=80&fit=crop&q=80" alt="Hira Zafar" loading="lazy"></div>
+                        <h3 class="team-card__name">Hira Zafar</h3>
+                        <p class="team-card__role">Beauty Consultant</p>
+                        <p class="team-card__bio">A fragrance aficionado with an eye for the finest beauty innovations from around the world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="about-cta">
+            <div class="container">
+                <div class="about-cta__inner">
+                    <h2 class="about-cta__title">Ready to Discover Your Beauty?</h2>
+                    <p class="about-cta__desc">Join 50,000+ beauty lovers across Pakistan who trust BharkaBeauty for their every beauty need.</p>
+                    <div class="about-cta__actions">
+                        <a href="category.html" class="btn btn--primary btn--lg">Shop Now</a>
+                        <a href="store-locator.html" class="btn btn--outline btn--lg btn--light">Find a Store</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">BharkaBeauty</a>
+                        <p class="footer-desc">Pakistan's premier beauty destination.</p>
+                        <div class="footer-social"><a href="#" class="social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/></svg></a></div>
+                    </div>
+                    <div class="footer-links"><h3 class="footer-links__title">Shop</h3><ul><li><a href="category.html">Makeup</a></li><li><a href="category.html">Skincare</a></li></ul></div>
+                    <div class="footer-links"><h3 class="footer-links__title">Company</h3><ul><li><a href="about.html">About Us</a></li></ul></div>
+                    <div class="footer-links"><h3 class="footer-links__title">Support</h3><ul><li><a href="contact.html">Contact Us</a></li></ul></div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="footer-copyright">© 2025 BharkaBeauty. All rights reserved.</p>
+                <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite"></div>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
