@@ -36,6 +36,11 @@ use App\Http\Controllers\BlogPageController;
 use App\Http\Controllers\Admin\Blog\BlogCategoryController as AdminBlogCategoryController;
 use App\Http\Controllers\Admin\Blog\BlogTagController as AdminBlogTagController;
 use App\Http\Controllers\Admin\Blog\BlogPostController as AdminBlogPostController;
+use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\NewsletterAdminController;
+use App\Http\Controllers\Admin\GlobalSeoController;
+use App\Http\Controllers\NewsletterController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
 
 // ─── FRONTEND ROUTES ──────────────────────────────────────────
@@ -81,6 +86,14 @@ Route::prefix('blog')->name('blog.')->group(function () {
 
 // CMS Pages (public — must be last to avoid conflicts)
 Route::get('/page/{slug}', [PageController::class, 'cmsPage'])->name('cms.page');
+
+// SEO: sitemap + robots
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
+Route::get('/robots.txt',  [SeoController::class, 'robots'])->name('robots');
+
+// Newsletter (public)
+Route::post('/newsletter/subscribe',          [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
+Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
 
 // ─── AUTH ROUTES (Breeze) ─────────────────────────────────────
 Route::middleware('auth')->group(function () {
@@ -141,6 +154,18 @@ Route::prefix('admin')
         // ── Services Module ───────────────────────────────────
         Route::resource('service-categories', AdminServiceCategoryController::class)->except(['show']);
         Route::resource('services',           AdminServiceController::class)->except(['show']);
+
+        // ── Inquiries ────────────────────────────────────────
+        Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'update', 'destroy']);
+
+        // ── Newsletter ───────────────────────────────────────
+        Route::get('/newsletter',         [NewsletterAdminController::class, 'index'])->name('newsletter.index');
+        Route::get('/newsletter/export',  [NewsletterAdminController::class, 'export'])->name('newsletter.export');
+        Route::delete('/newsletter/{subscriber}', [NewsletterAdminController::class, 'destroy'])->name('newsletter.destroy');
+
+        // ── Global SEO ───────────────────────────────────────
+        Route::get('/seo',  [GlobalSeoController::class, 'index'])->name('seo.index');
+        Route::put('/seo',  [GlobalSeoController::class, 'update'])->name('seo.update');
 
         // ── Homepage Management ───────────────────────────────
         Route::prefix('homepage')->name('homepage.')->group(function () {

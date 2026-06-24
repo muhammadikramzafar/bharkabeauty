@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CmsPage;
+use App\Models\ContactInquiry;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -19,14 +20,19 @@ class PageController extends Controller
 
     public function sendContact(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name'    => 'required|string|max:100',
-            'email'   => 'required|email',
+            'email'   => 'required|email|max:255',
+            'phone'   => 'nullable|string|max:30',
             'subject' => 'required|string|max:200',
-            'message' => 'required|string|max:2000',
+            'message' => 'required|string|max:3000',
         ]);
 
-        return redirect()->route('contact')->with('success', 'Thank you! We\'ll get back to you within 2–4 hours.');
+        ContactInquiry::create(array_merge($data, [
+            'ip_address' => $request->ip(),
+        ]));
+
+        return redirect()->route('contact')->with('success', 'Thank you! Your message has been received. We\'ll get back to you within 2–4 hours.');
     }
 
     public function storeLocator()

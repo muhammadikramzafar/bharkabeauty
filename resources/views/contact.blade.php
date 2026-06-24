@@ -59,23 +59,35 @@
 
                 <form method="POST" action="{{ route('contact.send') }}" class="contact-form">
                     @csrf
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" value="{{ old('name') }}" required class="form-control @error('name') is-invalid @enderror">
-                        @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                        <div class="form-group">
+                            <label for="name">Full Name <span style="color:#ef4444;">*</span></label>
+                            <input type="text" id="name" name="name" value="{{ old('name') }}" required
+                                   class="form-control @error('name') is-invalid @enderror" placeholder="Your full name">
+                            @error('name') <span class="invalid-feedback">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" value="{{ old('phone') }}"
+                                   class="form-control" placeholder="+92 300 1234567">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" required class="form-control @error('email') is-invalid @enderror">
+                        <label for="email">Email Address <span style="color:#ef4444;">*</span></label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required
+                               class="form-control @error('email') is-invalid @enderror" placeholder="you@example.com">
                         @error('email') <span class="invalid-feedback">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" value="{{ old('subject') }}" required class="form-control">
+                        <label for="subject">Subject <span style="color:#ef4444;">*</span></label>
+                        <input type="text" id="subject" name="subject" value="{{ old('subject') }}" required
+                               class="form-control" placeholder="How can we help you?">
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required class="form-control @error('message') is-invalid @enderror">{{ old('message') }}</textarea>
+                        <label for="message">Message <span style="color:#ef4444;">*</span></label>
+                        <textarea id="message" name="message" rows="5" required
+                                  class="form-control @error('message') is-invalid @enderror"
+                                  placeholder="Tell us more about your enquiry…">{{ old('message') }}</textarea>
                         @error('message') <span class="invalid-feedback">{{ $message }}</span> @enderror
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
