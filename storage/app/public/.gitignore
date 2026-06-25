@@ -1,2 +1,8 @@
 *
 !.gitignore
+!categories/
+!categories/**
+!brands/
+!brands/**
+!products/
+!products/**

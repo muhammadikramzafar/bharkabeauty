@@ -1,1 +1,1 @@
-*.sqlite*
+# database.sqlite is intentionally tracked so the project runs immediately after clone

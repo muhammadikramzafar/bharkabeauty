@@ -29,9 +29,10 @@
                 </button>
             </div>
             <div class="gallery-thumbs">
-                @foreach($product->images ?? [] as $img)
-                    <button class="gallery-thumb {{ $loop->first ? 'active' : '' }}" onclick="document.getElementById('gallery-main-img').src='{{ $img }}'">
-                        <img src="{{ $img }}" alt="Product view {{ $loop->iteration }}" loading="lazy">
+                @foreach($product->all_image_urls ?? [] as $imgUrl)
+                    <button class="gallery-thumb {{ $loop->first ? 'active' : '' }}"
+                            onclick="document.getElementById('gallery-main-img').src='{{ $imgUrl }}'">
+                        <img src="{{ $imgUrl }}" alt="Product view {{ $loop->iteration }}" loading="lazy">
                     </button>
                 @endforeach
             </div>
@@ -87,5 +88,33 @@
         </div>
 
     </div>
+
+    {{-- Product Description Tabs --}}
+    @if($product->description)
+    <div class="container" style="margin-top:3rem;margin-bottom:3rem;">
+        <div class="admin-card" style="padding:2rem;">
+            <h2 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem;">Product Description</h2>
+            <div style="color:#555;line-height:1.85;font-size:.95rem;">
+                {{ $product->description }}
+            </div>
+        </div>
+    </div>
+    @endif
+
+    {{-- Related Products --}}
+    @if(isset($related) && $related->isNotEmpty())
+    <section class="section flash-sale-section" style="padding-top:0;">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">You May Also Like</h2>
+            </div>
+            <div class="products-grid" role="list">
+                @foreach($related as $product)
+                    @include('partials.product-card', ['product' => $product])
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
 
 @endsection

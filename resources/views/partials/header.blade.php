@@ -63,17 +63,18 @@
 
     <!-- Nav -->
     <nav class="header-nav" aria-label="Main navigation">
+        @php $activeCat = request()->route('cat'); @endphp
         <div class="header-nav-inner">
-            <a href="{{ route('category.index', ['cat' => 'makeup']) }}"    class="nav-link {{ request('cat') == 'makeup' ? 'active' : '' }}">Makeup</a>
-            <a href="{{ route('category.index', ['cat' => 'skincare']) }}"  class="nav-link {{ request('cat') == 'skincare' ? 'active' : '' }}">Skincare</a>
-            <a href="{{ route('category.index', ['cat' => 'haircare']) }}"  class="nav-link {{ request('cat') == 'haircare' ? 'active' : '' }}">Haircare</a>
-            <a href="{{ route('category.index', ['cat' => 'fragrance']) }}" class="nav-link {{ request('cat') == 'fragrance' ? 'active' : '' }}">Fragrances</a>
-            <a href="{{ route('category.index', ['cat' => 'bath-body']) }}" class="nav-link {{ request('cat') == 'bath-body' ? 'active' : '' }}">Bath &amp; Body</a>
-            <a href="{{ route('category.index', ['cat' => 'tools']) }}"     class="nav-link {{ request('cat') == 'tools' ? 'active' : '' }}">Tools</a>
+            <a href="{{ route('category.index', ['cat' => 'makeup']) }}"    class="nav-link {{ $activeCat == 'makeup' ? 'active' : '' }}">Makeup</a>
+            <a href="{{ route('category.index', ['cat' => 'skincare']) }}"  class="nav-link {{ $activeCat == 'skincare' ? 'active' : '' }}">Skincare</a>
+            <a href="{{ route('category.index', ['cat' => 'haircare']) }}"  class="nav-link {{ $activeCat == 'haircare' ? 'active' : '' }}">Haircare</a>
+            <a href="{{ route('category.index', ['cat' => 'fragrance']) }}" class="nav-link {{ $activeCat == 'fragrance' ? 'active' : '' }}">Fragrances</a>
+            <a href="{{ route('category.index', ['cat' => 'bath-body']) }}" class="nav-link {{ $activeCat == 'bath-body' ? 'active' : '' }}">Bath &amp; Body</a>
+            <a href="{{ route('category.index', ['cat' => 'tools']) }}"     class="nav-link {{ $activeCat == 'tools' ? 'active' : '' }}">Tools</a>
             <a href="{{ route('brands') }}"                                 class="nav-link {{ request()->routeIs('brands') ? 'active' : '' }}">Brands</a>
             <a href="{{ route('services.index') }}"                         class="nav-link {{ request()->routeIs('services.*') ? 'active' : '' }}">Services</a>
             <a href="{{ route('blog.index') }}"                             class="nav-link {{ request()->routeIs('blog.*') ? 'active' : '' }}">Blog</a>
-            <a href="{{ route('category.index', ['cat' => 'offers']) }}"    class="nav-link offers {{ request('cat') == 'offers' ? 'active' : '' }}">Offers</a>
+            <a href="{{ route('category.index', ['cat' => 'offers']) }}"    class="nav-link offers {{ $activeCat == 'offers' ? 'active' : '' }}">Offers</a>
         </div>
     </nav>
 </header>

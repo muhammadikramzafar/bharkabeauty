@@ -2,41 +2,125 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, ?string $cat = null)
     {
-        $cat = $request->query('cat', 'all');
+        $catSlug   = $cat;
+        $subSlugs  = (array) $request->query('category', []);
+        $brandSlugs= (array) $request->query('brand', []);
+        $prices    = (array) $request->query('price', []);
+        $avail     = (array) $request->query('availability', []);
+        $sort      = $request->query('sort', 'featured');
 
-        $titles = [
-            'makeup'    => 'Makeup',
-            'skincare'  => 'Skincare',
-            'haircare'  => 'Haircare',
-            'fragrance' => 'Fragrances',
-            'bath-body' => 'Bath & Body',
-            'tools'     => 'Tools',
-            'offers'    => 'Offers',
-            'all'       => 'Shop All',
-        ];
+        // ── Root category ────────────────────────────────────────
+        $rootCategory = null;
+        if ($catSlug && $catSlug !== 'all') {
+            $rootCategory = Category::where('slug', $catSlug)
+                ->whereNull('parent_id')
+                ->first();
+        }
 
-        $descriptions = [
-            'makeup'    => 'Discover our curated collection of premium makeup — from flawless foundations to bold lipsticks.',
-            'skincare'  => 'Nourish and protect your skin with our range of premium skincare products.',
-            'haircare'  => 'Transform your hair with salon-quality products from leading brands.',
-            'fragrance' => 'Explore our collection of luxury fragrances for every mood and occasion.',
-            'bath-body' => 'Indulge in luxurious bath and body essentials for a spa-like experience.',
-            'tools'     => 'Professional beauty tools to perfect your look every day.',
-            'offers'    => 'Exclusive deals and flash sales on your favourite beauty products.',
-            'all'       => 'Discover our full collection of premium beauty products.',
-        ];
+        // ── Sidebar: sub-categories of this root (or root cats if no selection) ─
+        if ($rootCategory) {
+            $sidebarCategories = Category::where('parent_id', $rootCategory->id)
+                ->active()
+                ->withCount('products')
+                ->orderBy('sort_order')
+                ->get();
+        } else {
+            $sidebarCategories = Category::whereNull('parent_id')
+                ->active()
+                ->withCount('products')
+                ->orderBy('sort_order')
+                ->get();
+        }
 
-        return view('category', [
-            'pageTitle'       => $titles[$cat] ?? 'Shop',
-            'pageDescription' => $descriptions[$cat] ?? '',
-            'currentCat'      => $cat,
-            'products'        => new \Illuminate\Pagination\LengthAwarePaginator([], 0, 12),
-        ]);
+        // ── Sidebar: all active brands with product counts ────────
+        $brands = Brand::active()
+            ->withCount('products')
+            ->orderBy('name')
+            ->get();
+
+        // ── Product query ─────────────────────────────────────────
+        $query = Product::with(['category', 'brand'])->active();
+
+        // Filter by root category (include all its sub-categories)
+        if ($rootCategory) {
+            $childIds = Category::where('parent_id', $rootCategory->id)->pluck('id');
+            $query->where(function ($q) use ($rootCategory, $childIds) {
+                $q->where('category_id', $rootCategory->id)
+                  ->orWhereIn('category_id', $childIds);
+            });
+        }
+
+        // Drill-down sub-category filter
+        if (!empty($subSlugs)) {
+            $subIds = Category::whereIn('slug', $subSlugs)->pluck('id');
+            $query->whereIn('category_id', $subIds);
+        }
+
+        // Brand filter
+        if (!empty($brandSlugs)) {
+            $brandIds = Brand::whereIn('slug', $brandSlugs)->pluck('id');
+            $query->whereIn('brand_id', $brandIds);
+        }
+
+        // Price range filter (OR between selected ranges)
+        if (!empty($prices)) {
+            $query->where(function ($q) use ($prices) {
+                foreach ($prices as $range) {
+                    if ($range === '10000+') {
+                        $q->orWhere('price', '>=', 10000);
+                    } elseif (str_contains((string) $range, '-')) {
+                        [$min, $max] = explode('-', $range);
+                        $q->orWhereBetween('price', [(int) $min, (int) $max]);
+                    }
+                }
+            });
+        }
+
+        // Availability filters
+        if (in_array('in_stock', $avail)) {
+            $query->where('stock_qty', '>', 0);
+        }
+        if (in_array('on_sale', $avail)) {
+            $query->whereNotNull('sale_price')->whereColumn('sale_price', '<', 'price');
+        }
+
+        // Sorting
+        match ($sort) {
+            'price-asc'  => $query->orderBy('price', 'asc'),
+            'price-desc' => $query->orderBy('price', 'desc'),
+            'newest'     => $query->latest(),
+            default      => $query->orderByDesc('is_featured')->orderBy('sort_order')->orderBy('name'),
+        };
+
+        $products = $query->paginate(12)->withQueryString();
+
+        $pageTitle = $rootCategory
+            ? $rootCategory->name
+            : ($catSlug === 'all' || !$catSlug ? 'Shop All' : ucfirst($catSlug));
+
+        $pageDescription = $rootCategory
+            ? ($rootCategory->description ?: 'Discover our curated collection of ' . $rootCategory->name . ' products.')
+            : 'Discover our full collection of premium beauty products.';
+
+        // Alias for sidebar partial
+        $categories = $sidebarCategories;
+
+        return view('category', compact(
+            'products',
+            'categories',
+            'brands',
+            'pageTitle',
+            'pageDescription',
+            'rootCategory',
+        ));
     }
 }

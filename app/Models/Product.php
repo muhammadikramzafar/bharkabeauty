@@ -54,6 +54,18 @@ class Product extends Model
         return Storage::disk('public')->url($images[0]);
     }
 
+    public function getMainImageAttribute(): string
+    {
+        return $this->first_image_url
+            ?? 'https://images.unsplash.com/photo-1583241800698-e8ab01830a22?w=600&h=600&fit=crop';
+    }
+
+    public function getAllImageUrlsAttribute(): array
+    {
+        $images = $this->images ?? [];
+        return array_map(fn ($img) => Storage::disk('public')->url($img), $images);
+    }
+
     public function getDiscountPercentAttribute(): int
     {
         if (!$this->sale_price || $this->sale_price >= $this->price || !$this->price) return 0;

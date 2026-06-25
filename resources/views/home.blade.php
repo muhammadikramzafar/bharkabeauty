@@ -92,32 +92,27 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title" id="categories-heading">Shop by Category</h2>
+                <p class="section-subtitle">Explore our curated beauty departments</p>
             </div>
             <div class="categories-grid" role="list">
-                <a href="{{ route('category.index', ['cat' => 'makeup']) }}" class="category-item" role="listitem">
-                    <div class="category-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/></svg></div>
-                    <span class="category-name">Makeup</span>
+                @forelse($rootCategories as $cat)
+                <a href="{{ route('category.index', ['cat' => $cat->slug]) }}" class="category-item" role="listitem">
+                    @if($cat->image_url)
+                        <div class="category-icon-wrap" style="background-image:url('{{ $cat->image_url }}');background-size:cover;background-position:center;border-radius:50%;overflow:hidden;">
+                        </div>
+                    @else
+                        <div class="category-icon-wrap">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                        </div>
+                    @endif
+                    <span class="category-name">{{ $cat->name }}</span>
+                    @if($cat->products_count > 0)
+                    <span style="font-size:.72rem;color:#9ca3af;">{{ $cat->products_count }} products</span>
+                    @endif
                 </a>
-                <a href="{{ route('category.index', ['cat' => 'skincare']) }}" class="category-item" role="listitem">
-                    <div class="category-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/></svg></div>
-                    <span class="category-name">Skincare</span>
-                </a>
-                <a href="{{ route('category.index', ['cat' => 'haircare']) }}" class="category-item" role="listitem">
-                    <div class="category-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"/></svg></div>
-                    <span class="category-name">Haircare</span>
-                </a>
-                <a href="{{ route('category.index', ['cat' => 'fragrance']) }}" class="category-item" role="listitem">
-                    <div class="category-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></div>
-                    <span class="category-name">Fragrance</span>
-                </a>
-                <a href="{{ route('category.index', ['cat' => 'bath-body']) }}" class="category-item" role="listitem">
-                    <div class="category-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25z"/></svg></div>
-                    <span class="category-name">Bath &amp; Body</span>
-                </a>
-                <a href="{{ route('category.index', ['cat' => 'tools']) }}" class="category-item" role="listitem">
-                    <div class="category-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"/></svg></div>
-                    <span class="category-name">Tools</span>
-                </a>
+                @empty
+                <p style="color:#9ca3af;grid-column:1/-1;text-align:center;padding:2rem;">No categories yet.</p>
+                @endforelse
             </div>
         </div>
     </section>
@@ -150,42 +145,69 @@
     </section>
     @endif
 
-    {{-- ─── FLASH SALE ────────────────────────────────────────────── --}}
-    @if($setting->show_flash_sale)
-    <section class="section flash-sale-section" aria-labelledby="flash-sale-heading">
+    {{-- ─── FEATURED PRODUCTS ───────────────────────────────────────── --}}
+    @if($featuredProducts->isNotEmpty())
+    <section class="section flash-sale-section" aria-labelledby="featured-heading">
         <div class="container">
             <div class="flash-sale-header">
                 <div class="flash-sale-left">
-                    <h2 class="section-title" id="flash-sale-heading">{{ $setting->flash_sale_title ?: 'Flash Sale' }}</h2>
-                    <p class="section-subtitle">{{ $setting->flash_sale_subtitle }}</p>
+                    <h2 class="section-title" id="featured-heading">Featured Products</h2>
+                    <p class="section-subtitle">Our editors' top picks — handpicked just for you</p>
                 </div>
-                <div class="countdown" aria-label="Time remaining"
-                     @if($setting->flash_sale_end) data-end="{{ $setting->flash_sale_end->toIso8601String() }}" @endif>
+                <a href="{{ route('category.index') }}" class="link-arrow" style="white-space:nowrap;">View All &rarr;</a>
+            </div>
+            <div class="products-grid" role="list">
+                @foreach($featuredProducts as $product)
+                    @include('partials.product-card', ['product' => $product])
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ─── SALE / FLASH SALE ────────────────────────────────────────── --}}
+    @if($saleProducts->isNotEmpty() && $setting->show_flash_sale)
+    <section class="section flash-sale-section" style="background:#fdf6ee;" aria-labelledby="flash-sale-heading">
+        <div class="container">
+            <div class="flash-sale-header">
+                <div class="flash-sale-left">
+                    <h2 class="section-title" id="flash-sale-heading">{{ $setting->flash_sale_title ?: 'On Sale Now' }}</h2>
+                    <p class="section-subtitle">{{ $setting->flash_sale_subtitle ?: 'Limited-time deals on premium beauty — don\'t miss out.' }}</p>
+                </div>
+                @if($setting->flash_sale_end)
+                <div class="countdown" aria-label="Time remaining" data-end="{{ $setting->flash_sale_end->toIso8601String() }}">
                     <div class="countdown-item"><span class="countdown-number" id="countdown-hh">00</span><span class="countdown-label">HH</span></div>
                     <span class="countdown-sep" aria-hidden="true">:</span>
                     <div class="countdown-item"><span class="countdown-number" id="countdown-mm">00</span><span class="countdown-label">MM</span></div>
                     <span class="countdown-sep" aria-hidden="true">:</span>
                     <div class="countdown-item"><span class="countdown-number" id="countdown-ss">00</span><span class="countdown-label">SS</span></div>
                 </div>
+                @endif
             </div>
             <div class="products-grid" role="list">
-                @forelse($flashSaleProducts ?? [] as $product)
+                @foreach($saleProducts as $product)
                     @include('partials.product-card', ['product' => $product])
-                @empty
-                    <article class="product-card" role="listitem">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1583241800698-e8ab01830a22?w=600&h=600&fit=crop" alt="Huda Beauty Lipstick" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-                            <span class="product-badge badge-sale">27% OFF</span>
-                            <button class="product-wishlist" aria-label="Add to wishlist"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/></svg></button>
-                        </div>
-                        <div class="product-info">
-                            <p class="product-brand">Huda Beauty</p>
-                            <h3 class="product-name">Power Bullet Matte Lipstick</h3>
-                            <div class="product-pricing"><span class="price-current">PKR 4,500</span><span class="price-original">PKR 6,200</span></div>
-                        </div>
-                        <div class="product-footer"><button class="btn-add-to-bag">Add to Bag</button></div>
-                    </article>
-                @endforelse
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
+
+    {{-- ─── NEW ARRIVALS ─────────────────────────────────────────────── --}}
+    @if($newArrivals->isNotEmpty())
+    <section class="section flash-sale-section" aria-labelledby="new-arrivals-heading">
+        <div class="container">
+            <div class="flash-sale-header">
+                <div class="flash-sale-left">
+                    <h2 class="section-title" id="new-arrivals-heading">New Arrivals</h2>
+                    <p class="section-subtitle">Fresh drops — be the first to explore our latest additions</p>
+                </div>
+                <a href="{{ route('category.index', ['sort' => 'newest']) }}" class="link-arrow" style="white-space:nowrap;">View All &rarr;</a>
+            </div>
+            <div class="products-grid" role="list">
+                @foreach($newArrivals as $product)
+                    @include('partials.product-card', ['product' => $product])
+                @endforeach
             </div>
         </div>
     </section>
@@ -216,21 +238,23 @@
                 @if($logos->isNotEmpty())
                     @foreach($logos as $logo)
                     <a href="{{ $logo->url ?? route('brands') }}" class="brand-card">
-                        @if($logo->logo_url)<img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" style="max-height:36px;object-fit:contain;margin-bottom:.4rem;">@endif
+                        @if($logo->logo_url)<img src="{{ $logo->logo_url }}" alt="{{ $logo->name }}" style="max-height:40px;object-fit:contain;margin-bottom:.4rem;">@endif
                         <p class="brand-name">{{ $logo->name }}</p>
                         @if($logo->tagline)<p class="brand-cat">{{ $logo->tagline }}</p>@endif
                     </a>
                     @endforeach
-                @else
-                    <a href="{{ route('category.index', ['brand' => 'maybelline']) }}" class="brand-card"><p class="brand-name">Maybelline</p><p class="brand-cat">Makeup</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'loreal']) }}" class="brand-card"><p class="brand-name">L'Oréal Paris</p><p class="brand-cat">Makeup</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'garnier']) }}" class="brand-card"><p class="brand-name">Garnier</p><p class="brand-cat">Skincare</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'neutrogena']) }}" class="brand-card"><p class="brand-name">Neutrogena</p><p class="brand-cat">Skincare</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'ordinary']) }}" class="brand-card"><p class="brand-name">The Ordinary</p><p class="brand-cat">Skincare</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'cerave']) }}" class="brand-card"><p class="brand-name">CeraVe</p><p class="brand-cat">Skincare</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'huda']) }}" class="brand-card"><p class="brand-name">Huda Beauty</p><p class="brand-cat">Makeup</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'essence']) }}" class="brand-card"><p class="brand-name">Essence</p><p class="brand-cat">Makeup</p></a>
-                    <a href="{{ route('category.index', ['brand' => 'rivaj']) }}" class="brand-card"><p class="brand-name">Rivaj UK</p><p class="brand-cat">Makeup</p></a>
+                @elseif($featuredBrands->isNotEmpty())
+                    @foreach($featuredBrands as $brand)
+                    <a href="{{ route('category.index', ['brand' => $brand->slug]) }}" class="brand-card">
+                        @if($brand->logo_url)
+                            <img src="{{ $brand->logo_url }}" alt="{{ $brand->name }}" style="max-height:56px;max-width:120px;object-fit:contain;margin-bottom:.4rem;">
+                        @else
+                            <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#c9a96e,#a07840);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1rem;margin:0 auto .4rem;">{{ strtoupper(substr($brand->name,0,1)) }}</div>
+                        @endif
+                        <p class="brand-name">{{ $brand->name }}</p>
+                        <p class="brand-cat">{{ $brand->products_count }} products</p>
+                    </a>
+                    @endforeach
                 @endif
             </div>
             <div class="brands-viewall">

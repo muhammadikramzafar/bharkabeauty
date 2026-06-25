@@ -46,8 +46,8 @@ use Illuminate\Support\Facades\Route;
 // ─── FRONTEND ROUTES ──────────────────────────────────────────
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Shop
-Route::get('/shop', [CategoryController::class, 'index'])->name('category.index');
+// Shop — SEO-friendly: /shop, /shop/skincare, /shop/makeup ...
+Route::get('/shop/{cat?}', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
 // Brands

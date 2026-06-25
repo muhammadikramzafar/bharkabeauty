@@ -10,7 +10,12 @@
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <ol>
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li aria-current="page">{{ $pageTitle ?? 'Shop' }}</li>
+                    <li><a href="{{ route('category.index') }}">Shop</a></li>
+                    @if(isset($rootCategory) && $rootCategory)
+                        <li aria-current="page">{{ $rootCategory->name }}</li>
+                    @else
+                        <li aria-current="page">All Products</li>
+                    @endif
                 </ol>
             </nav>
         </div>
@@ -35,15 +40,14 @@
             <!-- Toolbar -->
             <div class="products-toolbar">
                 <p class="products-count">
-                    Showing <strong>{{ $products->count() ?? 0 }}</strong> products
+                    Showing <strong>{{ $products->total() ?? 0 }}</strong> products
                 </p>
                 <div class="toolbar-right">
-                    <select class="sort-select" aria-label="Sort products">
-                        <option value="featured">Featured</option>
-                        <option value="price-asc">Price: Low to High</option>
-                        <option value="price-desc">Price: High to Low</option>
-                        <option value="newest">Newest First</option>
-                        <option value="rating">Top Rated</option>
+                    <select class="sort-select" id="sort-select" aria-label="Sort products">
+                        <option value="featured"   {{ request('sort', 'featured') == 'featured'   ? 'selected' : '' }}>Featured</option>
+                        <option value="price-asc"  {{ request('sort') == 'price-asc'  ? 'selected' : '' }}>Price: Low to High</option>
+                        <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Price: High to Low</option>
+                        <option value="newest"     {{ request('sort') == 'newest'     ? 'selected' : '' }}>Newest First</option>
                     </select>
                 </div>
             </div>
@@ -53,23 +57,11 @@
                 @forelse($products ?? [] as $product)
                     @include('partials.product-card', ['product' => $product])
                 @empty
-                    {{-- Static placeholder --}}
-                    <article class="product-card" role="listitem">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1583241800698-e8ab01830a22?w=600&h=600&fit=crop" alt="Product" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
-                            <span class="product-badge badge-new">New</span>
-                        </div>
-                        <div class="product-info">
-                            <p class="product-brand">Maybelline</p>
-                            <h3 class="product-name">Fit Me Foundation</h3>
-                            <div class="product-pricing">
-                                <span class="price-current">PKR 2,200</span>
-                            </div>
-                        </div>
-                        <div class="product-footer">
-                            <button class="btn-add-to-bag">Add to Bag</button>
-                        </div>
-                    </article>
+                    <div style="grid-column:1/-1;text-align:center;padding:4rem 1rem;color:#9ca3af;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:48px;height:48px;margin:0 auto 1rem;display:block;"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg>
+                        <p style="font-size:1.1rem;font-weight:600;margin-bottom:.5rem;">No products found</p>
+                        <p style="font-size:.9rem;">Try adjusting your filters or <a href="{{ route('category.index') }}" style="color:var(--color-primary);">browse all products</a>.</p>
+                    </div>
                 @endforelse
             </div>
 
@@ -84,3 +76,23 @@
     </div>
 
 @endsection
+
+@push('scripts')
+<script>
+// Sort dropdown: redirect preserving current filters
+(function () {
+    var sel = document.getElementById('sort-select');
+    if (!sel) return;
+    sel.addEventListener('change', function () {
+        var url = new URL(window.location.href);
+        if (this.value === 'featured') {
+            url.searchParams.delete('sort');
+        } else {
+            url.searchParams.set('sort', this.value);
+        }
+        url.searchParams.delete('page'); // reset to page 1
+        window.location.href = url.toString();
+    });
+})();
+</script>
+@endpush
