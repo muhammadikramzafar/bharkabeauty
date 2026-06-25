@@ -36,7 +36,7 @@ class CategoryController extends Controller
             'pageTitle'       => $titles[$cat] ?? 'Shop',
             'pageDescription' => $descriptions[$cat] ?? '',
             'currentCat'      => $cat,
-            'products'        => collect([]),
+            'products'        => new \Illuminate\Pagination\LengthAwarePaginator([], 0, 12),
         ]);
     }
 }

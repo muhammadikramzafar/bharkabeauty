@@ -16,15 +16,26 @@ class SeoSetting extends Model
 
     public static function instance(): self
     {
-        return cache()->remember('seo_settings', 3600, function () {
-            return static::firstOrCreate(['id' => 1], [
-                'site_name'       => 'BharkaBeauty',
-                'title_separator' => '—',
-                'og_type'         => 'website',
-                'twitter_card'    => 'summary_large_image',
-                'robots_txt'      => "User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: " . url('/sitemap.xml'),
-            ]);
-        });
+        $cached = cache()->get('seo_settings');
+
+        if ($cached instanceof static) {
+            return $cached;
+        }
+
+        // Stale / corrupt / missing — rebuild
+        cache()->forget('seo_settings');
+
+        $record = static::firstOrCreate(['id' => 1], [
+            'site_name'       => 'BharkaBeauty',
+            'title_separator' => '—',
+            'og_type'         => 'website',
+            'twitter_card'    => 'summary_large_image',
+            'robots_txt'      => "User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: " . url('/sitemap.xml'),
+        ]);
+
+        cache()->put('seo_settings', $record, 3600);
+
+        return $record;
     }
 
     public static function clearCache(): void

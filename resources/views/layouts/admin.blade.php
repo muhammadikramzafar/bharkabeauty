@@ -39,5 +39,19 @@
 
     @stack('scripts')
 
+<script>
+// Mobile sidebar toggle
+const sidebarToggle = document.getElementById('adminSidebarToggle');
+const sidebar       = document.getElementById('adminSidebar');
+if (sidebarToggle && sidebar) {
+    sidebarToggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+    document.addEventListener('click', e => {
+        if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+            sidebar.classList.remove('open');
+        }
+    });
+}
+</script>
+
 </body>
 </html>
