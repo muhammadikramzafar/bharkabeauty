@@ -27,7 +27,7 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
 - **Roles:** super-admin, admin, editor (via Spatie)
 
 ## Database
-- **Driver:** SQLite at `database/database.sqlite` (committed to git — import-ready)
+- **Driver:** MySQL — database name `bharka`, host `127.0.0.1:3306`, user `root`, no password
 - **Seeded data:** 69 products, 35 categories (7 root + 28 sub), 14 brands
 - **To reset and reseed:**
   ```powershell
@@ -166,8 +166,9 @@ git clone https://github.com/muhammadikramzafar/bharkabeauty.git
 cd bharkabeauty
 composer install
 cp .env.example .env
+# Create MySQL database named "bharka" first, then:
 php artisan key:generate
+php artisan migrate:fresh --seed
 php artisan storage:link
 php artisan serve
 ```
-No migration or seeding needed — `database/database.sqlite` is in the repo.
