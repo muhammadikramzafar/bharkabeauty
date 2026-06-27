@@ -1,47 +1,104 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+@extends('layouts.app')
+@section('title', 'Staff Login — BharkaBeauty')
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+@section('content')
+<div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:3rem 1rem;background:var(--color-bg-alt);">
+<div style="width:100%;max-width:420px;">
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    {{-- Brand --}}
+    <div style="text-align:center;margin-bottom:2rem;">
+        <a href="{{ route('home') }}" style="font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--color-primary);text-decoration:none;letter-spacing:1px;">
+            BharkaBeauty
+        </a>
+        <p style="margin:.5rem 0 0;color:var(--color-text-muted);font-size:.9rem;">Admin &amp; Staff Portal</p>
+    </div>
+
+    {{-- Card --}}
+    <div style="background:var(--color-surface);border:1.5px solid var(--color-border);border-radius:var(--radius-xl);padding:2.25rem;">
+
+        {{-- Session status --}}
+        @if (session('status'))
+        <div style="background:#d1fae5;color:#065f46;border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.875rem;">
+            {{ session('status') }}
         </div>
+        @endif
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        {{-- Errors --}}
+        @if ($errors->any())
+        <div style="background:#fee2e2;color:#991b1b;border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.875rem;">
+            {{ $errors->first() }}
         </div>
+        @endif
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+            {{-- Email --}}
+            <div class="form-group" style="margin-bottom:1.1rem;">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-input" type="email" id="email" name="email"
+                       value="{{ old('email') }}"
+                       placeholder="admin@bharkabeauty.com"
+                       required autofocus autocomplete="username">
+            </div>
+
+            {{-- Password --}}
+            <div class="form-group" style="margin-bottom:1.1rem;">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-input" type="password" id="password" name="password"
+                       placeholder="••••••••"
+                       required autocomplete="current-password">
+            </div>
+
+            {{-- Remember + Forgot --}}
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+                <label style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--color-text-muted);cursor:pointer;">
+                    <input type="checkbox" name="remember" id="remember_me"
+                           style="width:15px;height:15px;accent-color:var(--color-accent);">
+                    Remember me
+                </label>
+                @if (Route::has('password.request'))
+                <a href="{{ route('password.request') }}"
+                   style="font-size:.8rem;color:var(--color-accent);text-decoration:none;font-weight:600;">
+                    Forgot password?
                 </a>
-            @endif
+                @endif
+            </div>
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+                Sign In
+            </button>
+        </form>
+
+        {{-- Divider --}}
+        <div style="display:flex;align-items:center;gap:.75rem;margin:1.75rem 0 1.25rem;">
+            <div style="flex:1;height:1px;background:var(--color-border);"></div>
+            <span style="font-size:.75rem;color:var(--color-text-muted);white-space:nowrap;">Not an admin?</span>
+            <div style="flex:1;height:1px;background:var(--color-border);"></div>
         </div>
-    </form>
-</x-guest-layout>
+
+        {{-- Customer links --}}
+        <div style="display:flex;gap:.75rem;">
+            <a href="{{ route('customer.login') }}"
+               style="flex:1;text-align:center;padding:.65rem;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:.85rem;font-weight:600;color:var(--color-primary);text-decoration:none;transition:border-color .15s;"
+               onmouseover="this.style.borderColor='var(--color-accent)'"
+               onmouseout="this.style.borderColor='var(--color-border)'">
+                Customer Sign In
+            </a>
+            <a href="{{ route('customer.register') }}"
+               style="flex:1;text-align:center;padding:.65rem;border:1.5px solid var(--color-border);border-radius:var(--radius-lg);font-size:.85rem;font-weight:600;color:var(--color-primary);text-decoration:none;transition:border-color .15s;"
+               onmouseover="this.style.borderColor='var(--color-accent)'"
+               onmouseout="this.style.borderColor='var(--color-border)'">
+                Create Account
+            </a>
+        </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:1.25rem;font-size:.78rem;color:var(--color-text-muted);">
+        &copy; {{ date('Y') }} BharkaBeauty. All rights reserved.
+    </p>
+
+</div>
+</div>
+@endsection

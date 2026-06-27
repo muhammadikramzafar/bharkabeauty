@@ -4,6 +4,61 @@
 
 'use strict';
 
+/* ── Toast Notifications ───────────────────────────────────── */
+function showToast(message, type) {
+  type = type || 'success';
+  var container = document.getElementById('toast-container');
+  if (!container) return;
+
+  var colors = {
+    success: { bg: '#f0fdf4', border: '#86efac', text: '#15803d', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>' },
+    error:   { bg: '#fef2f2', border: '#fca5a5', text: '#b91c1c', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>' },
+    info:    { bg: '#eff6ff', border: '#93c5fd', text: '#1d4ed8', icon: '<path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>' },
+  };
+  var c = colors[type] || colors.success;
+
+  var toast = document.createElement('div');
+  toast.style.cssText = [
+    'display:flex;align-items:center;gap:.7rem',
+    'background:' + c.bg,
+    'border:1.5px solid ' + c.border,
+    'color:' + c.text,
+    'padding:.8rem 1.1rem',
+    'border-radius:12px',
+    'box-shadow:0 4px 20px rgba(0,0,0,.1)',
+    'font-size:.875rem',
+    'font-weight:600',
+    'min-width:280px',
+    'max-width:360px',
+    'pointer-events:all',
+    'opacity:0',
+    'transform:translateX(30px)',
+    'transition:opacity .25s ease,transform .25s ease',
+  ].join(';');
+
+  toast.innerHTML =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="' + c.text + '" stroke-width="2" style="flex-shrink:0;">' + c.icon + '</svg>' +
+    '<span style="flex:1;line-height:1.4;">' + message + '</span>' +
+    '<button onclick="this.parentNode.remove()" style="background:none;border:none;cursor:pointer;color:' + c.text + ';opacity:.5;padding:0;line-height:1;font-size:1.1rem;">✕</button>';
+
+  container.appendChild(toast);
+
+  // Animate in
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(0)';
+    });
+  });
+
+  // Auto-dismiss after 4s
+  setTimeout(function() {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(30px)';
+    setTimeout(function() { if (toast.parentNode) toast.remove(); }, 300);
+  }, 4000);
+}
+
 /* ── DOM Ready ─────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initHamburger();

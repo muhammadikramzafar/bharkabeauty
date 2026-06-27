@@ -34,13 +34,18 @@
             <div class="brands-grid">
                 @forelse($brands ?? [] as $brand)
                     <a href="{{ route('category.index', ['brand' => $brand->slug]) }}" class="brand-card" data-alpha="{{ strtoupper(substr($brand->name, 0, 1)) }}">
-                        @if($brand->logo_url)
-                            <img src="{{ $brand->logo_url }}" alt="{{ $brand->name }}" loading="lazy" style="max-height:60px;max-width:130px;object-fit:contain;">
-                        @else
-                            <div style="width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#c9a96e,#a07840);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;margin:0 auto .5rem;">{{ strtoupper(substr($brand->name,0,1)) }}</div>
-                        @endif
-                        <p class="brand-name" style="margin-top:.5rem;font-weight:600;">{{ $brand->name }}</p>
-                        <p class="brand-cat" style="font-size:.75rem;color:#9ca3af;">{{ $brand->products_count }} products</p>
+                        <div style="width:100%;height:72px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:var(--radius-md);margin-bottom:.6rem;">
+                            @if($brand->logo_url)
+                                <img src="{{ $brand->logo_url }}" alt="{{ $brand->name }}" loading="lazy"
+                                     style="width:100%;height:100%;object-fit:contain;">
+                            @else
+                                <div style="width:100%;height:100%;background:linear-gradient(135deg,#c9a96e,#a07840);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;border-radius:var(--radius-md);">
+                                    {{ strtoupper(substr($brand->name,0,1)) }}
+                                </div>
+                            @endif
+                        </div>
+                        <p class="brand-name" style="font-weight:600;font-size:.8rem;line-height:1.3;margin:0 0 .15rem;">{{ $brand->name }}</p>
+                        <p class="brand-cat" style="font-size:.72rem;color:#9ca3af;margin:0;">{{ $brand->products_count }} products</p>
                     </a>
                 @empty
                     @foreach(['Maybelline', "L'Oréal Paris", 'Garnier', 'Huda Beauty', 'The Ordinary', 'CeraVe', 'Neutrogena', 'Essence', 'Rivaj UK', 'Golden Rose', 'Revlon', 'Nivea'] as $name)

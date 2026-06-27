@@ -22,10 +22,13 @@
     </div>
 
     <!-- Category Header -->
-    <section class="category-hero">
-        <div class="container">
-            <h1 class="category-hero__title">{{ $pageTitle ?? 'Shop All' }}</h1>
-            <p class="category-hero__desc">{{ $pageDescription ?? 'Discover our curated collection of premium beauty products.' }}</p>
+    @php $heroBg = $rootCategory->image_url ?? null; @endphp
+    <section class="category-hero{{ $heroBg ? ' category-hero--has-image' : '' }}"
+        @if($heroBg) style="background-image:url('{{ $heroBg }}')" @endif>
+        @if($heroBg)<div class="category-hero__overlay"></div>@endif
+        <div class="container" style="position:relative;z-index:2;">
+            <h1 class="category-hero__title{{ $heroBg ? ' category-hero__title--light' : '' }}">{{ $pageTitle ?? 'Shop All' }}</h1>
+            <p class="category-hero__desc{{ $heroBg ? ' category-hero__desc--light' : '' }}">{{ $pageDescription ?? 'Discover our curated collection of premium beauty products.' }}</p>
         </div>
     </section>
 

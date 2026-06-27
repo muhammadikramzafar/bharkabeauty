@@ -111,6 +111,25 @@
 
     @include('partials.footer')
 
+    {{-- ── Global Toast Notifications ─────────────────── --}}
+    <div id="toast-container" style="position:fixed;top:1.25rem;right:1.25rem;z-index:9999;display:flex;flex-direction:column;gap:.6rem;pointer-events:none;"></div>
+
+    @if(session('success') || session('error') || session('info'))
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if(session('success'))
+        showToast({{ json_encode(session('success')) }}, 'success');
+        @endif
+        @if(session('error'))
+        showToast({{ json_encode(session('error')) }}, 'error');
+        @endif
+        @if(session('info'))
+        showToast({{ json_encode(session('info')) }}, 'info');
+        @endif
+    });
+    </script>
+    @endif
+
     <script src="{{ asset('assets/js/main.js') }}"></script>
     @stack('scripts')
 
