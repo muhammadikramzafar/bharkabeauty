@@ -33,11 +33,11 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
   ```powershell
   php artisan migrate:fresh --seed
   ```
-- **Migration FK note:** `cms_pages` must run before `menu_items` (FK dependency). Migration filenames encode this: `093317_5_create_cms_pages`, `093317_create_menus`, `093319_create_menu_items`. Do NOT renumber these without checking dependencies.
+- **Migration FK note:** `cms_pages` must run before `menu_items` (FK dependency). Filenames encode this: `093317_5_create_cms_pages`, `093317_create_menus`, `093319_create_menu_items`. Do NOT renumber without checking deps.
 
 ## Critical: PowerShell Gotchas
-- **Never use** `Set-Content -Encoding utf8` for PHP files — adds UTF-8 BOM (EF BB BF) → `PHP Fatal error: Namespace declaration statement has to be the very first statement`
-- **Always write PHP files** via the Write tool (Claude Code). To strip BOM manually:
+- **Never use** `Set-Content -Encoding utf8` for PHP files — adds UTF-8 BOM → `PHP Fatal error: Namespace declaration...`
+- **Always write PHP files** via the Write tool (Claude Code). Strip BOM manually if needed:
   ```powershell
   $bytes = [System.IO.File]::ReadAllBytes($path)
   if ($bytes[0] -eq 0xEF -and $bytes[1] -eq 0xBB -and $bytes[2] -eq 0xBF) {
@@ -47,28 +47,36 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
 - **No `&&` operator** in PowerShell 5.1 — use `;` or `if ($?) { ... }`
 - **No `head` command** — use `| Select-Object -First N`
 - **No `--compact` flag** on `php artisan route:list`
-- **Multi-line git commit messages** — use PowerShell here-string: `$msg = @'...'@; git commit -m $msg`
+- **Multi-line git commit** — use PowerShell here-string: `$msg = @'...'@; git commit -m $msg`
 
 ## Storage & Images
 - Public disk: `storage/app/public/` → symlinked to `public/storage/`
 - Run `php artisan storage:link` once after fresh clone
-- Images stored in: `storage/app/public/categories/`, `brands/`, `products/`
+- Images in: `storage/app/public/categories/`, `brands/`, `products/`
 - **Images committed to git** — 35 category JPGs, 14 brand SVGs, 69 product JPGs
-- Seeders skip download if file already exists (`file_exists()` check) — safe to re-run
-- GD extension NOT available — use cURL for image downloads, PHP SVG strings for logos
-- No `imagecreate`, `imagejpeg` etc. on this PHP install
+- GD extension NOT available — use cURL for downloads, PHP SVG strings for logos
 
 ## URL Structure (SEO-friendly)
+
 ```
-/                        → HomeController@index
-/shop                    → CategoryController@index  (all products)
-/shop/{cat}              → CategoryController@index  (e.g. /shop/skincare, /shop/tools)
-/product/{slug}          → ProductController@show
-/brands                  → BrandController@index
-/blog                    → BlogPageController@index
-/blog/{slug}             → BlogPageController@show
-/services                → ServicePageController@index
-/admin                   → Admin panel (auth + role guarded)
+/                             → HomeController@index
+/shop                         → CategoryController@index  (all products)
+/shop/{cat}                   → CategoryController@index  (e.g. /shop/skincare)
+/product/{slug}               → ProductController@show
+/brands                       → BrandController@index
+/blog / /blog/{slug}          → BlogPageController
+/services / /services/{slug}  → ServicePageController
+/cart                         → CartController@index
+/checkout                     → CheckoutController (auth required, 3-step)
+/order/success/{orderNumber}  → CheckoutController@success (auth required)
+/customer/login               → OtpController@showLogin
+/customer/register            → OtpController@showRegister
+/customer/otp/verify          → OtpController@showVerify
+/my-account                   → CustomerProfileController@dashboard (auth)
+/my-account/orders            → CustomerProfileController@orders (auth)
+/my-account/orders/{number}   → CustomerProfileController@orderDetail (auth)
+/my-account/settings          → CustomerProfileController@settings (auth)
+/admin                        → Admin panel (auth + role guarded)
 ```
 
 Filter params stay as query strings — never path segments:
@@ -76,9 +84,11 @@ Filter params stay as query strings — never path segments:
 
 **Route generation:**
 ```php
-route('category.index')                                              // /shop
-route('category.index', ['cat' => 'skincare'])                       // /shop/skincare
-route('category.index', ['cat' => 'skincare', 'brand' => 'loreal'])  // /shop/skincare?brand=loreal
+route('category.index')                         // /shop
+route('category.index', ['cat' => 'skincare'])  // /shop/skincare
+route('customer.dashboard')                     // /my-account
+route('customer.orders')                        // /my-account/orders
+route('order.success', $order->order_number)    // /order/success/BB-XXXXXX
 ```
 
 **Active nav detection** (cat is a route param, not query string):
@@ -87,24 +97,120 @@ route('category.index', ['cat' => 'skincare', 'brand' => 'loreal'])  // /shop/sk
 ```
 
 ## Key Models & Accessors
+
 ```
-Product   → main_image       string  — full public URL, never null (has Unsplash fallback)
-          → first_image_url  ?string — first image URL or null
-          → all_image_urls   array   — all image full URLs (for gallery loops)
-          → images           array   — raw relative storage paths (cast: array)
-          → scopeActive(), scopeFeatured()
-          → slug is the route key (getRouteKeyName() → 'slug')
+Product    → main_image       string  — full public URL, never null (Unsplash fallback)
+           → first_image_url  ?string — first image URL or null
+           → all_image_urls   array   — all image full URLs (for gallery loops)
+           → images           array   — raw relative storage paths (cast: array)
+           → scopeActive(), scopeFeatured()
+           → slug is the route key (getRouteKeyName() → 'slug')
 
-Category  → image_url        ?string — Storage URL or null
-          → parent() / children() / products()
-          → scopeActive()
+Category   → image_url        ?string — Storage URL or null
+           → parent() / children() / products()
+           → scopeActive()
 
-Brand     → logo_url         ?string — Storage URL or null
-          → scopeActive(), scopeFeatured()
-          → products() hasMany
+Brand      → logo_url         ?string — Storage URL or null
+           → scopeActive(), scopeFeatured()
+           → products() hasMany
 
-User      → orders() hasMany Order
-          → Spatie HasRoles trait
+User       → orders() hasMany Order
+           → phone  (nullable string, added 2026-06-27)
+           → Spatie HasRoles trait
+           → Fillable: name, email, phone, password
+
+Order      → items() hasMany OrderItem
+           → user() belongsTo User
+           → shipping_address (cast: array) — stores first_name, phone, email, address, city, postal_code
+           → order_number auto-generated: BB-XXXXXX
+           → status: pending|confirmed|processing|shipped|delivered|cancelled|refunded
+           → payment_method: cod|jazzcash|easypaisa
+           → scopeByStatus(string $status)
+
+OrderItem  → order() / product()
+           → product_name (snapshot, product may be deleted)
+
+OtpToken   → email, token (6 digits), expires_at, used_at
+           → isValid(): bool — checks used_at is null AND expires_at is future
+```
+
+## Authentication — Two Separate Flows
+
+### Admin / Staff Login (`/login`)
+- Standard Breeze email + password
+- Required for accessing `/admin`
+
+### Customer OTP Login (`/customer/login`)
+- **Register:** name + mobile (Pakistani format `03XX`) + email → same 6-digit OTP fires to both email AND SMS
+- **Login:** enter mobile OR email → system looks up account → OTP to both channels
+- **Verify:** 6 individual digit boxes, auto-submits on 6th digit, paste-from-SMS works
+- OTP valid for 10 minutes, single-use
+- Header icon links to `/customer/login` for guests, `/my-account` for logged-in users
+
+### SMS Gateway (`app/Services/SmsService.php`)
+Currently logs OTP to `storage/logs/laravel.log` (search `[SMS]`). To enable real SMS:
+```php
+// In SmsService::send() swap the commented block with your provider:
+// Twilio, MSG91, Zong Business, Telenor Business, etc.
+```
+`.env` variables to add when using a real gateway: `TWILIO_SID`, `TWILIO_TOKEN`, `TWILIO_FROM`
+
+## Checkout Flow (3 steps, auth required)
+
+```
+Step 1 /checkout          → Address: name, mobile, email, street, city, postal code
+Step 2 POST checkout/address → saved to session['checkout_address']
+Step 3 /checkout (step 2) → Delivery method (standard free >PKR2000, express PKR300, same-day PKR500)
+Step 4 /checkout (step 3) → Payment: COD | JazzCash | EasyPaisa  (card removed)
+Step 5 POST checkout/place-order → creates Order + OrderItems in DB, sends 2 emails, clears cart
+       → redirect to /order/success/{orderNumber}
+```
+
+**`checkout_address` session keys:** `first_name`, `phone`, `email`, `address`, `city`, `postal_code`
+
+**Delivery fee logic:** subtotal ≥ PKR 2,000 → free; otherwise PKR 150 (standard).
+
+**On order placement** (`CheckoutController::placeOrder`):
+1. Validates `payment_method` in `cod|jazzcash|easypaisa`
+2. Creates `Order` record
+3. Creates `OrderItem` for each cart item (price snapshot)
+4. Sends `OrderConfirmationMail($order, false)` to customer email
+5. Sends `OrderConfirmationMail($order, true)` to `config('mail.admin_email')` (default: superadmin@bharkabeauty.com)
+6. Clears `cart`, `checkout_address`, `checkout_delivery` from session
+
+## Customer Profile (`/my-account`)
+
+| Route | View | What it shows |
+|---|---|---|
+| `customer.dashboard` | `profile/dashboard` | Welcome banner, 3 stats (orders/spent/delivered), last 5 orders |
+| `customer.orders` | `profile/orders` | Paginated order list with delivery progress bar per order |
+| `customer.orders.detail` | `profile/order-detail` | Full order: items + images, totals, address, payment, status tracker |
+| `customer.settings` | `profile/settings` | Edit name + phone; email is read-only |
+
+**Sidebar partial:** `@include('profile._sidebar')` — shows avatar initial, name, email, nav links, sign out. Highlights active route via `Route::currentRouteName()`.
+
+**Delivery status tracker steps:** `pending → confirmed → processing → shipped → delivered`
+
+## Email System
+
+| Mailable | View | Trigger |
+|---|---|---|
+| `OtpMail($token)` | `emails/otp` | OTP login/register |
+| `OrderConfirmationMail($order, false)` | `emails/order-customer` | Customer after placing order |
+| `OrderConfirmationMail($order, true)` | `emails/order-admin` | Admin after any order |
+
+**Mail config (`config/mail.php`):** Added `'admin_email' => env('MAIL_ADMIN_EMAIL', 'superadmin@bharkabeauty.com')`
+
+**Current driver:** `MAIL_MAILER=log` → emails go to `storage/logs/laravel.log`. To send real email:
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=your@gmail.com
+MAIL_PASSWORD=your-app-password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@bharkabeauty.com
+MAIL_ADMIN_EMAIL=superadmin@bharkabeauty.com
 ```
 
 ## Frontend Controllers (all fully implemented)
@@ -115,10 +221,19 @@ User      → orders() hasMany Order
 | `CategoryController` | `index(Request, ?string $cat)` | Full filter/sort: brand[], category[], price[], availability[], sort |
 | `ProductController` | `show(string $slug)` | Loads product + related products (same cat/brand) |
 | `BrandController` | `index()` | All active brands with product counts |
+| `CartController` | `index/add/update/remove` | Cart in session; `add()` fetches product from DB (never trusts POST price) |
+| `CheckoutController` | `index/storeAddress/storeDelivery/placeOrder/success` | 3-step checkout + order save + emails |
+| `OtpController` | `showLogin/showRegister/register/sendOtp/showVerify/verify/resend` | Passwordless OTP auth |
+| `CustomerProfileController` | `dashboard/orders/orderDetail/settings/updateSettings` | Customer account pages |
 
-**Sidebar partial** (`partials/sidebar.blade.php`) wraps filters in a `<form method="GET">` that auto-submits on checkbox change. Action URL is `route('category.index', ['cat' => request()->route('cat')])` so the category path segment is preserved. Sort uses a JS `URL.searchParams` redirect.
+**Sidebar partial** (`partials/sidebar.blade.php`):
+- Wrapped in `<form method="GET">` auto-submitting on checkbox change
+- Action preserves cat path: `route('category.index', ['cat' => request()->route('cat')])`
+- Submit button wrapped in `<div style="border-top:...">` — NOT bare in form (prevents box artifact)
+- CSS fix: `.filter-group:last-of-type` not `:last-child` (button is actual last child of form)
 
 ## Admin Panel Routes (all under /admin, `auth + role:super-admin,admin,editor`)
+
 ```
 /admin/products           → CRUD
 /admin/categories         → CRUD
@@ -146,12 +261,30 @@ User      → orders() hasMany Order
 - **Frontend CSS:** `public/assets/css/style.css`
 - **Product card partial:** `@include('partials.product-card', ['product' => $product])` — uses `$product->main_image`
 - **Sidebar partial:** `@include('partials.sidebar')` — requires `$categories` + `$brands` from controller
+- **Profile sidebar:** `@include('profile._sidebar')` — no extra vars needed (reads `auth()->user()` directly)
+- **Breadcrumb:** `<div class="breadcrumb-bar"><div class="container"><nav class="breadcrumb"><ol><li>...</li></ol></nav></div></div>` — uses `li + li::before` chevron CSS
 - **Pagination:** always `LengthAwarePaginator` + `->withQueryString()` — plain `collect()` has no `hasPages()`
-- **JS in views:** use `@push('scripts') ... @endpush` — the layout has `@stack('scripts')`
+- **JS in views:** use `@push('scripts') ... @endpush` — layout has `@stack('scripts')`
+
+## CSS Key Classes (style.css)
+
+| Class | Purpose |
+|---|---|
+| `.breadcrumb-bar` | Full-width strip, `background: var(--color-bg-alt)`, `border-bottom` |
+| `.breadcrumb ol` | Flex row; `li + li::before` injects chevron separator |
+| `.checkout-layout` | `grid-template-columns: 1fr 400px` — left form + right order summary |
+| `.checkout-steps` | Flex progress bar; `.step-num` for circle, `.checkout-step.active/.done` |
+| `.checkout-section-title` | Section headings inside checkout |
+| `.form-grid` | `grid-template-columns: 1fr 1fr` two-col form row |
+| `.form-input` | Styled text/email/tel input (height 44px, accent border on focus) |
+| `.payment-methods` | Flex column of `.payment-option` cards |
+| `.filter-group:last-of-type` | Removes border-bottom from last filter group (NOT `:last-child`) |
+| `.filters-sidebar` | Sticky sidebar; hidden on mobile |
+| `.cart-layout` | `grid-template-columns: 1fr 380px` |
+| `.cart-item` | Grid: image + details + price/remove |
 
 ## Seeder Pattern
 ```php
-// Run individual seeders:
 php artisan db:seed --class=CategorySeeder
 php artisan db:seed --class=BrandSeeder
 php artisan db:seed --class=ProductSeeder
@@ -179,7 +312,7 @@ private function downloadImage(string $url, string $folder, string $slug): ?stri
 // Image source: https://picsum.photos/seed/{slug}/800/800
 ```
 
-### Brand SVG logo generation (no image library needed):
+### Brand SVG logo generation:
 ```php
 private function generateSvgLogo(string $slug, string $text, string $bg): string
 {
@@ -195,13 +328,33 @@ private function generateSvgLogo(string $slug, string $text, string $bg): string
 
 ### Converting storage paths to public URLs in views:
 ```blade
-{{-- Single image --}}
 src="{{ Storage::disk('public')->url($path) }}"
 
-{{-- All images loop (use all_image_urls accessor) --}}
 @foreach($product->all_image_urls as $url)
     <img src="{{ $url }}">
 @endforeach
+```
+
+### OTP dispatch pattern:
+```php
+// Generate, save, send to email + SMS, store email in session
+$token = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+OtpToken::create(['email' => $email, 'token' => $token, 'expires_at' => now()->addMinutes(10)]);
+Mail::to($email)->send(new OtpMail($token));
+SmsService::send($phone, "Your code: {$token}");
+session(['otp_email' => $email, 'otp_phone' => $phone]);
+```
+
+### Order creation pattern:
+```php
+$order = Order::create([...]);
+foreach ($cartItems as $item) {
+    $order->items()->create(['product_name' => $item['name'], 'price' => $item['price'], 'qty' => $item['quantity'], 'total' => $item['price'] * $item['quantity']]);
+}
+$order->load('items', 'user');
+Mail::to($userEmail)->send(new OrderConfirmationMail($order, false));  // customer
+Mail::to(config('mail.admin_email'))->send(new OrderConfirmationMail($order, true));  // admin
+session()->forget(['cart', 'checkout_address', 'checkout_delivery']);
 ```
 
 ## Setup on a New PC

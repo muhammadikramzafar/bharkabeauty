@@ -41,13 +41,17 @@
                 </span>
             </a>
             @auth
-                <a href="{{ route('profile.edit') }}" class="header-action-btn" aria-label="My Account">
+                <a href="{{ route('customer.dashboard') }}" class="header-action-btn" aria-label="My Account"
+                   style="position:relative;">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                     </svg>
+                    <span style="font-size:.65rem;font-weight:700;display:block;line-height:1;margin-top:2px;max-width:52px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--color-text-muted);">
+                        {{ explode(' ', auth()->user()->name)[0] }}
+                    </span>
                 </a>
             @else
-                <a href="{{ route('login') }}" class="header-action-btn" aria-label="Sign In">
+                <a href="{{ route('customer.login') }}" class="header-action-btn" aria-label="Sign In">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
                     </svg>
@@ -101,9 +105,11 @@
         <a href="{{ route('category.index', ['cat' => 'offers']) }}"    class="mobile-nav-link offers">🔥 Offers</a>
         <a href="{{ route('store-locator') }}"                          class="mobile-nav-link">📍 Find a Store</a>
         @auth
-            <a href="{{ route('profile.edit') }}"                       class="mobile-nav-link">👤 My Account</a>
+            <a href="{{ route('customer.dashboard') }}" class="mobile-nav-link">👤 My Account</a>
+            <a href="{{ route('customer.orders') }}"    class="mobile-nav-link">📦 My Orders</a>
         @else
-            <a href="{{ route('login') }}"                              class="mobile-nav-link">👤 Sign In</a>
+            <a href="{{ route('customer.login') }}"     class="mobile-nav-link">👤 Sign In</a>
+            <a href="{{ route('customer.register') }}"  class="mobile-nav-link">✨ Create Account</a>
         @endauth
     </nav>
 </div>

@@ -60,11 +60,14 @@ Route::post('/cart/update', [CartController::class, 'update'])->name('cart.updat
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
 
-// Checkout (auth required — enforced in controller)
-Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
-Route::post('/checkout/delivery', [CheckoutController::class, 'storeDelivery'])->name('checkout.delivery');
-Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
+// Checkout (auth required)
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
+    Route::post('/checkout/delivery', [CheckoutController::class, 'storeDelivery'])->name('checkout.delivery');
+    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
+    Route::get('/order/success/{orderNumber}', [CheckoutController::class, 'success'])->name('order.success');
+});
 
 // Static Pages
 Route::get('/about', [PageController::class, 'about'])->name('about');
@@ -95,7 +98,7 @@ Route::get('/robots.txt',  [SeoController::class, 'robots'])->name('robots');
 Route::post('/newsletter/subscribe',          [NewsletterController::class, 'subscribe'])->name('newsletter.subscribe');
 Route::get('/newsletter/unsubscribe/{token}', [NewsletterController::class, 'unsubscribe'])->name('newsletter.unsubscribe');
 
-// ─── AUTH ROUTES (Breeze) ─────────────────────────────────────
+// ─── AUTH ROUTES (Breeze — kept for admin password login) ────
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -103,6 +106,29 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// ─── CUSTOMER OTP AUTH ────────────────────────────────────────
+use App\Http\Controllers\OtpController;
+use App\Http\Controllers\CustomerProfileController;
+
+Route::middleware('guest')->group(function () {
+    Route::get('/customer/login',    [OtpController::class, 'showLogin'])->name('customer.login');
+    Route::get('/customer/register', [OtpController::class, 'showRegister'])->name('customer.register');
+    Route::post('/customer/register',[OtpController::class, 'register'])->name('customer.register.submit');
+    Route::post('/customer/otp/send',[OtpController::class, 'sendOtp'])->name('otp.send');
+    Route::get('/customer/otp/verify',[OtpController::class,'showVerify'])->name('otp.verify');
+    Route::post('/customer/otp/verify',[OtpController::class,'verify'])->name('otp.verify.submit');
+});
+Route::post('/customer/otp/resend', [OtpController::class, 'resend'])->name('otp.resend');
+
+// ─── CUSTOMER PROFILE (auth required) ────────────────────────
+Route::middleware('auth')->prefix('my-account')->name('customer.')->group(function () {
+    Route::get('/',                          [CustomerProfileController::class, 'dashboard'])->name('dashboard');
+    Route::get('/orders',                    [CustomerProfileController::class, 'orders'])->name('orders');
+    Route::get('/orders/{orderNumber}',      [CustomerProfileController::class, 'orderDetail'])->name('orders.detail');
+    Route::get('/settings',                  [CustomerProfileController::class, 'settings'])->name('settings');
+    Route::patch('/settings',                [CustomerProfileController::class, 'updateSettings'])->name('settings.update');
+});
 
 // ─── ADMIN ROUTES ─────────────────────────────────────────────
 Route::prefix('admin')

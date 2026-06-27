@@ -111,8 +111,10 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@bharkabeauty.com'),
+        'name' => env('MAIL_FROM_NAME', 'BharkaBeauty'),
     ],
+
+    'admin_email' => env('MAIL_ADMIN_EMAIL', 'superadmin@bharkabeauty.com'),
 
 ];

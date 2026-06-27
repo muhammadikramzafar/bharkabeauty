@@ -87,7 +87,9 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-full" style="margin-top:.75rem;">Apply Filters</button>
+        <div style="padding-top:1.25rem;margin-top:.25rem;border-top:1px solid var(--color-border);">
+            <button type="submit" class="btn btn-primary btn-full">Apply Filters</button>
+        </div>
 
     </form>
 </aside>
