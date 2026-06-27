@@ -17,7 +17,7 @@
     <h1 style="font-size:1.9rem;font-weight:800;margin-bottom:.5rem;color:var(--color-primary);">Order Placed!</h1>
     <p style="font-size:1rem;color:var(--color-text-muted);margin-bottom:2rem;line-height:1.6;">
         Thank you for shopping with BharkaBeauty.<br>
-        A confirmation email has been sent to <strong>{{ auth()->user()->email }}</strong>.
+        A confirmation email has been sent to <strong>{{ $order->shipping_address['email'] ?? auth()->user()?->email ?? '' }}</strong>.
     </p>
 
     {{-- Order Card --}}

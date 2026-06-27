@@ -67,8 +67,8 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
 /blog / /blog/{slug}          → BlogPageController
 /services / /services/{slug}  → ServicePageController
 /cart                         → CartController@index
-/checkout                     → CheckoutController (auth required, 3-step)
-/order/success/{orderNumber}  → CheckoutController@success (auth required)
+/checkout                     → CheckoutController (guest + auth, 3-step)
+/order/success/{orderNumber}  → CheckoutController@success (guest: session-validated; auth: user_id match)
 /customer/login               → OtpController@showLogin
 /customer/register            → OtpController@showRegister
 /customer/otp/verify          → OtpController@showVerify
@@ -155,7 +155,9 @@ Currently logs OTP to `storage/logs/laravel.log` (search `[SMS]`). To enable rea
 ```
 `.env` variables to add when using a real gateway: `TWILIO_SID`, `TWILIO_TOKEN`, `TWILIO_FROM`
 
-## Checkout Flow (3 steps, auth required)
+## Checkout Flow (3 steps, guest + auth)
+
+No login required. Works for both guests and logged-in customers.
 
 ```
 Step 1 /checkout          → Address: name, mobile, email, street, city, postal code
@@ -172,11 +174,22 @@ Step 5 POST checkout/place-order → creates Order + OrderItems in DB, sends 2 e
 
 **On order placement** (`CheckoutController::placeOrder`):
 1. Validates `payment_method` in `cod|jazzcash|easypaisa`
-2. Creates `Order` record
+2. Creates `Order` record — `user_id` is `Auth::id()` (null for guests, already nullable in DB)
 3. Creates `OrderItem` for each cart item (price snapshot)
-4. Sends `OrderConfirmationMail($order, false)` to customer email
+4. Sends `OrderConfirmationMail($order, false)` to `$address['email']` (from form, not `Auth::user()`)
 5. Sends `OrderConfirmationMail($order, true)` to `config('mail.admin_email')` (default: superadmin@bharkabeauty.com)
-6. Clears `cart`, `checkout_address`, `checkout_delivery` from session
+6. Stores `last_order_number` in session (lets guests view their success page)
+7. Clears `cart`, `checkout_address`, `checkout_delivery` from session
+
+**Success page access:**
+- Logged-in: validated by `user_id` match (or `last_order_number` session for just-placed orders)
+- Guest: validated by `session('last_order_number') === $orderNumber` — 403 otherwise
+
+**`order-success.blade.php` email display:**
+```blade
+{{ $order->shipping_address['email'] ?? auth()->user()?->email ?? '' }}
+```
+Never use `auth()->user()->email` directly — crashes for guests.
 
 ## Customer Profile (`/my-account`)
 

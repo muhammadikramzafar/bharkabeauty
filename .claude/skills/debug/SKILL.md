@@ -91,6 +91,14 @@ Check that `Product::findOrFail($id)` is called and `main_image` accessor exists
 ### Checkout 500 after placing order
 Check `orders` and `order_items` tables exist: `php artisan migrate:status`
 
+### `Attempt to read property "email" on null` on order-success page
+Caused by `auth()->user()->email` — crashes for guest orders.
+Fix: `$order->shipping_address['email'] ?? auth()->user()?->email ?? ''`
+
+### Guest redirected to /login on /checkout
+Checkout routes must NOT be inside an `auth` middleware group.
+Check `routes/web.php` — the checkout block should have no `Route::middleware('auth')` wrapper.
+
 ### Images not showing (broken img)
 ```powershell
 php artisan storage:link   # creates public/storage symlink

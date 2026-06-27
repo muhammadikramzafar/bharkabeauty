@@ -60,14 +60,12 @@ Route::post('/cart/update', [CartController::class, 'update'])->name('cart.updat
 Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/coupon', [CartController::class, 'applyCoupon'])->name('cart.coupon');
 
-// Checkout (auth required)
-Route::middleware('auth')->group(function () {
-    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
-    Route::post('/checkout/delivery', [CheckoutController::class, 'storeDelivery'])->name('checkout.delivery');
-    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
-    Route::get('/order/success/{orderNumber}', [CheckoutController::class, 'success'])->name('order.success');
-});
+// Checkout (guest + auth)
+Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout/address', [CheckoutController::class, 'storeAddress'])->name('checkout.address');
+Route::post('/checkout/delivery', [CheckoutController::class, 'storeDelivery'])->name('checkout.delivery');
+Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.place-order');
+Route::get('/order/success/{orderNumber}', [CheckoutController::class, 'success'])->name('order.success');
 
 // Static Pages
 Route::get('/about', [PageController::class, 'about'])->name('about');
