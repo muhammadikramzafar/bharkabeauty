@@ -46,39 +46,44 @@
 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label class="form-label" for="first_name">Full Name</label>
-                        <input class="form-input" type="text" id="first_name" name="first_name"
-                               value="{{ old('first_name', $address['first_name'] ?? auth()->user()->name ?? '') }}"
-                               placeholder="Muhammad Ali" required>
+                        <label class="form-label" for="first_name">Full Name <span style="color:#dc2626;">*</span></label>
+                        <input class="form-input{{ $errors->has('first_name') ? ' is-invalid' : '' }}" type="text" id="first_name" name="first_name"
+                               value="{{ old('first_name', $address['first_name'] ?? auth()->user()?->name ?? '') }}"
+                               placeholder="Muhammad Ali">
+                        @error('first_name')<p class="field-error">{{ $message }}</p>@enderror
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="phone">Mobile Number</label>
-                        <input class="form-input" type="tel" id="phone" name="phone"
-                               value="{{ old('phone', $address['phone'] ?? auth()->user()->phone ?? '') }}"
-                               placeholder="03001234567" required>
+                        <label class="form-label" for="phone">Mobile Number <span style="color:#dc2626;">*</span></label>
+                        <input class="form-input{{ $errors->has('phone') ? ' is-invalid' : '' }}" type="tel" id="phone" name="phone"
+                               value="{{ old('phone', $address['phone'] ?? auth()->user()?->phone ?? '') }}"
+                               placeholder="03001234567">
+                        @error('phone')<p class="field-error">{{ $message }}</p>@enderror
                     </div>
                 </div>
 
                 <div class="form-group" style="margin-bottom:1.25rem;">
-                    <label class="form-label" for="email">Email Address</label>
-                    <input class="form-input" type="email" id="email" name="email"
-                           value="{{ old('email', $address['email'] ?? auth()->user()->email ?? '') }}"
-                           placeholder="you@example.com" required>
+                    <label class="form-label" for="email">Email Address <span style="color:#dc2626;">*</span></label>
+                    <input class="form-input{{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" id="email" name="email"
+                           value="{{ old('email', $address['email'] ?? auth()->user()?->email ?? '') }}"
+                           placeholder="you@example.com">
+                    @error('email')<p class="field-error">{{ $message }}</p>@enderror
                 </div>
 
                 <div class="form-group" style="margin-bottom:1.25rem;">
-                    <label class="form-label" for="address">Street Address</label>
-                    <input class="form-input" type="text" id="address" name="address"
+                    <label class="form-label" for="address">Street Address <span style="color:#dc2626;">*</span></label>
+                    <input class="form-input{{ $errors->has('address') ? ' is-invalid' : '' }}" type="text" id="address" name="address"
                            value="{{ old('address', $address['address'] ?? '') }}"
-                           placeholder="House No., Street, Area" required>
+                           placeholder="House No., Street, Area">
+                    @error('address')<p class="field-error">{{ $message }}</p>@enderror
                 </div>
 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label class="form-label" for="city">City</label>
-                        <input class="form-input" type="text" id="city" name="city"
+                        <label class="form-label" for="city">City <span style="color:#dc2626;">*</span></label>
+                        <input class="form-input{{ $errors->has('city') ? ' is-invalid' : '' }}" type="text" id="city" name="city"
                                value="{{ old('city', $address['city'] ?? '') }}"
-                               placeholder="Lahore" required>
+                               placeholder="Lahore">
+                        @error('city')<p class="field-error">{{ $message }}</p>@enderror
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="postal_code">Postal Code</label>
@@ -238,6 +243,12 @@
                 <span style="color:var(--color-text-muted);">Subtotal</span>
                 <span>PKR {{ number_format($subtotal ?? 0) }}</span>
             </div>
+            @if(($couponDiscount ?? 0) > 0)
+            <div style="display:flex;justify-content:space-between;font-size:.875rem;">
+                <span style="color:#16a34a;font-weight:600;">Coupon ({{ $coupon['code'] }})</span>
+                <span style="color:#16a34a;font-weight:700;">− PKR {{ number_format($couponDiscount) }}</span>
+            </div>
+            @endif
             <div style="display:flex;justify-content:space-between;font-size:.875rem;">
                 <span style="color:var(--color-text-muted);">Delivery</span>
                 <span style="{{ ($delivery ?? 0) == 0 ? 'color:var(--color-success,#16a34a);font-weight:600;' : '' }}">
@@ -246,7 +257,7 @@
             </div>
             <div style="display:flex;justify-content:space-between;font-size:1rem;font-weight:700;padding-top:.6rem;border-top:2px solid var(--color-primary);">
                 <span>Total</span>
-                <span>PKR {{ number_format(($subtotal ?? 0) + ($delivery ?? 0)) }}</span>
+                <span>PKR {{ number_format(($subtotal ?? 0) - ($couponDiscount ?? 0) + ($delivery ?? 0)) }}</span>
             </div>
         </div>
 

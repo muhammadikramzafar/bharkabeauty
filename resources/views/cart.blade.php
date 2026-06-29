@@ -119,8 +119,9 @@
         {{-- ── RIGHT: Order Summary ──────────────────────────────── --}}
         @if(!empty($cartItems))
         @php
+            $couponDiscount = $coupon['discount'] ?? 0;
             $delivery = ($subtotal ?? 0) >= 2000 ? 0 : 150;
-            $total    = ($subtotal ?? 0) + $delivery;
+            $total    = ($subtotal ?? 0) - $couponDiscount + $delivery;
         @endphp
         <aside style="background:var(--color-surface);border:1.5px solid var(--color-border);border-radius:var(--radius-xl);padding:1.75rem;position:sticky;top:100px;">
 
@@ -132,11 +133,19 @@
                 <span style="color:var(--color-primary);font-weight:600;">PKR {{ number_format($subtotal ?? 0) }}</span>
             </div>
 
-            {{-- Savings --}}
+            {{-- Savings from sale prices --}}
             @if(isset($savings) && $savings > 0)
             <div style="display:flex;justify-content:space-between;align-items:center;font-size:.875rem;margin-bottom:.75rem;">
                 <span style="color:#16a34a;font-weight:600;">You Save</span>
                 <span style="color:#16a34a;font-weight:700;">− PKR {{ number_format($savings) }}</span>
+            </div>
+            @endif
+
+            {{-- Coupon discount --}}
+            @if($couponDiscount > 0)
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:.875rem;margin-bottom:.75rem;">
+                <span style="color:#16a34a;font-weight:600;">Coupon ({{ $coupon['code'] }})</span>
+                <span style="color:#16a34a;font-weight:700;">− PKR {{ number_format($couponDiscount) }}</span>
             </div>
             @endif
 
@@ -167,6 +176,18 @@
             @endif
 
             {{-- Coupon --}}
+            @if($coupon)
+            <div style="display:flex;align-items:center;justify-content:space-between;background:#f0fdf4;border:1.5px solid #86efac;border-radius:var(--radius-md);padding:.6rem .85rem;margin-bottom:1rem;font-size:.82rem;">
+                <div>
+                    <span style="font-weight:700;color:#15803d;">{{ $coupon['code'] }}</span>
+                    <span style="color:#15803d;margin-left:.4rem;">applied — save PKR {{ number_format($coupon['discount']) }}</span>
+                </div>
+                <form method="POST" action="{{ route('cart.coupon.remove') }}" style="margin:0;">
+                    @csrf
+                    <button type="submit" style="background:none;border:none;cursor:pointer;color:#15803d;font-size:1rem;line-height:1;opacity:.7;" title="Remove coupon">✕</button>
+                </form>
+            </div>
+            @else
             <form method="POST" action="{{ route('cart.coupon') }}" style="display:flex;gap:.5rem;margin-bottom:1.25rem;">
                 @csrf
                 <input type="text" name="coupon" placeholder="Coupon code"
@@ -177,6 +198,7 @@
                     Apply
                 </button>
             </form>
+            @endif
 
             {{-- Total --}}
             <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-top:2px solid var(--color-primary);border-bottom:1px solid var(--color-border);margin-bottom:1.25rem;">

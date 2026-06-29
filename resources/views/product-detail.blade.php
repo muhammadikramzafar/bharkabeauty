@@ -154,14 +154,21 @@
                 </div>
 
                 {{-- Wishlist --}}
+                @php $pdInWishlist = array_key_exists($product->id, session('wishlist', [])); @endphp
                 <button type="button"
-                        style="width:100%;height:46px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);background:transparent;font-size:.9rem;font-weight:600;color:var(--color-primary);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .15s;"
-                        onmouseover="this.style.borderColor='var(--color-accent)';this.style.color='var(--color-accent)';"
-                        onmouseout="this.style.borderColor='var(--color-border)';this.style.color='var(--color-primary)';">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        data-wishlist-btn
+                        data-product="{{ $product->id }}"
+                        data-active="{{ $pdInWishlist ? 'true' : 'false' }}"
+                        style="width:100%;height:46px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);background:transparent;font-size:.9rem;font-weight:600;color:{{ $pdInWishlist ? 'var(--color-accent)' : 'var(--color-primary)' }};cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:all .15s;"
+                        onmouseover="if(!this.classList.contains('active')){this.style.borderColor='var(--color-accent)';this.style.color='var(--color-accent)';}"
+                        onmouseout="if(!this.classList.contains('active')){this.style.borderColor='var(--color-border)';this.style.color='var(--color-primary)';}">
+                    <svg width="18" height="18" viewBox="0 0 24 24"
+                         fill="{{ $pdInWishlist ? 'var(--color-accent)' : 'none' }}"
+                         stroke="{{ $pdInWishlist ? 'var(--color-accent)' : 'currentColor' }}"
+                         stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
                     </svg>
-                    Save to Wishlist
+                    {{ $pdInWishlist ? 'Saved to Wishlist' : 'Save to Wishlist' }}
                 </button>
             </form>
 

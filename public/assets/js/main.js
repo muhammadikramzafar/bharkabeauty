@@ -184,18 +184,55 @@ function initProductGallery() {
   }
 }
 
-/* ── Wishlist Toggle ───────────────────────────────────────── */
+/* ── Wishlist Toggle (AJAX, session-persisted) ─────────────── */
 function initWishlist() {
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('.product-wishlist');
-    if (!btn) return;
-    btn.classList.toggle('active');
-    const icon = btn.querySelector('svg');
+  var csrf = document.querySelector('meta[name="csrf-token"]');
+
+  function updateBadge(count) {
+    document.querySelectorAll('[data-wishlist-count]').forEach(function(el) {
+      el.textContent = count;
+      el.style.display = count > 0 ? 'flex' : 'none';
+    });
+  }
+
+  function setButtonState(btn, active) {
+    btn.classList.toggle('active', active);
+    var icon = btn.querySelector('svg');
     if (icon) {
-      const filled = btn.classList.contains('active');
-      icon.style.fill = filled ? 'currentColor' : 'none';
+      icon.style.fill   = active ? 'var(--color-accent)' : 'none';
+      icon.style.stroke = active ? 'var(--color-accent)' : 'currentColor';
     }
-    showToast(btn.classList.contains('active') ? 'Added to wishlist ♡' : 'Removed from wishlist');
+  }
+
+  // Restore state on page load for any pre-wishlisted items
+  document.querySelectorAll('[data-wishlist-btn]').forEach(function(btn) {
+    if (btn.dataset.active === 'true') setButtonState(btn, true);
+  });
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[data-wishlist-btn]');
+    if (!btn) return;
+    var productId = btn.dataset.product;
+    if (!productId || !csrf) return;
+
+    btn.disabled = true;
+    fetch('/wishlist/toggle', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': csrf.content,
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ product_id: productId }),
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      setButtonState(btn, data.in_wishlist);
+      updateBadge(data.count);
+      showToast(data.message, data.in_wishlist ? 'success' : 'info');
+    })
+    .catch(function() { showToast('Something went wrong', 'error'); })
+    .finally(function() { btn.disabled = false; });
   });
 }
 

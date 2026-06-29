@@ -12,10 +12,12 @@ class CheckoutController extends Controller
 {
     private function cartData(): array
     {
-        $items    = session('cart', []);
-        $subtotal = collect($items)->sum(fn ($i) => $i['price'] * $i['quantity']);
-        $delivery = $subtotal >= 2000 ? 0 : 150;
-        return compact('items', 'subtotal', 'delivery');
+        $items          = session('cart', []);
+        $subtotal       = collect($items)->sum(fn ($i) => $i['price'] * $i['quantity']);
+        $coupon         = session('coupon');
+        $couponDiscount = $coupon['discount'] ?? 0;
+        $delivery       = $subtotal >= 2000 ? 0 : 150;
+        return compact('items', 'subtotal', 'coupon', 'couponDiscount', 'delivery');
     }
 
     public function index()
@@ -38,10 +40,12 @@ class CheckoutController extends Controller
     {
         $request->validate([
             'first_name' => 'required|string|max:100',
-            'phone'      => 'required|string|max:20',
+            'phone'      => ['required', 'string', 'regex:/^(03[0-9]{9}|\+923[0-9]{9})$/'],
             'email'      => 'required|email|max:255',
             'address'    => 'required|string|max:255',
             'city'       => 'required|string|max:100',
+        ], [
+            'phone.regex' => 'Enter a valid Pakistani mobile number (e.g. 03001234567).',
         ]);
 
         session(['checkout_address' => $request->only('first_name', 'phone', 'email', 'address', 'city', 'postal_code')]);
@@ -68,18 +72,20 @@ class CheckoutController extends Controller
             return redirect()->route('cart')->with('error', 'Your bag is empty.');
         }
 
-        $address  = session('checkout_address', []);
-        $subtotal = collect($cartItems)->sum(fn ($i) => $i['price'] * $i['quantity']);
-        $delivery = $subtotal >= 2000 ? 0 : 150;
-        $total    = $subtotal + $delivery;
+        $address        = session('checkout_address', []);
+        $subtotal       = collect($cartItems)->sum(fn ($i) => $i['price'] * $i['quantity']);
+        $coupon         = session('coupon');
+        $couponDiscount = $coupon['discount'] ?? 0;
+        $delivery       = $subtotal >= 2000 ? 0 : 150;
+        $total          = $subtotal - $couponDiscount + $delivery;
 
         $order = Order::create([
-            'user_id'          => Auth::id(),  // null for guests
+            'user_id'          => Auth::id(),
             'status'           => 'pending',
             'payment_method'   => $request->payment_method,
             'payment_status'   => 'unpaid',
             'subtotal'         => $subtotal,
-            'discount'         => 0,
+            'discount'         => $couponDiscount,
             'shipping'         => $delivery,
             'total'            => $total,
             'shipping_address' => $address,
@@ -116,7 +122,7 @@ class CheckoutController extends Controller
 
         // Store order number in session so guests can access the success page
         session()->put('last_order_number', $order->order_number);
-        session()->forget(['cart', 'checkout_address', 'checkout_delivery']);
+        session()->forget(['cart', 'checkout_address', 'checkout_delivery', 'coupon']);
 
         return redirect()->route('order.success', $order->order_number);
     }
