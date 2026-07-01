@@ -19,6 +19,7 @@ php artisan db:seed --class=RolesAndPermissionsSeeder
 php artisan db:seed --class=CategorySeeder
 php artisan db:seed --class=BrandSeeder
 php artisan db:seed --class=ProductSeeder
+php artisan db:seed --class=CouponSeeder   # standalone, safe to re-run
 ```
 
 ## Seeder call order (must follow this)
@@ -28,6 +29,7 @@ RolesAndPermissionsSeeder   ← creates roles + superadmin user
 CategorySeeder              ← 7 root + 28 sub-categories = 35 total
 BrandSeeder                 ← 14 brands with SVG logos
 ProductSeeder               ← 69 products (10 per root category)
+CouponSeeder                ← 4 coupon codes (standalone, any time after migrate)
 ```
 
 ## What gets seeded
@@ -36,6 +38,7 @@ ProductSeeder               ← 69 products (10 per root category)
 - **Categories:** Makeup, Skincare, Haircare, Fragrances, Bath & Body, Tools, Offers
 - **Brands:** 14 brands including L'Oréal, Neutrogena, Maybelline, etc.
 - **Products:** 69 products with Picsum images
+- **Coupons:** BHARKA10 (10%), BEAUTY20 (20%, min PKR 2k), WELCOME150 (PKR 150 off, min 1k), SAVE500 (PKR 500 off, min 3k)
 
 ## Image handling in seeders
 

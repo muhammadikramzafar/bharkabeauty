@@ -28,10 +28,12 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
 
 ## Database
 - **Driver:** MySQL — database `bharka`, host `127.0.0.1:3306`, user `root`, no password
-- **Seeded data:** 69 products, 35 categories (7 root + 28 sub), 14 brands
+- **MySQL location:** `C:\xampp3\mysql\bin\mysqld.exe` — NOT a Windows service. Start via XAMPP Control Panel at `C:\xampp3\xampp-control.exe`
+- **Seeded data:** 69 products, 35 categories (7 root + 28 sub), 14 brands, 4 coupons
 - **To reset and reseed:**
   ```powershell
   php artisan migrate:fresh --seed
+  php artisan db:seed --class=CouponSeeder
   ```
 - **Migration FK note:** `cms_pages` must run before `menu_items` (FK dependency). Filenames encode this: `093317_5_create_cms_pages`, `093317_create_menus`, `093319_create_menu_items`. Do NOT renumber without checking deps.
 
@@ -67,6 +69,7 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
 /blog / /blog/{slug}          → BlogPageController
 /services / /services/{slug}  → ServicePageController
 /cart                         → CartController@index
+/wishlist                     → WishlistController@index
 /checkout                     → CheckoutController (guest + auth, 3-step)
 /order/success/{orderNumber}  → CheckoutController@success (guest: session-validated; auth: user_id match)
 /customer/login               → OtpController@showLogin
@@ -115,7 +118,7 @@ Brand      → logo_url         ?string — Storage URL or null
            → products() hasMany
 
 User       → orders() hasMany Order
-           → phone  (nullable string, added 2026-06-27)
+           → phone  (nullable string)
            → Spatie HasRoles trait
            → Fillable: name, email, phone, password
 
@@ -125,6 +128,7 @@ Order      → items() hasMany OrderItem
            → order_number auto-generated: BB-XXXXXX
            → status: pending|confirmed|processing|shipped|delivered|cancelled|refunded
            → payment_method: cod|jazzcash|easypaisa
+           → discount  — coupon discount amount saved on order
            → scopeByStatus(string $status)
 
 OrderItem  → order() / product()
@@ -132,6 +136,10 @@ OrderItem  → order() / product()
 
 OtpToken   → email, token (6 digits), expires_at, used_at
            → isValid(): bool — checks used_at is null AND expires_at is future
+
+Coupon     → code (unique), type (percent|fixed), value, min_order, max_uses, used_count, expires_at, active
+           → isValid(float $subtotal): bool — checks active, not expired, not exhausted, meets min_order
+           → discountAmount(float $subtotal): float — percent: round(subtotal * value/100); fixed: min(value, subtotal)
 ```
 
 ## Authentication — Two Separate Flows
@@ -172,14 +180,21 @@ Step 5 POST checkout/place-order → creates Order + OrderItems in DB, sends 2 e
 
 **Delivery fee logic:** subtotal ≥ PKR 2,000 → free; otherwise PKR 150 (standard).
 
+**Coupon discount** is read from `session('coupon')` in `cartData()` and applied before delivery:
+`total = subtotal − couponDiscount + delivery`
+
+**Phone validation regex** (Pakistani numbers only): `/^(03[0-9]{9}|\+923[0-9]{9})$/`
+
+**Inline field errors** in step 1: each input gets `class="form-input{{ $errors->has('field') ? ' is-invalid' : '' }}"` and `@error('field')<p class="field-error">{{ $message }}</p>@enderror` below it.
+
 **On order placement** (`CheckoutController::placeOrder`):
 1. Validates `payment_method` in `cod|jazzcash|easypaisa`
-2. Creates `Order` record — `user_id` is `Auth::id()` (null for guests, already nullable in DB)
+2. Creates `Order` record — `user_id` is `Auth::id()` (null for guests), `discount` = `$couponDiscount`
 3. Creates `OrderItem` for each cart item (price snapshot)
 4. Sends `OrderConfirmationMail($order, false)` to `$address['email']` (from form, not `Auth::user()`)
 5. Sends `OrderConfirmationMail($order, true)` to `config('mail.admin_email')` (default: superadmin@bharkabeauty.com)
 6. Stores `last_order_number` in session (lets guests view their success page)
-7. Clears `cart`, `checkout_address`, `checkout_delivery` from session
+7. Clears `cart`, `checkout_address`, `checkout_delivery`, `coupon` from session
 
 **Success page access:**
 - Logged-in: validated by `user_id` match (or `last_order_number` session for just-placed orders)
@@ -234,16 +249,19 @@ MAIL_ADMIN_EMAIL=superadmin@bharkabeauty.com
 | `CategoryController` | `index(Request, ?string $cat)` | Full filter/sort: brand[], category[], price[], availability[], sort |
 | `ProductController` | `show(string $slug)` | Loads product + related products (same cat/brand) |
 | `BrandController` | `index()` | All active brands with product counts |
-| `CartController` | `index/add/update/remove` | Cart in session; `add()` fetches product from DB (never trusts POST price) |
-| `CheckoutController` | `index/storeAddress/storeDelivery/placeOrder/success` | 3-step checkout + order save + emails |
+| `CartController` | `index/add/update/remove/applyCoupon/removeCoupon` | Cart in session; `add()` fetches from DB; coupon validated against `coupons` table |
+| `WishlistController` | `toggle()/index()/remove()` | Session wishlist; `toggle()` returns JSON (AJAX); `index()` = `/wishlist` page |
+| `CheckoutController` | `index/storeAddress/storeDelivery/placeOrder/success` | 3-step checkout + coupon discount + order save + emails |
 | `OtpController` | `showLogin/showRegister/register/sendOtp/showVerify/verify/resend` | Passwordless OTP auth |
 | `CustomerProfileController` | `dashboard/orders/orderDetail/settings/updateSettings` | Customer account pages |
 
 **Sidebar partial** (`partials/sidebar.blade.php`):
 - Wrapped in `<form method="GET">` auto-submitting on checkbox change
 - Action preserves cat path: `route('category.index', ['cat' => request()->route('cat')])`
-- Submit button wrapped in `<div style="border-top:...">` — NOT bare in form (prevents box artifact)
+- Submit button in `<div style="padding:1.5rem 0 .5rem;border-top:...">` — NOT bare in form
 - CSS fix: `.filter-group:last-of-type` not `:last-child` (button is actual last child of form)
+- Checkboxes use custom CSS (`appearance:none`, accent fill + white tick `::after` on `:checked`)
+- Count shown as pill badge (`.filter-count` now has `background:var(--color-bg-alt);border-radius:20px`)
 
 ## Admin Panel Routes (all under /admin, `auth + role:super-admin,admin,editor`)
 
@@ -290,21 +308,37 @@ MAIL_ADMIN_EMAIL=superadmin@bharkabeauty.com
 | `.checkout-section-title` | Section headings inside checkout |
 | `.form-grid` | `grid-template-columns: 1fr 1fr` two-col form row |
 | `.form-input` | Styled text/email/tel input (height 44px, accent border on focus) |
+| `.form-input.is-invalid` | Red border + `#fff5f5` background — used with `@error` in checkout |
+| `.field-error` | Red error text under invalid field (`color:#dc2626;font-size:.78rem`) |
 | `.payment-methods` | Flex column of `.payment-option` cards |
 | `.filter-group:last-of-type` | Removes border-bottom from last filter group (NOT `:last-child`) |
 | `.filters-sidebar` | Sticky sidebar; hidden on mobile |
+| `.filter-checkbox input[type="checkbox"]` | Custom checkbox: `appearance:none`, accent fill + white tick on `:checked` |
+| `.filter-count` | Pill badge showing product count per filter item |
 | `.cart-layout` | `grid-template-columns: 1fr 380px` |
 | `.cart-item` | Grid: image + details + price/remove |
+| `.category-hero--has-image` | Hero with `background-image` + `background-size:cover` |
+| `.category-hero__overlay` | Gradient overlay for text legibility over category image |
 
 ## Seeder Pattern
 ```php
 php artisan db:seed --class=CategorySeeder
 php artisan db:seed --class=BrandSeeder
 php artisan db:seed --class=ProductSeeder
+php artisan db:seed --class=CouponSeeder   // run after migrate; safe to re-run (updateOrCreate)
 
 // DatabaseSeeder call order:
 RolesAndPermissionsSeeder → CategorySeeder → BrandSeeder → ProductSeeder
+// CouponSeeder is standalone — run separately after migrate
 ```
+
+**Seeded coupon codes:**
+| Code | Type | Value | Min Order |
+|---|---|---|---|
+| `BHARKA10` | percent | 10% | none |
+| `BEAUTY20` | percent | 20% | PKR 2,000 |
+| `WELCOME150` | fixed | PKR 150 | PKR 1,000 |
+| `SAVE500` | fixed | PKR 500 | PKR 3,000 |
 
 ## Frequent Patterns
 
@@ -358,6 +392,40 @@ SmsService::send($phone, "Your code: {$token}");
 session(['otp_email' => $email, 'otp_phone' => $phone]);
 ```
 
+### Session key reference
+
+| Key | Set by | Cleared by | Contents |
+|---|---|---|---|
+| `cart` | `CartController::add()` | `placeOrder()` | `[id => {id,name,slug,brand,price,original_price,quantity,image}]` |
+| `wishlist` | `WishlistController::toggle()` | user removes or clears | `[product_id => {id,name,slug,price,image,brand}]` |
+| `coupon` | `CartController::applyCoupon()` | `placeOrder()` or `removeCoupon()` | `{code, type, value, discount}` |
+| `checkout_address` | `CheckoutController::storeAddress()` | `placeOrder()` | `{first_name,phone,email,address,city,postal_code}` |
+| `checkout_delivery` | `CheckoutController::storeDelivery()` | `placeOrder()` | `standard\|express\|same_day` |
+| `last_order_number` | `placeOrder()` | never (expires with session) | `BB-XXXXXX` — gates guest access to success page |
+| `otp_email` / `otp_phone` | `OtpController::sendOtp()` | after verify | stored for OTP verify screen |
+
+### Wishlist AJAX pattern (frontend JS):
+```js
+fetch('/wishlist/toggle', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json', 'X-CSRF-TOKEN': csrf, 'Accept': 'application/json' },
+  body: JSON.stringify({ product_id: id }),
+})
+.then(r => r.json())
+.then(data => {
+  // data.in_wishlist (bool), data.count (int), data.message (string)
+});
+```
+Buttons need `data-wishlist-btn` + `data-product="{{ $product->id }}"` + `data-active="{{ inWishlist ? 'true' : 'false' }}"`.
+
+### Coupon apply pattern:
+```php
+$coupon = Coupon::where('code', $code)->first();
+if (!$coupon || !$coupon->isValid($subtotal)) { return back()->with('error', '...'); }
+$discount = $coupon->discountAmount($subtotal);
+session(['coupon' => ['code' => $coupon->code, 'type' => $coupon->type, 'value' => $coupon->value, 'discount' => $discount]]);
+```
+
 ### Order creation pattern:
 ```php
 $order = Order::create([...]);
@@ -367,7 +435,7 @@ foreach ($cartItems as $item) {
 $order->load('items', 'user');
 Mail::to($userEmail)->send(new OrderConfirmationMail($order, false));  // customer
 Mail::to(config('mail.admin_email'))->send(new OrderConfirmationMail($order, true));  // admin
-session()->forget(['cart', 'checkout_address', 'checkout_delivery']);
+session()->forget(['cart', 'checkout_address', 'checkout_delivery', 'coupon']);
 ```
 
 ## Setup on a New PC

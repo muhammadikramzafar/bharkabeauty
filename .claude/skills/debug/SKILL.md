@@ -68,9 +68,10 @@ php artisan view:clear
 ```
 
 ### DB connection error
-- Confirm MySQL is running
+- MySQL is NOT a Windows service — it lives in `C:\xampp3\mysql\bin\mysqld.exe`
+- Start via XAMPP Control Panel: `C:\xampp3\xampp-control.exe` → click Start next to MySQL
 - Check `.env`: `DB_CONNECTION=mysql`, `DB_DATABASE=bharka`, `DB_HOST=127.0.0.1`, `DB_PORT=3306`, `DB_USERNAME=root`, `DB_PASSWORD=`
-- Database must be created manually: `CREATE DATABASE bharka;`
+- Database must be created manually if fresh: `CREATE DATABASE bharka;`
 
 ### Migration FK constraint error
 Check that `cms_pages` migration runs BEFORE `menu_items`.
@@ -90,6 +91,22 @@ Check that `Product::findOrFail($id)` is called and `main_image` accessor exists
 
 ### Checkout 500 after placing order
 Check `orders` and `order_items` tables exist: `php artisan migrate:status`
+
+### Coupon "Invalid coupon" even for valid codes
+`coupons` table may not exist. Run: `php artisan migrate; php artisan db:seed --class=CouponSeeder`
+Valid codes: `BHARKA10`, `BEAUTY20` (min 2000), `WELCOME150` (min 1000), `SAVE500` (min 3000)
+
+### Wishlist toggle not working / 419 error
+CSRF token missing in AJAX fetch headers. JS reads `document.querySelector('meta[name="csrf-token"]').content`.
+Check that `<meta name="csrf-token">` is in `layouts/app.blade.php` `<head>`.
+
+### Wishlist heart state not persisting on page reload
+Server-side check in product-card: `array_key_exists($product->id, session('wishlist', []))`.
+If always `false`, session may not be starting — confirm `SESSION_DRIVER=file` in `.env`.
+
+### Checkout phone validation failing
+Regex requires Pakistani format: `03XXXXXXXXX` (11 digits) or `+923XXXXXXXXX` (13 chars).
+Numbers like `0300-1234567` (with dash) will fail — user must enter digits only.
 
 ### `Attempt to read property "email" on null` on order-success page
 Caused by `auth()->user()->email` — crashes for guest orders.
