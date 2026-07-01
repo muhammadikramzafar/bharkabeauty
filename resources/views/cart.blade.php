@@ -100,9 +100,18 @@
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
                     </svg>
                 </div>
-                <h2 style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--color-primary);margin:0 0 .5rem;">Your Beauty Box is empty</h2>
-                <p style="color:var(--color-text-muted);margin:0 0 1.75rem;font-size:.9rem;">Explore our collection and add your favourites.</p>
-                <a href="{{ route('category.index') }}" class="btn btn-primary">Start Shopping</a>
+                <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:800;color:var(--color-primary);margin:0 0 .5rem;">Your Beauty Box is empty</h2>
+                <p style="color:var(--color-text-muted);margin:0 0 2rem;font-size:.9rem;">Explore our curated collection and fill your box with favourites.</p>
+                <a href="{{ route('category.index') }}" class="btn btn-primary"
+                   style="display:inline-flex;align-items:center;gap:.6rem;height:52px;padding:0 2rem;font-size:.95rem;font-weight:700;border-radius:var(--radius-full,50px);">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+                    </svg>
+                    Start Shopping
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
             </div>
             @endforelse
 

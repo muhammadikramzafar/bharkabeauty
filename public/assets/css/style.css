@@ -2108,36 +2108,71 @@ h6 { font-size: var(--text-lg); }
 .filter-group__toggle[aria-expanded="false"] svg { transform: rotate(-90deg); }
 
 .filter-group__body {
-  margin-top: var(--space-2);
+  margin-top: var(--space-3);
   display: flex;
   flex-direction: column;
   gap: 0;
+  padding-left: 2px;
 }
 
 .filter-checkbox {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) 0;
+  gap: .625rem;
+  padding: .35rem 0;
   cursor: pointer;
   font-size: var(--text-sm);
   color: var(--color-text);
   line-height: 1.4;
+  user-select: none;
 }
+
+/* ── Custom checkbox ─────────────────────────────────────── */
 .filter-checkbox input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-  border-radius: 3px;
-  accent-color: var(--color-accent);
+  appearance: none;
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid #c8b49a;
+  border-radius: 4px;
+  background: #fff;
   cursor: pointer;
   flex-shrink: 0;
+  position: relative;
+  transition: border-color .15s, background .15s, box-shadow .15s;
 }
-.filter-checkbox:hover { color: var(--color-accent); }
+.filter-checkbox input[type="checkbox"]:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.filter-checkbox input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+.filter-checkbox:hover input[type="checkbox"]:not(:checked) {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(200,168,130,.12);
+}
+.filter-checkbox:hover { color: var(--color-primary); }
 
 .filter-count {
   margin-left: auto;
   font-size: var(--text-xs);
   color: var(--color-text-muted);
+  background: var(--color-bg-alt);
+  padding: 1px 6px;
+  border-radius: 20px;
+  font-weight: 600;
+  min-width: 24px;
+  text-align: center;
 }
 
 /* ── Products Area ───────────────────────────────────────── */

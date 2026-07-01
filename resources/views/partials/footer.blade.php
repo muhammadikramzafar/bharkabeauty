@@ -4,10 +4,62 @@
     <p class="newsletter-sub">Sign up for exclusive previews, beauty tips, and member-only offers.</p>
     <form class="newsletter-form" id="newsletter-form" novalidate>
         @csrf
-        <input class="newsletter-input" type="email" placeholder="Email Address" aria-label="Email address" required />
+        <div style="position:relative;">
+            <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Email Address" aria-label="Email address" required autocomplete="email" />
+            <p id="newsletter-error" style="display:none;position:absolute;left:0;top:calc(100% + 4px);font-size:.75rem;color:#fca5a5;font-weight:600;"></p>
+        </div>
         <button class="newsletter-btn" type="submit">Subscribe</button>
     </form>
 </section>
+
+<script>
+(function () {
+    var form  = document.getElementById('newsletter-form');
+    var input = document.getElementById('newsletter-email');
+    var err   = document.getElementById('newsletter-error');
+    if (!form || !input || !err) return;
+
+    function validateEmail(v) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+    }
+
+    function showError(msg) {
+        err.textContent = msg;
+        err.style.display = 'block';
+        input.style.borderColor = '#f87171';
+    }
+
+    function clearError() {
+        err.style.display = 'none';
+        input.style.borderColor = '';
+    }
+
+    input.addEventListener('input', clearError);
+
+    form.addEventListener('submit', function (e) {
+        clearError();
+        var val = input.value.trim();
+        if (!val) {
+            e.preventDefault();
+            showError('Please enter your email address.');
+            input.focus();
+            return;
+        }
+        if (!validateEmail(val)) {
+            e.preventDefault();
+            showError('Please enter a valid email address.');
+            input.focus();
+            return;
+        }
+        // Valid — show inline success toast
+        e.preventDefault();
+        input.value = '';
+        if (typeof showToast === 'function') {
+            showToast('You\'re subscribed! Welcome to the family ♡', 'success');
+        }
+    });
+})();
+</script>
 
 <!-- ─── FOOTER ─────────────────────────────────────────────── -->
 <footer class="site-footer" role="contentinfo">

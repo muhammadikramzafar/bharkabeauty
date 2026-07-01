@@ -209,13 +209,24 @@
     </div>
 </div>
 
-{{-- Description tab --}}
+{{-- About This Product --}}
 @if($product->description)
-<div style="background:var(--color-bg-alt);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);padding:3rem 0;">
-    <div class="container" style="max-width:780px;">
-        <h2 style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--color-primary);margin:0 0 1.25rem;">About This Product</h2>
-        <div style="color:var(--color-text-muted);line-height:1.85;font-size:.95rem;">
-            {{ $product->description }}
+<div style="background:var(--color-surface);border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);padding:3.5rem 0;">
+    <div class="container" style="max-width:860px;">
+        <div style="display:flex;align-items:flex-start;gap:2.5rem;">
+            {{-- Icon column --}}
+            <div style="flex-shrink:0;width:52px;height:52px;background:linear-gradient(135deg,var(--color-accent) 0%,#b8975e 100%);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(200,168,130,.35);margin-top:.2rem;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+            </div>
+            {{-- Text column --}}
+            <div style="flex:1;min-width:0;">
+                <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--color-accent);margin:0 0 .4rem;">Product Details</p>
+                <h2 style="font-family:var(--font-display);font-size:1.65rem;font-weight:800;color:var(--color-primary);margin:0 0 1rem;line-height:1.2;">About This Product</h2>
+                <div style="width:40px;height:3px;background:var(--color-accent);border-radius:2px;margin-bottom:1.5rem;"></div>
+                <p style="color:var(--color-text);line-height:1.95;font-size:.95rem;margin:0;">{{ $product->description }}</p>
+            </div>
         </div>
     </div>
 </div>
