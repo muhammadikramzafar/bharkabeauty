@@ -4,8 +4,8 @@
     <p class="newsletter-sub">Sign up for exclusive previews, beauty tips, and member-only offers.</p>
     <form class="newsletter-form" id="newsletter-form" novalidate>
         @csrf
-        <div style="position:relative;">
-            <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Email Address" aria-label="Email address" required autocomplete="email" />
+        <div style="position:relative;flex:1;">
+            <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Email Address" aria-label="Email address" required autocomplete="email" style="width:100%;" />
             <p id="newsletter-error" style="display:none;position:absolute;left:0;top:calc(100% + 4px);font-size:.75rem;color:#fca5a5;font-weight:600;"></p>
         </div>
         <button class="newsletter-btn" type="submit">Subscribe</button>

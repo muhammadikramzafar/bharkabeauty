@@ -428,15 +428,16 @@
                     <img src="{{ $storeCta->image_url }}" alt="Our Flagship Store"
                          style="width:100%;height:100%;object-fit:cover;display:block;">
                 @else
-                    <div class="store-map-placeholder" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-                        </svg>
-                        <p style="font-weight:600;font-size:1.1rem;color:rgba(255,255,255,.9);margin:.75rem 0 .25rem;">DHA Phase 6</p>
-                        <p>Lahore, Pakistan</p>
-                        <p style="margin-top:1rem;font-size:.85rem;opacity:.7;">Open Mon–Sat: 10 AM – 9 PM</p>
-                    </div>
+                    @php $mapAddress = $addr ?: 'DHA Phase 6, Lahore, Pakistan'; @endphp
+                    <iframe
+                        src="https://www.google.com/maps?q={{ urlencode($mapAddress) }}&output=embed"
+                        style="width:100%;height:100%;border:0;display:block;"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen
+                        title="Map showing our flagship store location"
+                        aria-label="Map showing our flagship store location: {{ $mapAddress }}">
+                    </iframe>
                 @endif
             </div>
         </div>

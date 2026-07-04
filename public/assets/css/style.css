@@ -94,6 +94,9 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -923,6 +926,7 @@ h6 { font-size: var(--text-lg); }
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-sm);
@@ -957,6 +961,7 @@ h6 { font-size: var(--text-lg); }
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1590,6 +1595,7 @@ h6 { font-size: var(--text-lg); }
   margin-bottom: var(--space-5);
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1785,6 +1791,7 @@ h6 { font-size: var(--text-lg); }
   border-radius: var(--radius-full);
   overflow: hidden;
   background: rgba(255,255,255,.05);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
 }
 
@@ -2125,13 +2132,15 @@ h6 { font-size: var(--text-lg); }
   font-size: var(--text-sm);
   color: var(--color-text);
   line-height: 1.4;
+  -webkit-user-select: none;
   user-select: none;
 }
 
 /* ── Custom checkbox ─────────────────────────────────────── */
 .filter-checkbox input[type="checkbox"] {
-  appearance: none;
+  
   -webkit-appearance: none;
+  appearance: none;
   width: 17px;
   height: 17px;
   border: 1.5px solid #c8b49a;
@@ -2750,6 +2759,7 @@ textarea.form-input { height: auto; min-height: 100px; padding: var(--space-3) v
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   height: 64px;
   background: rgba(255,255,255,.95);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
   display: flex; align-items: center; padding: 0 var(--space-10);
