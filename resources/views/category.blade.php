@@ -46,12 +46,22 @@
                     Showing <strong>{{ $products->total() ?? 0 }}</strong> products
                 </p>
                 <div class="toolbar-right">
-                    <select class="sort-select" id="sort-select" aria-label="Sort products">
-                        <option value="featured"   {{ request('sort', 'featured') == 'featured'   ? 'selected' : '' }}>Featured</option>
-                        <option value="price-asc"  {{ request('sort') == 'price-asc'  ? 'selected' : '' }}>Price: Low to High</option>
-                        <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Price: High to Low</option>
-                        <option value="newest"     {{ request('sort') == 'newest'     ? 'selected' : '' }}>Newest First</option>
-                    </select>
+                    <div class="view-toggles" role="group" aria-label="Product grid view">
+                        <button type="button" class="view-toggle-btn active" id="view-toggle-dense" aria-label="Dense grid view" aria-pressed="true" title="Dense grid">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                                <rect x="14" y="14" width="7" height="7" rx="1"/>
+                            </svg>
+                        </button>
+                        <button type="button" class="view-toggle-btn" id="view-toggle-spacious" aria-label="Spacious grid view" aria-pressed="false" title="Spacious grid">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" aria-hidden="true">
+                                <rect x="3" y="4" width="8" height="16" rx="1.5"/>
+                                <rect x="13" y="4" width="8" height="16" rx="1.5"/>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -82,20 +92,31 @@
 
 @push('scripts')
 <script>
-// Sort dropdown: redirect preserving current filters
+// Grid view toggle: dense (4-col) vs spacious (2-col), persisted in localStorage
 (function () {
-    var sel = document.getElementById('sort-select');
-    if (!sel) return;
-    sel.addEventListener('change', function () {
-        var url = new URL(window.location.href);
-        if (this.value === 'featured') {
-            url.searchParams.delete('sort');
-        } else {
-            url.searchParams.set('sort', this.value);
+    var grid        = document.querySelector('.products-grid');
+    var denseBtn    = document.getElementById('view-toggle-dense');
+    var spaciousBtn = document.getElementById('view-toggle-spacious');
+    if (!grid || !denseBtn || !spaciousBtn) return;
+
+    function setView(view, persist) {
+        var isSpacious = view === 'spacious';
+        grid.classList.toggle('products-grid--spacious', isSpacious);
+        spaciousBtn.classList.toggle('active', isSpacious);
+        spaciousBtn.setAttribute('aria-pressed', String(isSpacious));
+        denseBtn.classList.toggle('active', !isSpacious);
+        denseBtn.setAttribute('aria-pressed', String(!isSpacious));
+        if (persist) {
+            try { localStorage.setItem('productGridView', view); } catch (e) {}
         }
-        url.searchParams.delete('page'); // reset to page 1
-        window.location.href = url.toString();
-    });
+    }
+
+    denseBtn.addEventListener('click', function () { setView('dense', true); });
+    spaciousBtn.addEventListener('click', function () { setView('spacious', true); });
+
+    var saved = null;
+    try { saved = localStorage.getItem('productGridView'); } catch (e) {}
+    if (saved === 'spacious') setView('spacious', false);
 })();
 </script>
 @endpush
