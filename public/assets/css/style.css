@@ -1659,18 +1659,24 @@ h6 { font-size: var(--text-lg); }
 
 /* ── Store Section ───────────────────────────────────────── */
 .store-section {
-  background: var(--color-bg-alt);
-  overflow: hidden;
+  background: var(--color-bg);
+  padding: var(--space-20) var(--container-pad);
 }
 
 .store-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 480px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
 .store-content {
-  padding: var(--space-16) var(--container-pad);
+  padding: var(--space-16);
+  background: var(--color-bg-alt);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1678,8 +1684,25 @@ h6 { font-size: var(--text-lg); }
 
 .store-title {
   font-family: var(--font-display);
-  font-size: var(--text-4xl);
-  margin-bottom: var(--space-5);
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-primary);
+  margin-bottom: var(--space-6);
+  padding-top: var(--space-6);
+  position: relative;
+}
+
+.store-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
 }
 
 .store-desc {
@@ -1690,19 +1713,30 @@ h6 { font-size: var(--text-lg); }
 }
 
 .store-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
   margin-bottom: var(--space-8);
 }
 
 .store-detail-item {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-4);
   font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  padding: var(--space-2) 0;
+  color: var(--color-text);
+  padding: 0;
 }
 
-.store-detail-item svg { width: 18px; height: 18px; color: var(--color-accent); flex-shrink: 0; }
+.store-detail-item svg {
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--color-accent-soft);
+  color: var(--color-accent-hover);
+  flex-shrink: 0;
+}
 
 .store-map {
   background: linear-gradient(135deg, #c49a6c 0%, #a67c52 100%);
