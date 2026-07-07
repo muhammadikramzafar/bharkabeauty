@@ -107,7 +107,7 @@
                         {{-- CTA --}}
                         <a href="https://www.google.com/maps/search/New+Morgah+Road+Morgah+Rawalpindi+near+Attock+Refinery+Limited"
                            target="_blank" rel="noopener"
-                           class="btn btn-primary" style="width:100%;text-align:center;display:block;">
+                           class="btn btn-primary btn-md" style="width:100%;text-align:center;display:block;">
                             Get Directions
                         </a>
 

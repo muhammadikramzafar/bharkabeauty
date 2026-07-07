@@ -15,7 +15,7 @@
         </div>
         <h1 class="page-hero-title" style="font-size:1.8rem;">{{ $message }}</h1>
         <p style="color:#6b7280;margin:1rem 0 2rem;">You won't receive any more emails from BharkaBeauty newsletter.</p>
-        <a href="{{ route('home') }}" class="btn btn-primary">Return to Homepage</a>
+        <a href="{{ route('home') }}" class="btn btn-primary btn-md">Return to Homepage</a>
     </div>
 </section>
 @endsection

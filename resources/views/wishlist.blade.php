@@ -31,7 +31,7 @@
         </div>
         <h2 style="font-family:var(--font-display);font-size:1.4rem;font-weight:800;color:var(--color-primary);margin:0 0 .5rem;">Your wishlist is empty</h2>
         <p style="color:var(--color-text-muted);margin:0 0 1.75rem;font-size:.9rem;">Save your favourite products and shop them later.</p>
-        <a href="{{ route('category.index') }}" class="btn btn-primary">Explore Products</a>
+        <a href="{{ route('category.index') }}" class="btn btn-primary btn-md">Explore Products</a>
     </div>
     @else
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;">

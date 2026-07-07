@@ -22,7 +22,7 @@
                 <p class="section-subtitle">Shop from Pakistan's widest collection of authentic beauty brands</p>
             </div>
 
-            <!-- Alphabetical Filter + Search -->
+            <!-- Search -->
             <div class="brand-alpha-filter">
                 <div class="brand-search">
                     <svg class="brand-search__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
@@ -30,20 +30,13 @@
                     </svg>
                     <input type="text" id="brand-search-input" class="brand-search__input" placeholder="Search brands…" aria-label="Search brands" autocomplete="off">
                 </div>
-                <div class="brand-alpha-filter__letters">
-                    <button type="button" class="alpha-btn active" data-alpha="all">All</button>
-                    @foreach(range('A', 'Z') as $letter)
-                        <button type="button" class="alpha-btn" data-alpha="{{ $letter }}">{{ $letter }}</button>
-                    @endforeach
-                </div>
             </div>
 
             <!-- Brands Grid -->
             <div class="brands-page-grid">
                 @forelse($brands ?? [] as $brand)
                     <a href="{{ route('category.index', ['brand' => $brand->slug]) }}"
-                       class="brand-tile"
-                       data-alpha="{{ strtoupper(substr($brand->name, 0, 1)) }}">
+                       class="brand-tile">
                         <span class="brand-tile__logo">
                             @if($brand->logo_url)
                                 <img src="{{ $brand->logo_url }}" alt="{{ $brand->name }}" loading="lazy">
@@ -55,7 +48,7 @@
                     </a>
                 @empty
                     @foreach(['Maybelline', "L'Oréal Paris", 'Garnier', 'Huda Beauty', 'The Ordinary', 'CeraVe', 'Neutrogena', 'Essence', 'Rivaj UK', 'Golden Rose', 'Revlon', 'Nivea'] as $name)
-                        <div class="brand-tile" data-alpha="{{ strtoupper(substr($name, 0, 1)) }}">
+                        <div class="brand-tile">
                             <span class="brand-tile__logo">
                                 <span class="brand-tile__placeholder">{{ strtoupper(substr($name, 0, 1)) }}</span>
                             </span>
@@ -73,39 +66,18 @@
 @push('scripts')
 <script>
 (function () {
-    var buttons     = document.querySelectorAll('.alpha-btn');
     var tiles       = document.querySelectorAll('.brand-tile');
     var searchInput = document.getElementById('brand-search-input');
-    if (!tiles.length) return;
+    if (!tiles.length || !searchInput) return;
 
-    var activeLetter = 'all';
-    var searchTerm   = '';
-
-    function applyFilters() {
+    searchInput.addEventListener('input', function () {
+        var searchTerm = this.value.trim().toLowerCase();
         tiles.forEach(function (tile) {
-            var matchesLetter = activeLetter === 'all' || tile.dataset.alpha === activeLetter;
-            var nameEl  = tile.querySelector('.brand-tile__name');
-            var name    = nameEl ? nameEl.textContent.toLowerCase() : '';
-            var matchesSearch = name.indexOf(searchTerm) !== -1;
-            tile.style.display = (matchesLetter && matchesSearch) ? '' : 'none';
-        });
-    }
-
-    buttons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-            buttons.forEach(function (b) { b.classList.remove('active'); });
-            btn.classList.add('active');
-            activeLetter = btn.dataset.alpha;
-            applyFilters();
+            var nameEl = tile.querySelector('.brand-tile__name');
+            var name   = nameEl ? nameEl.textContent.toLowerCase() : '';
+            tile.style.display = name.indexOf(searchTerm) !== -1 ? '' : 'none';
         });
     });
-
-    if (searchInput) {
-        searchInput.addEventListener('input', function () {
-            searchTerm = this.value.trim().toLowerCase();
-            applyFilters();
-        });
-    }
 })();
 </script>
 @endpush

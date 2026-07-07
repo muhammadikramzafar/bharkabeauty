@@ -113,7 +113,7 @@
             <div class="services-empty">
                 <h3>No services found</h3>
                 <p>We're adding new services soon. Check back shortly!</p>
-                <a href="{{ route('home') }}" class="btn btn-primary">Back to Home</a>
+                <a href="{{ route('home') }}" class="btn btn-primary btn-md">Back to Home</a>
             </div>
         @else
             <div class="services-grid">

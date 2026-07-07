@@ -104,7 +104,7 @@
             <div style="text-align:center;padding:4rem 1rem;">
                 <h3 style="color:#1a1a2e;margin-bottom:.5rem;">No posts found</h3>
                 <p style="color:#6b7280;">Try a different search or check back soon.</p>
-                <a href="{{ route('blog.index') }}" class="btn btn-primary" style="margin-top:1rem;">View All Posts</a>
+                <a href="{{ route('blog.index') }}" class="btn btn-primary btn-md" style="margin-top:1rem;">View All Posts</a>
             </div>
         @else
             <div class="blog-grid">
