@@ -2,7 +2,6 @@
 @section('title','Orders')
 @section('page_title','Orders')
 @section('content')
-@if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
 
 {{-- Status Tabs --}}
 <div style="display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap;">

@@ -2,7 +2,6 @@
 @section('title','Brands')
 @section('page_title','Brands')
 @section('content')
-@if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
     <p style="color:#6b7280;font-size:.875rem;">{{ $brands->total() }} brands total</p>

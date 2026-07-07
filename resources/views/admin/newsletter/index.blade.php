@@ -3,9 +3,6 @@
 @section('page_title', 'Newsletter Subscribers')
 
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
 
 {{-- Stats --}}
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;">

@@ -26,10 +26,31 @@
 
         <div class="admin-content">
             @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
+                <div class="admin-alert admin-alert--success" role="status">
+                    <svg class="admin-alert__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/>
+                    </svg>
+                    <span class="admin-alert__message">{{ session('success') }}</span>
+                    <button type="button" class="admin-alert__close" aria-label="Dismiss">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
             @endif
             @if(session('error'))
-                <div class="alert alert-error">{{ session('error') }}</div>
+                <div class="admin-alert admin-alert--error" role="status">
+                    <svg class="admin-alert__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/>
+                    </svg>
+                    <span class="admin-alert__message">{{ session('error') }}</span>
+                    <button type="button" class="admin-alert__close" aria-label="Dismiss">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
             @endif
 
             @yield('content')
@@ -51,6 +72,15 @@ if (sidebarToggle && sidebar) {
         }
     });
 }
+
+// Dismissible flash alerts
+document.querySelectorAll('.admin-alert__close').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const alertEl = btn.closest('.admin-alert');
+        alertEl.addEventListener('transitionend', () => alertEl.remove(), { once: true });
+        alertEl.classList.add('admin-alert--dismissed');
+    });
+});
 </script>
 
 </body>

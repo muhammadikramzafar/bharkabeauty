@@ -3,9 +3,6 @@
 @section('page_title', 'Contact Inquiries')
 
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
 
 {{-- Status Tabs --}}
 <div style="display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap;align-items:center;">

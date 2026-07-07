@@ -25,25 +25,24 @@
     </form>
 </div>
 
-{{-- Filters --}}
-<div class="admin-card">
-    <form method="GET" action="{{ route('admin.media.index') }}" class="media-filters">
-        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search files..." class="form-control media-search">
-        <select name="type" class="form-control media-type-filter">
-            <option value="">All Types</option>
-            @foreach(['image','video','pdf','document'] as $t)
-                <option value="{{ $t }}" {{ request('type') == $t ? 'selected' : '' }}>{{ ucfirst($t) }}s</option>
-            @endforeach
-        </select>
-        <button type="submit" class="btn btn-primary">Filter</button>
-        @if(request()->hasAny(['search','type']))
-            <a href="{{ route('admin.media.index') }}" class="btn btn-outline">Clear</a>
-        @endif
-    </form>
-</div>
+{{-- Gallery & Filters --}}
+<div class="admin-card media-library-card">
+    <div class="media-filters-bar">
+        <form method="GET" action="{{ route('admin.media.index') }}" class="media-filters">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search files..." class="form-control media-search">
+            <select name="type" class="form-control media-type-filter">
+                <option value="">All Types</option>
+                @foreach(['image','video','pdf','document'] as $t)
+                    <option value="{{ $t }}" {{ request('type') == $t ? 'selected' : '' }}>{{ ucfirst($t) }}s</option>
+                @endforeach
+            </select>
+            <button type="submit" class="btn btn-primary btn-sm">Filter</button>
+            @if(request()->hasAny(['search','type']))
+                <a href="{{ route('admin.media.index') }}" class="btn btn-outline btn-sm">Clear</a>
+            @endif
+        </form>
+    </div>
 
-{{-- Grid --}}
-<div class="admin-card">
     <div class="media-grid">
         @forelse($media as $file)
         <div class="media-card" data-id="{{ $file->id }}">
@@ -80,7 +79,14 @@
             </div>
         </div>
         @empty
-        <div class="media-empty">No files uploaded yet.</div>
+        <div class="media-empty">
+            <svg class="media-empty__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 15-5-5L5 21"/>
+            </svg>
+            <p class="media-empty__text">No files uploaded yet.</p>
+        </div>
         @endforelse
     </div>
 

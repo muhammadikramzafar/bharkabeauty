@@ -14,7 +14,9 @@
             <div class="stat-info">
                 <p class="stat-label">Total Orders</p>
                 <p class="stat-value">{{ $stats['total_orders'] ?? 0 }}</p>
-                <p class="stat-change positive">+12% this month</p>
+                <p class="stat-change {{ ($stats['orders_change'] ?? 0) >= 0 ? 'up' : 'down' }}">
+                    {{ ($stats['orders_change'] ?? 0) >= 0 ? '+' : '' }}{{ $stats['orders_change'] ?? 0 }}% this month
+                </p>
             </div>
         </div>
 
@@ -25,7 +27,9 @@
             <div class="stat-info">
                 <p class="stat-label">Total Revenue</p>
                 <p class="stat-value">PKR {{ number_format($stats['total_revenue'] ?? 0) }}</p>
-                <p class="stat-change positive">+8.5% this month</p>
+                <p class="stat-change {{ ($stats['revenue_change'] ?? 0) >= 0 ? 'up' : 'down' }}">
+                    {{ ($stats['revenue_change'] ?? 0) >= 0 ? '+' : '' }}{{ $stats['revenue_change'] ?? 0 }}% this month
+                </p>
             </div>
         </div>
 
@@ -36,7 +40,7 @@
             <div class="stat-info">
                 <p class="stat-label">Total Customers</p>
                 <p class="stat-value">{{ $stats['total_customers'] ?? 0 }}</p>
-                <p class="stat-change positive">+24 new today</p>
+                <p class="stat-change up">+{{ $stats['new_customers_today'] ?? 0 }} new today</p>
             </div>
         </div>
 
@@ -47,7 +51,7 @@
             <div class="stat-info">
                 <p class="stat-label">Total Products</p>
                 <p class="stat-value">{{ $stats['total_products'] ?? 0 }}</p>
-                <p class="stat-change">{{ $stats['out_of_stock'] ?? 0 }} out of stock</p>
+                <p class="stat-change {{ ($stats['out_of_stock'] ?? 0) > 0 ? 'warning' : '' }}">{{ $stats['out_of_stock'] ?? 0 }} out of stock</p>
             </div>
         </div>
     </div>
@@ -75,7 +79,7 @@
                     @forelse($recentOrders ?? [] as $order)
                         <tr>
                             <td>#{{ $order->id }}</td>
-                            <td>{{ $order->customer->name ?? 'Guest' }}</td>
+                            <td>{{ $order->user->name ?? 'Guest' }}</td>
                             <td>{{ $order->items_count }} items</td>
                             <td>PKR {{ number_format($order->total) }}</td>
                             <td><span class="order-status order-status--{{ $order->status }}">{{ ucfirst($order->status) }}</span></td>

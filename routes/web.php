@@ -162,6 +162,7 @@ Route::prefix('admin')
         // ── Catalog ──────────────────────────────────────────
         Route::resource('products',   AdminProductController::class);
         Route::resource('categories', AdminCategoryController::class);
+        Route::patch('/categories/{category}/toggle-visibility', [AdminCategoryController::class, 'toggleVisibility'])->name('categories.toggle-visibility');
         Route::resource('brands',     AdminBrandController::class);
 
         // ── Orders ───────────────────────────────────────────

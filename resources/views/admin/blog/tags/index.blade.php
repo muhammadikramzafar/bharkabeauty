@@ -3,9 +3,13 @@
 @section('page_title', 'Blog Tags')
 
 @section('content')
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
+
+<a href="{{ route('admin.blog.posts.index') }}" class="admin-back-link">
+    <svg class="admin-back-link__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/>
+    </svg>
+    Back to Posts
+</a>
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
     <p style="color:#6b7280;font-size:.875rem;margin:0;">{{ $tags->total() }} tags</p>

@@ -48,4 +48,9 @@ class CategoryController extends Controller
         $category->delete();
         return back()->with('success','Category deleted.');
     }
+    public function toggleVisibility(Category $category)
+    {
+        $category->update(['is_active' => ! $category->is_active]);
+        return back()->with('success', $category->is_active ? 'Category is now visible.' : 'Category is now hidden.');
+    }
 }

@@ -4,7 +4,6 @@
 
 @section('content')
 
-@if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
     <a href="{{ route('admin.homepage.index') }}" class="btn btn-outline btn-sm">&larr; Homepage</a>

@@ -2,7 +2,6 @@
 @section('title','Products')
 @section('page_title','Products')
 @section('content')
-@if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
 
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;gap:1rem;flex-wrap:wrap;">
     <form method="GET" style="display:flex;gap:.5rem;flex-wrap:wrap;flex:1;">

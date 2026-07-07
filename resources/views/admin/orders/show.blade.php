@@ -2,7 +2,6 @@
 @section('title','Order — ' . $order->order_number)
 @section('page_title','Order Detail')
 @section('content')
-@if(session('success'))<div class="alert alert-success">{{ session('success') }}</div>@endif
 
 <div class="page-editor-layout">
     <div class="page-editor-main">

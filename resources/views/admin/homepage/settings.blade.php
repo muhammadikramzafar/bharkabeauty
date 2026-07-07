@@ -4,9 +4,6 @@
 
 @section('content')
 
-@if(session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-@endif
 
 <form method="POST" action="{{ route('admin.homepage.settings.update') }}" enctype="multipart/form-data">
     @csrf @method('PUT')
@@ -201,7 +198,7 @@
         </div>
     </div>
 
-    <div class="admin-form-actions" style="margin-top:1.5rem;">
+    <div class="admin-form-actions">
         <button type="submit" class="btn btn-primary">Save Settings</button>
         <a href="{{ route('admin.homepage.index') }}" class="btn btn-outline">Back to Homepage</a>
     </div>
