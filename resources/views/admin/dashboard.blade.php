@@ -7,52 +7,76 @@
 
     <!-- Stats Cards -->
     <div class="admin-stats-grid">
+        {{-- Total Orders --}}
+        @php $ordersChange = $stats['orders_change'] ?? 0; @endphp
         <div class="admin-stat-card">
-            <div class="stat-icon stat-icon--orders">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
+            <div class="admin-stat-card__header">
+                <span class="stat-icon stat-icon--orders">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="2"/></svg>
+                </span>
+                <span class="stat-label">Total Orders</span>
             </div>
-            <div class="stat-info">
-                <p class="stat-label">Total Orders</p>
-                <p class="stat-value">{{ $stats['total_orders'] ?? 0 }}</p>
-                <p class="stat-change {{ ($stats['orders_change'] ?? 0) >= 0 ? 'up' : 'down' }}">
-                    {{ ($stats['orders_change'] ?? 0) >= 0 ? '+' : '' }}{{ $stats['orders_change'] ?? 0 }}% this month
-                </p>
-            </div>
+            <p class="stat-value">{{ $stats['total_orders'] ?? 0 }}</p>
+            @if($ordersChange > 0)
+                <span class="stat-tag stat-tag--positive">+{{ $ordersChange }}% this month</span>
+            @elseif($ordersChange < 0)
+                <span class="stat-tag stat-tag--negative">{{ $ordersChange }}% this month</span>
+            @else
+                <span class="stat-tag stat-tag--neutral">0% this month</span>
+            @endif
         </div>
 
+        {{-- Total Revenue --}}
+        @php $revenueChange = $stats['revenue_change'] ?? 0; @endphp
         <div class="admin-stat-card">
-            <div class="stat-icon stat-icon--revenue">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            <div class="admin-stat-card__header">
+                <span class="stat-icon stat-icon--revenue">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                </span>
+                <span class="stat-label">Total Revenue</span>
             </div>
-            <div class="stat-info">
-                <p class="stat-label">Total Revenue</p>
-                <p class="stat-value">PKR {{ number_format($stats['total_revenue'] ?? 0) }}</p>
-                <p class="stat-change {{ ($stats['revenue_change'] ?? 0) >= 0 ? 'up' : 'down' }}">
-                    {{ ($stats['revenue_change'] ?? 0) >= 0 ? '+' : '' }}{{ $stats['revenue_change'] ?? 0 }}% this month
-                </p>
-            </div>
+            <p class="stat-value">PKR {{ number_format($stats['total_revenue'] ?? 0) }}</p>
+            @if($revenueChange > 0)
+                <span class="stat-tag stat-tag--positive">+{{ $revenueChange }}% this month</span>
+            @elseif($revenueChange < 0)
+                <span class="stat-tag stat-tag--negative">{{ $revenueChange }}% this month</span>
+            @else
+                <span class="stat-tag stat-tag--neutral">0% this month</span>
+            @endif
         </div>
 
+        {{-- Total Customers --}}
+        @php $newToday = $stats['new_customers_today'] ?? 0; @endphp
         <div class="admin-stat-card">
-            <div class="stat-icon stat-icon--customers">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            <div class="admin-stat-card__header">
+                <span class="stat-icon stat-icon--customers">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                </span>
+                <span class="stat-label">Total Customers</span>
             </div>
-            <div class="stat-info">
-                <p class="stat-label">Total Customers</p>
-                <p class="stat-value">{{ $stats['total_customers'] ?? 0 }}</p>
-                <p class="stat-change up">+{{ $stats['new_customers_today'] ?? 0 }} new today</p>
-            </div>
+            <p class="stat-value">{{ $stats['total_customers'] ?? 0 }}</p>
+            @if($newToday > 0)
+                <span class="stat-tag stat-tag--positive">+{{ $newToday }} new today</span>
+            @else
+                <span class="stat-tag stat-tag--neutral">No new customers today</span>
+            @endif
         </div>
 
+        {{-- Total Products --}}
+        @php $outOfStock = $stats['out_of_stock'] ?? 0; @endphp
         <div class="admin-stat-card">
-            <div class="stat-icon stat-icon--products">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            <div class="admin-stat-card__header">
+                <span class="stat-icon stat-icon--products">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                </span>
+                <span class="stat-label">Total Products</span>
             </div>
-            <div class="stat-info">
-                <p class="stat-label">Total Products</p>
-                <p class="stat-value">{{ $stats['total_products'] ?? 0 }}</p>
-                <p class="stat-change {{ ($stats['out_of_stock'] ?? 0) > 0 ? 'warning' : '' }}">{{ $stats['out_of_stock'] ?? 0 }} out of stock</p>
-            </div>
+            <p class="stat-value">{{ $stats['total_products'] ?? 0 }}</p>
+            @if($outOfStock > 0)
+                <span class="stat-tag stat-tag--warning">{{ $outOfStock }} out of stock</span>
+            @else
+                <span class="stat-tag stat-tag--neutral">All in stock</span>
+            @endif
         </div>
     </div>
 

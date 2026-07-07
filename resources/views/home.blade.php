@@ -20,6 +20,8 @@
             @endif
             @endforeach
 
+            <div class="hero-overlay" aria-hidden="true"></div>
+
             @php $first = $heroSlides->first(); @endphp
             <div class="hero-content">
                 @if($first->eyebrow)<p class="hero-eyebrow">{{ $first->eyebrow }}</p>@endif
@@ -49,6 +51,7 @@
         @else
         {{-- Static fallback --}}
         <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1440&h=720&fit=crop" alt="BharkaBeauty" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
+        <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content">
             <p class="hero-eyebrow">New Season, New Glow</p>
             <h1 class="hero-title">Your Beauty,<br><span>Our Craft</span></h1>
@@ -283,22 +286,24 @@
                             @if($item->button_text)<a href="{{ $item->button_url ?? '#' }}" class="btn btn-dark btn-md" style="align-self:flex-start;">{{ $item->button_text }}</a>@endif
                         </div>
                         <div class="collection-image" style="{{ $item->image_url ? 'background-image:url('.$item->image_url.');' : '' }}background-size:cover;background-position:center;">
-                            <div class="collection-image-placeholder" style="background:rgba(0,0,0,0.35);">{{ $item->title }}</div>
+                            @unless($item->image_url)
+                                <div class="collection-image-placeholder">{{ $item->title }}</div>
+                            @endunless
                         </div>
                     </div>
                     @endforeach
                 @else
                     <div class="collection-row">
                         <div class="collection-content"><p class="collection-eyebrow">Collection</p><h3 class="collection-title">Best Sellers</h3><p class="collection-desc">Our most-loved products, tried and tested by thousands of beauty lovers across Pakistan.</p><a href="{{ route('category.index', ['col' => 'bestsellers']) }}" class="btn btn-dark btn-md" style="align-self:flex-start;">Shop Best Sellers</a></div>
-                        <div class="collection-image" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=624&h=240&fit=crop');background-size:cover;background-position:center;"><div class="collection-image-placeholder" style="background:rgba(0,0,0,0.35);">Best Sellers</div></div>
+                        <div class="collection-image" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=624&h=240&fit=crop');background-size:cover;background-position:center;"></div>
                     </div>
                     <div class="collection-row">
+                        <div class="collection-image new-arrivals" style="background-image:url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=624&h=240&fit=crop');background-size:cover;background-position:center;"></div>
                         <div class="collection-content"><p class="collection-eyebrow">New In</p><h3 class="collection-title">New Arrivals</h3><p class="collection-desc">Fresh drops of the latest skincare, makeup and more — be the first to explore.</p><a href="{{ route('category.index', ['col' => 'new']) }}" class="btn btn-dark btn-md" style="align-self:flex-start;">Shop New Arrivals</a></div>
-                        <div class="collection-image new-arrivals" style="background-image:url('https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=624&h=240&fit=crop');background-size:cover;background-position:center;"><div class="collection-image-placeholder" style="background:rgba(0,0,0,0.35);">New Arrivals</div></div>
                     </div>
                     <div class="collection-row">
                         <div class="collection-content"><p class="collection-eyebrow">Trending</p><h3 class="collection-title">Trending Now</h3><p class="collection-desc">What beauty lovers are obsessing over right now — get on trend before it sells out.</p><a href="{{ route('category.index', ['col' => 'trending']) }}" class="btn btn-dark btn-md" style="align-self:flex-start;">Shop Trending</a></div>
-                        <div class="collection-image trending" style="background-image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=624&h=240&fit=crop');background-size:cover;background-position:center;"><div class="collection-image-placeholder" style="background:rgba(0,0,0,0.35);">Trending</div></div>
+                        <div class="collection-image trending" style="background-image:url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=624&h=240&fit=crop');background-size:cover;background-position:center;"></div>
                     </div>
                 @endif
             </div>
