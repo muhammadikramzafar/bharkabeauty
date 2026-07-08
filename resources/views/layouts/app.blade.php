@@ -130,7 +130,7 @@
     </script>
     @endif
 
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}?v={{ filemtime(public_path('assets/js/main.js')) }}"></script>
     @stack('scripts')
 
     {{-- ── Custom Body Code (Admin-injected) ──────────── --}}

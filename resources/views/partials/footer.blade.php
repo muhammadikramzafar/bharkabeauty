@@ -2,11 +2,11 @@
 <section class="newsletter-section" aria-labelledby="newsletter-heading">
     <h2 class="newsletter-title" id="newsletter-heading">Join the BharkaBeauty Family</h2>
     <p class="newsletter-sub">Sign up for exclusive previews, beauty tips, and member-only offers.</p>
-    <form class="newsletter-form" id="newsletter-form" novalidate>
+    <form class="newsletter-form" id="newsletter-form" method="POST" action="{{ route('newsletter.subscribe') }}" novalidate>
         @csrf
         <div style="position:relative;flex:1;">
-            <input class="newsletter-input" type="email" id="newsletter-email" placeholder="Email Address" aria-label="Email address" required autocomplete="email" style="width:100%;" />
-            <p id="newsletter-error" style="display:none;position:absolute;left:0;top:calc(100% + 4px);font-size:.75rem;color:#fca5a5;font-weight:600;"></p>
+            <input class="newsletter-input" type="email" name="email" id="newsletter-email" value="{{ old('email') }}" placeholder="Email Address" aria-label="Email address" required autocomplete="email" style="width:100%;" />
+            <p id="newsletter-error" class="newsletter-field-error" style="{{ $errors->has('email') ? '' : 'display:none;' }}">@error('email'){{ $message }}@enderror</p>
         </div>
         <button class="newsletter-btn" type="submit">Subscribe</button>
     </form>
@@ -51,13 +51,14 @@
             input.focus();
             return;
         }
-        // Valid — show inline success toast
-        e.preventDefault();
-        input.value = '';
-        if (typeof showToast === 'function') {
-            showToast('You\'re subscribed! Welcome to the family ♡', 'success');
-        }
+        // Looks valid — let the form submit for real; the server has the final say.
     });
+
+    @if(session('newsletter_success'))
+        if (typeof showToast === 'function') {
+            showToast(@json(session('newsletter_success')), 'success');
+        }
+    @endif
 })();
 </script>
 

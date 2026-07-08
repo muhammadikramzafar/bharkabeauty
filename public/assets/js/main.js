@@ -423,17 +423,6 @@ document.addEventListener('click', e => {
   }
 });
 
-/* ── Form: Newsletter ──────────────────────────────────────── */
-document.addEventListener('submit', e => {
-  if (!e.target.closest('#newsletter-form')) return;
-  e.preventDefault();
-  const input = e.target.querySelector('input[type="email"]');
-  if (input && input.value) {
-    showToast('Thank you for subscribing! 🌸');
-    input.value = '';
-  }
-});
-
 /* ── Accordion ─────────────────────────────────────────────── */
 document.addEventListener('click', e => {
   const trigger = e.target.closest('[data-accordion-trigger]');

@@ -10,8 +10,8 @@ class NewsletterController extends Controller
     public function subscribe(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|max:255',
-            'name'  => 'nullable|string|max:100',
+            'email' => ['required', 'string', 'email:rfc,dns', 'max:255'],
+            'name'  => ['nullable', 'string', 'max:100'],
         ]);
 
         $existing = NewsletterSubscriber::where('email', $request->email)->first();

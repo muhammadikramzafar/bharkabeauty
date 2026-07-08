@@ -1872,6 +1872,15 @@ h6 { font-size: var(--text-lg); }
 
 .newsletter-input::placeholder { color: rgba(255,255,255,.4); }
 
+.newsletter-field-error {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 4px);
+  font-size: .75rem;
+  color: #fca5a5;
+  font-weight: 600;
+}
+
 .newsletter-btn {
   padding: 0 var(--space-8);
   background: var(--color-accent);
