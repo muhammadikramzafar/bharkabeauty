@@ -8,7 +8,7 @@
     <div class="header-top">
         <!-- Logo -->
         <div class="header-logo">
-            <a href="{{ route('home') }}" aria-label="BharkaBeauty Home">Bharka<span>Beauty</span></a>
+            <a href="{{ route('home') }}" aria-label="AmsazBeauty Home">Amsaz<span>Beauty</span></a>
         </div>
 
         <!-- Search -->

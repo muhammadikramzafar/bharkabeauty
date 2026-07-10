@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
 
             // Company
-            $table->string('company_name')->default('BharkaBeauty');
+            $table->string('company_name')->default('AmsazBeauty');
             $table->string('logo')->nullable();
             $table->string('favicon')->nullable();
             $table->string('tagline')->nullable();

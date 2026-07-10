@@ -21,8 +21,8 @@ class OrderConfirmationMail extends Mailable
     public function envelope(): Envelope
     {
         $subject = $this->isAdmin
-            ? 'New Order #' . $this->order->order_number . ' — BharkaBeauty'
-            : 'Order Confirmed! #' . $this->order->order_number . ' — BharkaBeauty';
+            ? 'New Order #' . $this->order->order_number . ' — AmsazBeauty'
+            : 'Order Confirmed! #' . $this->order->order_number . ' — AmsazBeauty';
 
         return new Envelope(subject: $subject);
     }

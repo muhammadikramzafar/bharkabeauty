@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Confirmed — BharkaBeauty</title>
+<title>Order Confirmed — AmsazBeauty</title>
 <style>
   body { margin:0; padding:0; background:#f5f0eb; font-family:'Helvetica Neue',Arial,sans-serif; color:#2d2016; }
   .wrap { max-width:600px; margin:32px auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.08); }
@@ -47,14 +47,14 @@
 <div class="wrap">
 
   <div class="header">
-    <h1>BharkaBeauty</h1>
+    <h1>AmsazBeauty</h1>
     <p>Your order is confirmed ✓</p>
   </div>
 
   <div class="body">
     <p class="greeting">Hi {{ $order->shipping_address['first_name'] ?? $order->user?->name ?? 'Valued Customer' }},</p>
     <p class="subtext">
-      Thank you for shopping with BharkaBeauty! We've received your order and it's being prepared.
+      Thank you for shopping with AmsazBeauty! We've received your order and it's being prepared.
       You'll receive another update when it's on its way.
     </p>
 
@@ -147,8 +147,8 @@
   </div>
 
   <div class="footer">
-    <p>Questions? Email us at <a href="mailto:support@bharkabeauty.com">support@bharkabeauty.com</a></p>
-    <p style="margin-top:8px;">© {{ date('Y') }} BharkaBeauty. All rights reserved.</p>
+    <p>Questions? Email us at <a href="mailto:support@amsazbeauty.com">support@amsazbeauty.com</a></p>
+    <p style="margin-top:8px;">© {{ date('Y') }} AmsazBeauty. All rights reserved.</p>
   </div>
 
 </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ($service->seo_title ?: $service->title) . ' — BharkaBeauty')
+@section('title', ($service->seo_title ?: $service->title) . ' — AmsazBeauty')
 @if($service->seo_description)
 @section('meta_description', $service->seo_description)
 @endif

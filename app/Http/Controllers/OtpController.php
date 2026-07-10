@@ -153,7 +153,7 @@ class OtpController extends Controller
 
         // Send to mobile via SMS
         if ($phone) {
-            SmsService::send($phone, "Your BharkaBeauty verification code is: {$token}. Valid for 10 minutes. Do not share.");
+            SmsService::send($phone, "Your AmsazBeauty verification code is: {$token}. Valid for 10 minutes. Do not share.");
         }
 
         session(['otp_email' => $email, 'otp_phone' => $phone]);

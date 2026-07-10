@@ -153,7 +153,7 @@ class CategorySeeder extends Seeder
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_TIMEOUT        => 15,
                 CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_USERAGENT      => 'Mozilla/5.0 (BharkaBeauty/1.0)',
+                CURLOPT_USERAGENT      => 'Mozilla/5.0 (AmsazBeauty/1.0)',
             ]);
             $data = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

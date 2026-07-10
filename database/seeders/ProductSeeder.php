@@ -50,7 +50,7 @@ class ProductSeeder extends Seeder
             'is_featured'       => $d['featured'] ?? false,
             'is_active'         => true,
             'sort_order'        => 0,
-            'seo_title'         => $d['name'] . ' | BharkaBeauty',
+            'seo_title'         => $d['name'] . ' | AmsazBeauty',
             'seo_description'   => $d['short'],
         ]);
 
@@ -73,7 +73,7 @@ class ProductSeeder extends Seeder
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_TIMEOUT        => 15,
                 CURLOPT_SSL_VERIFYPEER => false,
-                CURLOPT_USERAGENT      => 'Mozilla/5.0 BharkaBeauty/1.0',
+                CURLOPT_USERAGENT      => 'Mozilla/5.0 AmsazBeauty/1.0',
             ]);
             $data = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

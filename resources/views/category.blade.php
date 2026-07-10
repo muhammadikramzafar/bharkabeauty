@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ($pageTitle ?? 'Shop') . ' — BharkaBeauty')
+@section('title', ($pageTitle ?? 'Shop') . ' — AmsazBeauty')
 
 @section('content')
 

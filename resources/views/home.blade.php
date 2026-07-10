@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $setting->seo_title ?? 'BharkaBeauty — Premium Luxury Cosmetics & Skincare Pakistan')
+@section('title', $setting->seo_title ?? 'AmsazBeauty — Premium Luxury Cosmetics & Skincare Pakistan')
 @section('meta_description', $setting->seo_description ?? '')
 @section('meta_keywords', $setting->seo_keywords ?? '')
 
@@ -50,7 +50,7 @@
 
         @else
         {{-- Static fallback --}}
-        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1440&h=720&fit=crop" alt="BharkaBeauty" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1440&h=720&fit=crop" alt="AmsazBeauty" loading="eager" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;">
         <div class="hero-overlay" aria-hidden="true"></div>
         <div class="hero-content">
             <p class="hero-eyebrow">New Season, New Glow</p>

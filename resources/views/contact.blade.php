@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contact Us — BharkaBeauty')
+@section('title', 'Contact Us — AmsazBeauty')
 
 @section('content')
 
@@ -62,7 +62,7 @@
                         </div>
                         <div>
                             <p style="font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.5);margin:0 0 .25rem;">Email</p>
-                            <a href="mailto:hello@bharkabeauty.com" style="color:#fff;text-decoration:none;font-size:.95rem;font-weight:600;">hello@bharkabeauty.com</a>
+                            <a href="mailto:hello@amsazbeauty.com" style="color:#fff;text-decoration:none;font-size:.95rem;font-weight:600;">hello@amsazbeauty.com</a>
                         </div>
                     </div>
 

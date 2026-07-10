@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', $category->name . ' — Blog — BharkaBeauty')
-@section('meta_description', $category->description ?? 'Browse ' . $category->name . ' articles on BharkaBeauty Blog.')
+@section('title', $category->name . ' — Blog — AmsazBeauty')
+@section('meta_description', $category->description ?? 'Browse ' . $category->name . ' articles on AmsazBeauty Blog.')
 
 @push('styles')
 <style>

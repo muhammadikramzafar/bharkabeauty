@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $page->seo_title ?? $page->title . ' — BharkaBeauty')
+@section('title', $page->seo_title ?? $page->title . ' — AmsazBeauty')
 @section('meta_description', $page->seo_description ?? '')
 
 @section('content')

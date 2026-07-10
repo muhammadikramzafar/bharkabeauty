@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Create Account — BharkaBeauty')
+@section('title', 'Create Account — AmsazBeauty')
 
 @section('content')
 <div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:3rem 1rem;background:var(--color-bg-alt);">
@@ -7,7 +7,7 @@
 
     <div style="text-align:center;margin-bottom:2rem;">
         <a href="{{ route('home') }}" style="font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--color-primary);text-decoration:none;letter-spacing:1px;">
-            BharkaBeauty
+            AmsazBeauty
         </a>
         <p style="margin:.5rem 0 0;color:var(--color-text-muted);font-size:.9rem;">Create your free account</p>
     </div>

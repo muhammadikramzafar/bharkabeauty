@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Find Our Store — BharkaBeauty')
+@section('title', 'Find Our Store — AmsazBeauty')
 
 @section('content')
 
@@ -22,7 +22,7 @@
         <p style="font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent);margin-bottom:.6rem;">Visit Us</p>
         <h1 style="font-family:var(--font-display);font-size:clamp(1.9rem,4vw,2.75rem);font-weight:800;color:var(--color-primary);margin:0 0 .75rem;">Find Our Store</h1>
         <p style="font-size:1rem;color:var(--color-text-muted);max-width:500px;margin:0 auto;line-height:1.65;">
-            Come experience BharkaBeauty in person — expert consultations, exclusive testers, and beauty advice from our team.
+            Come experience AmsazBeauty in person — expert consultations, exclusive testers, and beauty advice from our team.
         </p>
     </div>
 </div>
@@ -45,7 +45,7 @@
                             </svg>
                             <span style="color:rgba(255,255,255,.75);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;">Flagship Store</span>
                         </div>
-                        <h2 style="color:#fff;font-family:var(--font-display);font-size:1.35rem;font-weight:800;margin:0;">BharkaBeauty</h2>
+                        <h2 style="color:#fff;font-family:var(--font-display);font-size:1.35rem;font-weight:800;margin:0;">AmsazBeauty</h2>
                         <p style="color:rgba(255,255,255,.8);font-size:.85rem;margin:.3rem 0 0;">Rawalpindi, Pakistan</p>
                     </div>
 
@@ -131,7 +131,7 @@
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
-                        title="BharkaBeauty Store Location">
+                        title="AmsazBeauty Store Location">
                     </iframe>
                 </div>
                 <p style="font-size:.78rem;color:var(--color-text-muted);margin:.75rem 0 0;text-align:center;">

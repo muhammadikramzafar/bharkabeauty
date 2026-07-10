@@ -1,5 +1,5 @@
 /* ================================================================
-   BharkaBeauty — Admin Panel CSS
+   AmsazBeauty — Admin Panel CSS
    ================================================================ */
 
 /* ── Reset & Base ──────────────────────────────────────────── */
@@ -791,6 +791,12 @@ select.form-control { cursor: pointer; }
 }
 .admin-pagination a:hover { background: var(--color-bg); border-color: var(--color-accent); color: var(--color-accent); }
 .admin-pagination span[aria-current] > span { background: var(--color-accent); border-color: var(--color-accent); color: #fff; font-weight: 700; }
+/* Laravel's default pagination view assumes Tailwind (sm:hidden / hidden sm:flex),
+   which this project doesn't load — so hide the mobile-only Previous/Next block
+   and size the prev/next SVG arrows that would otherwise render at full intrinsic size. */
+.admin-pagination nav > div:first-child { display: none; }
+.admin-pagination nav > div:last-child { display: flex; }
+.admin-pagination svg { width: 16px; height: 16px; }
 
 /* ── Image preview in forms ─────────────────────────────────── */
 .image-preview-wrap { margin-bottom: .75rem; }

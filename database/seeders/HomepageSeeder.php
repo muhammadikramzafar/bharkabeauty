@@ -29,7 +29,7 @@ class HomepageSeeder extends Seeder
             'store_button_url'    => '/store-locator',
             'newsletter_title'    => 'Stay in the Loop',
             'newsletter_subtitle' => 'Get exclusive offers, new arrivals, and beauty tips delivered to your inbox.',
-            'seo_title'           => 'BharkaBeauty — Premium Luxury Cosmetics & Skincare Pakistan',
+            'seo_title'           => 'AmsazBeauty — Premium Luxury Cosmetics & Skincare Pakistan',
             'seo_description'     => 'Pakistan\'s most curated luxury beauty destination. Shop premium cosmetics, skincare, and haircare from top global brands.',
             'seo_keywords'        => 'beauty, cosmetics, skincare, makeup, Pakistan, luxury beauty',
             'show_hero'           => true,
@@ -82,7 +82,7 @@ class HomepageSeeder extends Seeder
         // Testimonials
         if (!HomepageTestimonial::count()) {
             $testimonials = [
-                ['reviewer_name' => 'Ayesha Khan', 'reviewer_location' => 'Lahore', 'review_text' => 'The quality is absolutely amazing. I\'ve been buying from BharkaBeauty for 2 years and they never disappoint. Fast delivery and 100% authentic products!', 'rating' => 5, 'product_brand' => 'Huda Beauty', 'product_name' => 'Rose Gold Palette'],
+                ['reviewer_name' => 'Ayesha Khan', 'reviewer_location' => 'Lahore', 'review_text' => 'The quality is absolutely amazing. I\'ve been buying from AmsazBeauty for 2 years and they never disappoint. Fast delivery and 100% authentic products!', 'rating' => 5, 'product_brand' => 'Huda Beauty', 'product_name' => 'Rose Gold Palette'],
                 ['reviewer_name' => 'Sara Ahmed', 'reviewer_location' => 'Karachi', 'review_text' => 'Best skincare shopping experience in Pakistan. The packaging is beautiful and products arrive in perfect condition. Highly recommend!', 'rating' => 5, 'product_brand' => 'The Ordinary', 'product_name' => 'Niacinamide 10%'],
                 ['reviewer_name' => 'Fatima Malik', 'reviewer_location' => 'Islamabad', 'review_text' => 'I love that they carry brands I can\'t find anywhere else in Pakistan. Customer service is also top-notch — they helped me find the perfect foundation shade!', 'rating' => 5, 'product_brand' => 'Maybelline', 'product_name' => 'Fit Me Foundation'],
             ];

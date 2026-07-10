@@ -113,7 +113,7 @@
                 </div>
                 <div class="form-group">
                     <label>Copyright Line</label>
-                    <input type="text" name="footer_copyright" value="{{ old('footer_copyright', $settings->footer_copyright) }}" placeholder="© 2025 BharkaBeauty. All rights reserved." class="form-control">
+                    <input type="text" name="footer_copyright" value="{{ old('footer_copyright', $settings->footer_copyright) }}" placeholder="© 2025 AmsazBeauty. All rights reserved." class="form-control">
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '#' . $tag->name . ' — Blog — BharkaBeauty')
+@section('title', '#' . $tag->name . ' — Blog — AmsazBeauty')
 
 @push('styles')
 <style>

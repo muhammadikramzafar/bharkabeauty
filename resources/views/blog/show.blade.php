@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', ($post->seo_title ?: $post->title) . ' — BharkaBeauty Blog')
+@section('title', ($post->seo_title ?: $post->title) . ' — AmsazBeauty Blog')
 @if($post->seo_description)
 @section('meta_description', $post->seo_description)
 @endif
@@ -104,7 +104,7 @@
             <div class="post-meta">
                 <span class="post-meta-author">
                     <span class="post-meta-avatar">{{ strtoupper(substr($post->author?->name ?? 'B', 0, 1)) }}</span>
-                    {{ $post->author?->name ?? 'BharkaBeauty' }}
+                    {{ $post->author?->name ?? 'AmsazBeauty' }}
                 </span>
                 <span class="post-meta-date">
                     <svg viewBox="0 0 20 20" fill="currentColor" width="14"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/></svg>

@@ -26,7 +26,7 @@
                 <span class="blog-card__author-avatar">
                     {{ strtoupper(substr($post->author?->name ?? 'A', 0, 1)) }}
                 </span>
-                {{ $post->author?->name ?? 'BharkaBeauty' }}
+                {{ $post->author?->name ?? 'AmsazBeauty' }}
             </span>
             <span class="blog-card__read">{{ $post->read_time }} min read</span>
         </div>
