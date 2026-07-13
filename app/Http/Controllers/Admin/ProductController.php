@@ -53,7 +53,7 @@ class ProductController extends Controller
             'seo_keywords'      => 'nullable|string|max:255',
             'images.*'          => 'nullable|image|max:3072',
         ]);
-        $data['slug']        = $data['slug'] ?: Str::slug($data['name']);
+        $data['slug']        = ($data['slug'] ?? null) ?: Str::slug($data['name']);
         $data['is_featured'] = $request->boolean('is_featured');
         $data['is_active']   = $request->boolean('is_active', true);
         $data['sort_order']  = (int) $request->input('sort_order', 0);
