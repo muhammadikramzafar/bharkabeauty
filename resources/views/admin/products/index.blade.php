@@ -22,7 +22,11 @@
         <button type="submit" class="btn btn-outline btn-sm">Filter</button>
         @if(request()->hasAny(['search','category','brand','status']))<a href="{{ route('admin.products.index') }}" class="btn btn-outline btn-sm">Clear</a>@endif
     </form>
-    <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-sm">+ Add Product</a>
+    <div style="display:flex;gap:.5rem;">
+        <a href="{{ route('admin.products.export') }}" class="btn btn-outline btn-sm">Export CSV</a>
+        <a href="{{ route('admin.products.import') }}" class="btn btn-outline btn-sm">Import CSV</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-sm">+ Add Product</a>
+    </div>
 </div>
 
 <div class="admin-card">

@@ -160,7 +160,14 @@ Route::prefix('admin')
         Route::resource('media', MediaController::class)->parameters(['media' => 'medium']);
 
         // ── Catalog ──────────────────────────────────────────
+        Route::get('/products/export',       [AdminProductController::class, 'export'])->name('products.export');
+        Route::get('/products/import',       [AdminProductController::class, 'importForm'])->name('products.import');
+        Route::post('/products/import',      [AdminProductController::class, 'import'])->name('products.import.store');
         Route::resource('products',   AdminProductController::class);
+
+        Route::get('/categories/export',     [AdminCategoryController::class, 'export'])->name('categories.export');
+        Route::get('/categories/import',     [AdminCategoryController::class, 'importForm'])->name('categories.import');
+        Route::post('/categories/import',    [AdminCategoryController::class, 'import'])->name('categories.import.store');
         Route::resource('categories', AdminCategoryController::class);
         Route::patch('/categories/{category}/toggle-visibility', [AdminCategoryController::class, 'toggleVisibility'])->name('categories.toggle-visibility');
         Route::resource('brands',     AdminBrandController::class);

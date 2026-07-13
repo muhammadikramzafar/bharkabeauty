@@ -3,9 +3,13 @@
 @section('page_title','Product Categories')
 @section('content')
 
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;gap:.75rem;flex-wrap:wrap;">
     <p style="color:#6b7280;font-size:.875rem;">{{ $categories->total() }} categories total</p>
-    <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-sm">+ Add Category</a>
+    <div style="display:flex;gap:.5rem;">
+        <a href="{{ route('admin.categories.export') }}" class="btn btn-outline btn-sm">Export CSV</a>
+        <a href="{{ route('admin.categories.import') }}" class="btn btn-outline btn-sm">Import CSV</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-sm">+ Add Category</a>
+    </div>
 </div>
 
 <div class="admin-card">
