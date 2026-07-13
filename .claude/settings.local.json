@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($env:PATH = \"C:\\\\php83;\" + $env:PATH; Set-Location c:\\\\laravel\\\\bharkabeauty; php artisan route:list 2>&1 | Select-String \"admin\" | Measure-Object | Select-Object -ExpandProperty Count)",
+      "PowerShell($env:PATH = \"C:\\\\php83;\" + $env:PATH; Set-Location c:\\\\laravel\\\\bharkabeauty; php artisan config:clear; php artisan view:clear 2>&1)"
+    ]
+  }
+}
