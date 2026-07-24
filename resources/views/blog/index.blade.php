@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Blog — AmsazBeauty')
-@section('meta_description', 'Beauty tips, tutorials, trends and expert advice from AmsazBeauty.')
+@section('title', 'Blog — Amsaz Cosmetics')
+@section('meta_description', 'Beauty tips, tutorials, trends and expert advice from Amsaz Cosmetics.')
 
 @push('styles')
 <style>

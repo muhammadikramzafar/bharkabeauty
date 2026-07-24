@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', ($activeCategory ? $activeCategory->name . ' Services' : 'Our Services') . ' — AmsazBeauty')
-@section('meta_description', $activeCategory?->description ?? 'Explore our full range of professional beauty services at AmsazBeauty.')
+@section('title', ($activeCategory ? $activeCategory->name . ' Services' : 'Our Services') . ' — Amsaz Cosmetics')
+@section('meta_description', $activeCategory?->description ?? 'Explore our full range of professional beauty services at Amsaz Cosmetics.')
 
 @push('styles')
 <style>

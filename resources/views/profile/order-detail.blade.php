@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Order #'.$order->order_number.' — AmsazBeauty')
+@section('title', 'Order #'.$order->order_number.' — Amsaz Cosmetics')
 
 @section('content')
 

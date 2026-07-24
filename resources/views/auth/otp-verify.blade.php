@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Enter Your Code — AmsazBeauty')
+@section('title', 'Enter Your Code — Amsaz Cosmetics')
 
 @section('content')
 <div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:3rem 1rem;background:var(--color-bg-alt);">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Wishlist — AmsazBeauty')
+@section('title', 'Wishlist — Amsaz Cosmetics')
 
 @section('content')
 

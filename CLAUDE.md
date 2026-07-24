@@ -1,4 +1,4 @@
-# BharkaBeauty — Claude Code Reference
+# Amsaz Cosmetics — Claude Code Reference
 
 ## Project Overview
 Laravel 13 beauty e-commerce store with full admin panel. Pakistani market, prices in PKR.
@@ -22,7 +22,7 @@ php artisan config:clear; php artisan view:clear; php artisan route:clear
 
 ## Admin Access
 - **URL:** http://localhost:8000/admin
-- **Email:** superadmin@bharkabeauty.com
+- **Email:** superadmin@amsazcosmetics.com
 - **Password:** Admin@1234
 - **Roles:** super-admin, admin, editor (via Spatie)
 
@@ -192,7 +192,7 @@ Step 5 POST checkout/place-order → creates Order + OrderItems in DB, sends 2 e
 2. Creates `Order` record — `user_id` is `Auth::id()` (null for guests), `discount` = `$couponDiscount`
 3. Creates `OrderItem` for each cart item (price snapshot)
 4. Sends `OrderConfirmationMail($order, false)` to `$address['email']` (from form, not `Auth::user()`)
-5. Sends `OrderConfirmationMail($order, true)` to `config('mail.admin_email')` (default: superadmin@bharkabeauty.com)
+5. Sends `OrderConfirmationMail($order, true)` to `config('mail.admin_email')` (default: superadmin@amsazcosmetics.com)
 6. Stores `last_order_number` in session (lets guests view their success page)
 7. Clears `cart`, `checkout_address`, `checkout_delivery`, `coupon` from session
 
@@ -227,7 +227,7 @@ Never use `auth()->user()->email` directly — crashes for guests.
 | `OrderConfirmationMail($order, false)` | `emails/order-customer` | Customer after placing order |
 | `OrderConfirmationMail($order, true)` | `emails/order-admin` | Admin after any order |
 
-**Mail config (`config/mail.php`):** Added `'admin_email' => env('MAIL_ADMIN_EMAIL', 'superadmin@bharkabeauty.com')`
+**Mail config (`config/mail.php`):** Added `'admin_email' => env('MAIL_ADMIN_EMAIL', 'superadmin@amsazcosmetics.com')`
 
 **Current driver:** `MAIL_MAILER=log` → emails go to `storage/logs/laravel.log`. To send real email:
 ```env
@@ -237,8 +237,8 @@ MAIL_PORT=587
 MAIL_USERNAME=your@gmail.com
 MAIL_PASSWORD=your-app-password
 MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=noreply@bharkabeauty.com
-MAIL_ADMIN_EMAIL=superadmin@bharkabeauty.com
+MAIL_FROM_ADDRESS=noreply@Amsaz Cosmetics.com
+MAIL_ADMIN_EMAIL=superadmin@amsazcosmetics.com
 ```
 
 ## Frontend Controllers (all fully implemented)
@@ -441,7 +441,7 @@ session()->forget(['cart', 'checkout_address', 'checkout_delivery', 'coupon']);
 ## Setup on a New PC
 ```powershell
 git clone https://github.com/muhammadikramzafar/bharkabeauty.git
-cd bharkabeauty
+cd Amsaz Cosmetics
 composer install
 cp .env.example .env
 # In phpMyAdmin / MySQL Workbench: create database named "bharka"

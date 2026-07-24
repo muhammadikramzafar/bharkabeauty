@@ -64,7 +64,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // ─── CREATE SUPER ADMIN USER ──────────────────────────────
         $superAdminUser = User::firstOrCreate(
-            ['email' => 'superadmin@bharkabeauty.com'],
+            ['email' => 'superadmin@Amsaz Cosmetics.com'],
             [
                 'name'     => 'Super Admin',
                 'password' => Hash::make('Admin@1234'),
@@ -73,6 +73,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $superAdminUser->assignRole('super-admin');
 
         $this->command->info('Roles and permissions seeded successfully.');
-        $this->command->info('Super Admin: superadmin@bharkabeauty.com / Admin@1234');
+        $this->command->info('Super Admin: superadmin@Amsaz Cosmetics.com / Admin@1234');
     }
 }

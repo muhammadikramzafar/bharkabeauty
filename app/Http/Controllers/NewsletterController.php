@@ -28,7 +28,7 @@ class NewsletterController extends Controller
                 'email' => $request->email,
                 'name'  => $request->name,
             ]);
-            $message = "Thank you for subscribing to AmsazBeauty!";
+            $message = "Thank you for subscribing to Amsaz Cosmetics!";
         }
 
         if ($request->expectsJson()) {
@@ -44,7 +44,7 @@ class NewsletterController extends Controller
 
         if ($subscriber->status === 'active') {
             $subscriber->unsubscribe();
-            $message = "You have been unsubscribed from AmsazBeauty newsletters.";
+            $message = "You have been unsubscribed from Amsaz Cosmetics newsletters.";
         } else {
             $message = "You are already unsubscribed.";
         }

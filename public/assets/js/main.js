@@ -1,5 +1,5 @@
 /* ============================================================
-   AmsazBeauty — Main JavaScript
+   Amsaz Cosmetics — Main JavaScript
    ============================================================ */
 
 'use strict';

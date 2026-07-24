@@ -8,7 +8,7 @@
     <div class="header-top">
         <!-- Logo -->
         <div class="header-logo">
-            <a href="{{ route('home') }}" aria-label="AmsazBeauty Home">Amsaz<span>Beauty</span></a>
+            <a href="{{ route('home') }}" aria-label="Amsaz Cosmetics Home">Amsaz <span>Cosmetics</span></a>
         </div>
 
         <!-- Search -->
@@ -89,7 +89,7 @@
 <!-- ─── MOBILE MENU ───────────────────────────────────────── -->
 <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Main menu">
     <div class="mobile-menu-header">
-        <a href="{{ route('home') }}" style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--color-primary);">Amsaz<span style="color:var(--color-accent)">Beauty</span></a>
+        <a href="{{ route('home') }}" style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--color-primary);">Amsaz <span style="color:var(--color-accent)">Cosmetics</span></a>
         <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
     </div>
     <div class="mobile-menu-actions">

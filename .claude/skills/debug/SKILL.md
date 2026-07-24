@@ -1,8 +1,8 @@
 ---
-description: Debug common BharkaBeauty errors — 500s, blank pages, mail, OTP, routes
+description: Debug common Amsaz Cosmetics errors — 500s, blank pages, mail, OTP, routes
 ---
 
-# Debug — BharkaBeauty Common Issues
+# Debug — Amsaz Cosmetics Common Issues
 
 ## Check Laravel logs
 
@@ -79,7 +79,7 @@ Filenames must sort: `093317_5_create_cms_pages` → `093317_create_menus` → `
 
 ### OTP not arriving (email)
 `MAIL_MAILER=log` — check `storage/logs/laravel.log` for the code.
-Look for `Subject: Your BharkaBeauty Login Code` or `[SMS]`.
+Look for `Subject: Your Amsaz Cosmetics Login Code` or `[SMS]`.
 
 ### OTP not arriving (SMS)
 `SmsService` logs only. Check log for `[SMS] To: 03XX...`.

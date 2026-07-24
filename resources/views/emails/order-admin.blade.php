@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>New Order — AmsazBeauty Admin</title>
+<title>New Order — Amsaz Cosmetics Admin</title>
 <style>
   body { margin:0; padding:0; background:#f5f0eb; font-family:'Helvetica Neue',Arial,sans-serif; color:#2d2016; }
   .wrap { max-width:600px; margin:32px auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.08); }
@@ -35,7 +35,7 @@
 
   <div class="header">
     <h1>🛍 New Order Received</h1>
-    <p>AmsazBeauty Admin Notification</p>
+    <p>Amsaz Cosmetics Admin Notification</p>
   </div>
 
   <div class="body">
@@ -119,7 +119,7 @@
 
   </div>
 
-  <div class="footer">AmsazBeauty Admin · {{ date('Y') }}</div>
+  <div class="footer">Amsaz Cosmetics Admin · {{ date('Y') }}</div>
 
 </div>
 </body>

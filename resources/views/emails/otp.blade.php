@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Your Login Code — AmsazBeauty</title>
+<title>Your Login Code — Amsaz Cosmetics</title>
 <style>
   body { margin:0; padding:0; background:#f5f0eb; font-family:'Helvetica Neue',Arial,sans-serif; }
   .wrap { max-width:480px; margin:40px auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.08); }
@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="wrap">
-  <div class="header"><h1>AmsazBeauty</h1></div>
+  <div class="header"><h1>Amsaz Cosmetics</h1></div>
   <div class="body">
     <p class="label">Use the code below to sign in to your account.<br>Do not share this code with anyone.</p>
     <div class="otp-box">
@@ -27,7 +27,7 @@
     <p class="expiry">This code expires in <strong>10 minutes</strong>.</p>
     <p style="font-size:12px;color:#a8907a;">If you didn't request this, you can safely ignore this email.</p>
   </div>
-  <div class="footer">© {{ date('Y') }} AmsazBeauty. All rights reserved.</div>
+  <div class="footer">© {{ date('Y') }} Amsaz Cosmetics. All rights reserved.</div>
 </div>
 </body>
 </html>

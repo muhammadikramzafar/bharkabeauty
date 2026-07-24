@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Staff Login — AmsazBeauty')
+@section('title', 'Staff Login — Amsaz Cosmetics')
 
 @section('content')
 <div style="min-height:70vh;display:flex;align-items:center;justify-content:center;padding:3rem 1rem;background:var(--color-bg-alt);">
@@ -8,7 +8,7 @@
     {{-- Brand --}}
     <div style="text-align:center;margin-bottom:2rem;">
         <a href="{{ route('home') }}" style="font-family:var(--font-display);font-size:1.75rem;font-weight:800;color:var(--color-primary);text-decoration:none;letter-spacing:1px;">
-            AmsazBeauty
+            Amsaz Cosmetics
         </a>
         <p style="margin:.5rem 0 0;color:var(--color-text-muted);font-size:.9rem;">Admin &amp; Staff Portal</p>
     </div>
@@ -38,7 +38,7 @@
                 <label class="form-label" for="email">Email Address</label>
                 <input class="form-input" type="email" id="email" name="email"
                        value="{{ old('email') }}"
-                       placeholder="admin@bharkabeauty.com"
+                       placeholder="admin@Amsaz Cosmetics.com"
                        required autofocus autocomplete="username">
             </div>
 
@@ -96,7 +96,7 @@
     </div>
 
     <p style="text-align:center;margin-top:1.25rem;font-size:.78rem;color:var(--color-text-muted);">
-        &copy; {{ date('Y') }} AmsazBeauty. All rights reserved.
+        &copy; {{ date('Y') }} Amsaz Cosmetics. All rights reserved.
     </p>
 
 </div>

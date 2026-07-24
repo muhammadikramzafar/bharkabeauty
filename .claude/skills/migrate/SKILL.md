@@ -1,8 +1,8 @@
 ---
-description: Run, check, and create migrations for BharkaBeauty
+description: Run, check, and create migrations for Amsaz Cosmetics
 ---
 
-# Migrate — BharkaBeauty Database Migrations
+# Migrate — Amsaz Cosmetics Database Migrations
 
 ## Check migration status
 

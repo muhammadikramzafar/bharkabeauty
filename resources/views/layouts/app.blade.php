@@ -1,7 +1,7 @@
 @php
     $seo         = \App\Models\SeoSetting::instance();
     $separator   = $seo->title_separator ?: '—';
-    $siteName    = $seo->site_name ?: 'AmsazBeauty';
+    $siteName    = $seo->site_name ?: 'Amsaz Cosmetics';
 
     // Resolve page title
     $pageTitle   = trim(View::yieldContent('title'));

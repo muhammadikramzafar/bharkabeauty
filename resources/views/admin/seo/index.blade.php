@@ -39,7 +39,7 @@
                         <label>Site Name</label>
                         <input type="text" name="site_name" maxlength="120"
                                value="{{ old('site_name', $seo->site_name) }}" class="form-control"
-                               placeholder="AmsazBeauty">
+                               placeholder="Amsaz Cosmetics">
                         <small class="form-hint">Used in browser tab and OG tags.</small>
                     </div>
 
@@ -48,7 +48,7 @@
                             <label>Default Page Title</label>
                             <input type="text" name="default_title" maxlength="160"
                                    value="{{ old('default_title', $seo->default_title) }}" class="form-control"
-                                   placeholder="AmsazBeauty — Premium Beauty in Pakistan"
+                                   placeholder="Amsaz Cosmetics — Premium Beauty in Pakistan"
                                    oninput="document.getElementById('title-len').textContent=this.value.length">
                         </div>
                         <div class="form-group">
@@ -81,7 +81,7 @@
                         <label>Canonical Base URL</label>
                         <input type="url" name="canonical_base_url" maxlength="255"
                                value="{{ old('canonical_base_url', $seo->canonical_base_url) }}" class="form-control"
-                               placeholder="https://www.amsazbeauty.com">
+                               placeholder="https://www.Amsaz Cosmetics.com">
                         <small class="form-hint">Used to build canonical tags. Leave empty to use APP_URL.</small>
                     </div>
 
@@ -123,7 +123,7 @@
                         <label>Twitter / X Handle</label>
                         <input type="text" name="twitter_site" maxlength="80"
                                value="{{ old('twitter_site', $seo->twitter_site) }}" class="form-control"
-                               placeholder="@amsazbeauty">
+                               placeholder="@Amsaz Cosmetics">
                         <small class="form-hint">Include the @ symbol.</small>
                     </div>
 

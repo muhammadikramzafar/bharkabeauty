@@ -16,7 +16,7 @@ class OtpMail extends Mailable
 
     public function envelope(): Envelope
     {
-        return new Envelope(subject: 'Your AmsazBeauty Login Code — ' . $this->token);
+        return new Envelope(subject: 'Your Amsaz Cosmetics Login Code — ' . $this->token);
     }
 
     public function content(): Content

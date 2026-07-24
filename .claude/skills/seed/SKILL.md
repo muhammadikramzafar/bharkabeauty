@@ -1,8 +1,8 @@
 ---
-description: Seed the BharkaBeauty database with categories, brands, products, and admin user
+description: Seed the Amsaz Cosmetics database with categories, brands, products, and admin user
 ---
 
-# Seed — BharkaBeauty Database Seeding
+# Seed — Amsaz Cosmetics Database Seeding
 
 ## Run all seeders (after fresh migration)
 
@@ -34,7 +34,7 @@ CouponSeeder                ← 4 coupon codes (standalone, any time after migra
 
 ## What gets seeded
 
-- **Admin user:** superadmin@bharkabeauty.com / Admin@1234 (role: super-admin)
+- **Admin user:** superadmin@amsazcosmetics.com / Admin@1234 (role: super-admin)
 - **Categories:** Makeup, Skincare, Haircare, Fragrances, Bath & Body, Tools, Offers
 - **Brands:** 14 brands including L'Oréal, Neutrogena, Maybelline, etc.
 - **Products:** 69 products with Picsum images

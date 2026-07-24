@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Profile Settings — AmsazBeauty')
+@section('title', 'Profile Settings — Amsaz Cosmetics')
 
 @section('content')
 

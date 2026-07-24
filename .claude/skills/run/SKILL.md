@@ -1,8 +1,8 @@
 ---
-description: Start the BharkaBeauty dev server and verify it's running
+description: Start the Amsaz Cosmetics dev server and verify it's running
 ---
 
-# Run — BharkaBeauty Dev Server
+# Run — Amsaz Cosmetics Dev Server
 
 ## Prerequisites
 - PHP binary at `C:\php83\php.exe` — always prepend to PATH

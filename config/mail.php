@@ -111,10 +111,10 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@bharkabeauty.com'),
-        'name' => env('MAIL_FROM_NAME', 'AmsazBeauty'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@Amsaz Cosmetics.com'),
+        'name' => env('MAIL_FROM_NAME', 'Amsaz Cosmetics'),
     ],
 
-    'admin_email' => env('MAIL_ADMIN_EMAIL', 'superadmin@bharkabeauty.com'),
+    'admin_email' => env('MAIL_ADMIN_EMAIL', 'superadmin@amsazcosmetics.com'),
 
 ];

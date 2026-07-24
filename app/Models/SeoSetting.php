@@ -26,7 +26,7 @@ class SeoSetting extends Model
         cache()->forget('seo_settings');
 
         $record = static::firstOrCreate(['id' => 1], [
-            'site_name'       => 'AmsazBeauty',
+            'site_name'       => 'Amsaz Cosmetics',
             'title_separator' => '—',
             'og_type'         => 'website',
             'twitter_card'    => 'summary_large_image',

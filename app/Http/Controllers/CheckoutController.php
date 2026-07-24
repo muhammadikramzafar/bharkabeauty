@@ -114,7 +114,7 @@ class CheckoutController extends Controller
         }
 
         try {
-            Mail::to(config('mail.admin_email', 'superadmin@bharkabeauty.com'))
+            Mail::to(config('mail.admin_email', 'superadmin@Amsaz Cosmetics.com'))
                 ->send(new OrderConfirmationMail($order, true));
         } catch (\Throwable $e) {
             logger()->error('Admin order email failed: ' . $e->getMessage());

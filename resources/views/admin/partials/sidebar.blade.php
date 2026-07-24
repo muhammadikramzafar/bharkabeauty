@@ -1,6 +1,6 @@
 <aside class="admin-sidebar" id="adminSidebar">
     <div class="admin-sidebar-brand">
-        <a href="{{ route('admin.dashboard') }}">Amsaz<span>Beauty</span></a>
+        <a href="{{ route('admin.dashboard') }}">Amsaz <span>Cosmetics</span></a>
         <span class="admin-badge">Admin</span>
     </div>
 
